@@ -1,0 +1,74 @@
+﻿[
+  {
+    "billCategoryModelList": [
+      {
+        "categoryCode": "SHOPPING",
+        "categoryName": "网购",
+        "jumpUrl": ""
+      },
+      {
+        "categoryCode": "OFFLINENETSHOPPING",
+        "categoryName": "线下消费",
+        "jumpUrl": ""
+      },
+      {
+        "categoryCode": "FINANCE",
+        "categoryName": "理财",
+        "jumpUrl": ""
+      },
+      {
+        "categoryCode": "TRANSFER",
+        "categoryName": "转账",
+        "jumpUrl": ""
+      },
+      {
+        "categoryCode": "CCR",
+        "categoryName": "还款",
+        "jumpUrl": ""
+      },
+      {
+        "categoryCode": "PUC_CHARGE",
+        "categoryName": "缴费",
+        "jumpUrl": ""
+      },
+      {
+        "categoryCode": "COUPON",
+        "categoryName": "红包",
+        "jumpUrl": ""
+      },
+      {
+        "categoryCode": "MOBILE_RECHARGE",
+        "categoryName": "手机充值",
+        "jumpUrl": ""
+      },
+      {
+        "categoryCode": "WITHDRAW",
+        "categoryName": "提现",
+        "jumpUrl": ""
+      },
+      {
+        "categoryCode": "REFUND",
+        "categoryName": "有退款",
+        "jumpUrl": ""
+      }
+    ],
+    "column": 4,
+    "styleType": ""
+  },
+  {
+    "billCategoryModelList": [
+      {
+        "categoryCode": "HUABEI",
+        "categoryName": "花呗",
+        "jumpUrl": "alipays://platformapi/startapp?appId=20000067&url=https%3A%2F%2Fconsumeweb.alipay.com%2Frecord%2Fhuabei%2Fm%2Findex.htm%3F__webview_options__%3DshowOptionMenu%253DNO"
+      },
+      {
+        "categoryCode": "BANK",
+        "categoryName": "银行卡",
+        "jumpUrl": "alipays://platformapi/startapp?appId=20000067&url=https%3A%2F%2Fconsumeweb.alipay.com%2Frecord%2Fbank%2Fm%2Flist.htm%3F__webview_options__%3DshowTitleLoading%253DTRUE%2526backBehavior%253Dback"
+      }
+    ],
+    "column": 4,
+    "styleType": "topLine"
+  }
+]

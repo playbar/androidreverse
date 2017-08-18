@@ -1,0 +1,29 @@
+{
+  "WEALTH_HOME_ACC_BALANCE": {
+    "extInfos": {},
+    "mainInfo": "--",
+    "schema": "",
+    "useCache": false,
+    "widgetId": "WEALTH_HOME_ACC_BALANCE"
+  },
+  "WEALTH_HOME_BANKCARD": {
+    "extInfos": {},
+    "schema": "",
+    "useCache": false,
+    "widgetId": "WEALTH_HOME_BANKCARD"
+  },
+  "WEALTH_HOME_KABAO": {
+    "extInfos": {},
+    "mainInfo": "",
+    "schema": "",
+    "useCache": false,
+    "widgetId": "WEALTH_HOME_KABAO"
+  },
+  "WEALTH_HOME_TOTAL_ASSET": {
+    "extInfos": {},
+    "mainInfo": "--",
+    "schema": "",
+    "useCache": false,
+    "widgetId": "WEALTH_HOME_TOTAL_ASSET"
+  }
+}

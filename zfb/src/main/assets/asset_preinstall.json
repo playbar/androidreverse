@@ -1,0 +1,114 @@
+[
+  {
+    "modules": [
+      [
+        {
+          "icon": "android-phone-wealth-home/com.alipay.android.phone.wealth.home/fund",
+          "mainInfo": "查看详情",
+          "secondaryInfo": "",
+          "title": "余额宝",
+          "useCache": false,
+          "widgetId": "WEALTH_HOME_MFUND"
+        },
+        {
+          "icon": "android-phone-wealth-home/com.alipay.android.phone.wealth.home/myfixeddeposit",
+          "mainInfo": "查看详情",
+          "secondaryInfo": "",
+          "title": "招财宝",
+          "useCache": false,
+          "widgetId": "WEALTH_HOME_FIXED"
+        }
+      ],
+      [
+        {
+          "icon": "android-phone-wealth-home/com.alipay.android.phone.wealth.home/stock",
+          "mainInfo": "查看详情",
+          "secondaryInfo": "",
+          "title": "股票",
+          "useCache": false,
+          "widgetId": "WEALTH_HOME_STOCK"
+        },
+        {
+          "icon": "android-phone-wealth-home/com.alipay.android.phone.wealth.home/bollywood",
+          "mainInfo": "查看详情",
+          "secondaryInfo": "",
+          "title": "娱乐宝",
+          "useCache": false,
+          "widgetId": "WEALTH_HOME_BOLLYWOOD"
+        }
+      ]
+    ],
+    "summary": {
+      "icon": "",
+      "mainInfo": "--",
+      "secondaryInfo": "",
+      "title": "昨日收益",
+      "useCache": false,
+      "widgetId": "WEALTH_HOME_YDAY_GAIN"
+    },
+    "title": "投资理财"
+  },
+  {
+    "modules": [
+      [
+        {
+          "icon": "android-phone-wealth-home/com.alipay.android.phone.wealth.home/credit",
+          "mainInfo": "查看详情",
+          "secondaryInfo": "",
+          "title": "芝麻信用分",
+          "useCache": false,
+          "widgetId": "WEALTH_HOME_CREDIT"
+        }
+      ],
+      [
+        {
+          "icon": "android-phone-wealth-home/com.alipay.android.phone.wealth.home/spend",
+          "mainInfo": "查看详情",
+          "secondaryInfo": "",
+          "title": "蚂蚁花呗",
+          "useCache": false,
+          "widgetId": "WEALTH_HOME_HUABEI"
+        },
+        {
+          "icon": "android-phone-wealth-home/com.alipay.android.phone.wealth.home/ecmobile",
+          "mainInfo": "查看详情",
+          "secondaryInfo": "",
+          "title": "蚂蚁借呗",
+          "useCache": false,
+          "widgetId": "WEALTH_HOME_JIEBEI"
+        }
+      ]
+    ],
+    "title": "信用财富"
+  },
+  {
+    "modules": [
+      [
+        {
+          "icon": "android-phone-wealth-home/com.alipay.android.phone.wealth.home/insurance",
+          "mainInfo": "查看详情",
+          "secondaryInfo": "",
+          "title": "我的保障",
+          "useCache": false,
+          "widgetId": "WEALTH_HOME_INSURANCE"
+        }
+      ]
+    ],
+    "index": 1000
+  },
+  {
+    "modules": [
+      [
+        {
+          "icon": "android-phone-wealth-home/com.alipay.android.phone.wealth.home/charity",
+          "mainInfo": "查看详情",
+          "secondaryInfo": "",
+          "title": "爱心捐赠",
+          "useCache": false,
+          "widgetId": "WEALTH_HOME_CHARITY"
+        }
+      ]
+    ],
+    "index": 2000
+  }
+]

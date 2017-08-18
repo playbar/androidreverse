@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@id/container" android:background="@drawable/popmenu_shadow_bg" android:layout_width="wrap_content" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:gravity="center_vertical" android:id="@id/title_bg" android:background="@drawable/popmenu_item_mid_bg" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentTop="true">
+        <TextView android:textSize="15.0dip" android:textColor="@android:color/black" android:gravity="center_vertical" android:id="@id/title" android:background="@drawable/popmenu_item_mid_bg" android:paddingLeft="14.0dip" android:clickable="false" android:layout_width="wrap_content" android:layout_height="37.0dip" />
+    </RelativeLayout>
+    <LinearLayout android:orientation="vertical" android:id="@id/listView" android:background="@android:color/transparent" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/title_bg" />
+</RelativeLayout>

@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="utf-8"?>
+<account-authenticator android:label="@string/account_label" android:icon="@drawable/ic_sso_taobao_account" android:accountType="com.taobao" android:smallIcon="@drawable/ic_sso_taobao_account" android:accountPreferences="@xml/account_preferences" android:customTokens="true"
+  xmlns:android="http://schemas.android.com/apk/res/android" />

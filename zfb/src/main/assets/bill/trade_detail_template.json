@@ -1,0 +1,329 @@
+{
+    "taobaoTrade":
+    [
+   		"@oppositeName",
+        "...",
+        "@saleAmount",
+        "@refundDetail",
+        "@title",
+        "@shipInfo",
+        "tip-info",
+        "@backTax",
+        "@agentPayee",
+        "singleValueLine:type=paymentType, name=string(paymentType), value=$paymentTypeSpecial",
+        "@consumeMemo",
+        "singleValueLine:type=foreignCurrencyDesc, name=string(foreignCurrencyDesc), value=$foreignCurrencyDesc",
+        "@saleType",
+        "@createTime",
+        "@saleId"
+    ],
+    "tmallPeriodTrade":
+    [
+		"@taobaoTrade"
+    ],
+    "tmallTrade":
+    [
+    	"@taobaoTrade"
+    ],
+    "abossTrade":
+    [
+    	"@oppositeName",
+        "...",
+        "@saleAmount",
+        "@refundDetail",
+        "@title",
+        "@shipInfo",
+        "tip-info",
+        "@backTax",
+        "@agentPayee",
+        "@paymentType",
+        "@consumeMemo",
+        "singleValueLine:type=foreignCurrencyDesc, name=string(foreignCurrencyDesc), value=$foreignCurrencyDesc",
+        "@saleType",
+        "@createTime",
+        "singleValueLine:type=saleId, name=string(saleId), value=$saleId",
+        "lastValueLine:type=bizOutNo, name=string(bizOutNo), value=$bizOutNo"
+    ],
+    "MOA_DIRECT":
+    [
+    	"@abossTrade"
+    ],
+    "mobileDeposite":
+    [
+        "@oppositeName",
+        "...",
+        "@saleAmount",
+        "@refundDetail",
+        "@rechargeNo",
+        "tip-info",
+		"singleValueLine:type=mobileDepositeValue, name=string(mobileDepositeValue), value=$mobileDepositeValue",
+        "@paymentType",
+    	"@saleType",
+        "@createTime",
+        "@saleId"
+    ],
+    "otherTrade":
+    [
+    	"@taobaoTrade"
+    ],
+    "otherConsume":
+    [
+    	"@taobaoTrade" 
+    ],
+    "ccrBill":
+    [
+    	"oppositeInfoLine:type=oppositeName, name=$headImgUrl, value=$instName",
+    	 "...",
+    	"amountValueLine:type=billAmount, name=string(ccrAmount), value=$saleAmount",
+    	"@refundDetail",
+        "rechargeNo:type=CCBankAccountInfo, name=string(CCBankAccountInfo), value=$CCBankAccountInfo",
+        "tip-info",
+        "@paymentType",
+        "@saleType",
+        "@createTime",
+        "@saleId"
+    ],
+    "ccrConsume":
+    [
+    	"@ccrBill"
+    ],
+    "pucConsume":
+    [
+    	"oppositeInfoLine:type=oppositeName, name=$headImgUrl, value=$billToWho",
+    	"...",
+    	"amountValueLine:type=billAmount, name=string(billAmount), value=$saleAmount",
+    	"@refundDetail",
+        "rechargeNo:type=billName, name=string(billName), value=$title",
+        "rechargeNo:type=billAccountInfo, name=string(billAccountInfo), value=$billAccountInfo",
+        "tip-info",
+        "@paymentType",
+        "@saleType",
+        "@createTime",
+        "@saleId"
+    ],
+    "moneyFundConsume":
+    [
+    	"@oppositeName",
+        "...",
+        "@saleAmount",
+        "@refundDetail",
+        "rechargeNo:type=oppositeAccount, name=string(oppositeAccount), value=$oppositeAccount",
+        "tip-info",
+        "@paymentType",
+        "@saleType",
+        "@createTime",
+        "@saleId"
+    ],
+    "pucBill":
+    [
+    	"@pucConsume"
+    ],
+    "acFillIn":
+    [
+   		"@oppositeName",
+        "...",
+        "amountValueLine:type=acFillAmount, name=string(acFillAmount), value=$saleAmount",
+        "@refundDetail",
+        "rechargeNo:type=oppositeAccount, name=string(oppositeAccount), value=$oppositeAccount",
+        "tip-info",
+        "singleValueLine:type=payee, name=string(payee), value=$payee",
+        "@saleType",
+        "@createTime",
+        "@saleId"
+    ],
+    "acFillOut":
+    [
+    	"@oppositeName",
+        "...",
+        "amountValueLine:type=acFillAmount, name=string(acFillAmount), value=$saleAmount",
+        "@refundDetail",
+        "rechargeNo:type=oppositeAccount, name=string(oppositeAccount), value=$oppositeAccount",
+        "tip-info",
+        "@paymentType",
+        "@saleType",
+        "@createTime",        
+        "@saleId"
+    ],
+    "cardTransfer":
+    [
+    	"oppositeInfoLine:type=oppositeName, name=$headImgUrl, value=$instName",
+    	 "...",
+    	"@transferAmount",
+    	"@refundDetail",
+        "rechargeNo:type=oppositeAccount, name=string(oppositeAccount), value=$bankAccountInfo",
+        "voiceMemoInfo:type=voiceMemoInfo, name=string(voiceMemoInfo), value=$voiceMemoUrl",
+        "textMemoInfo:type=textMemoInfo, name=string(textMemoInfo), value=$origConsumeTitle",
+        "tip-info",
+        "singleValueLine:type=transferSpeed, name=string(transferSpeed), value=$transferSpeed",
+        "@paymentType",
+        "@saleType",
+        "@createTime",
+        "@saleId"
+    ],
+    "p2pTransfer":
+    [
+    	"@oppositeName",
+    	 "...",
+    	"@transferAmount",
+    	"@refundDetail",
+        "rechargeNo:type=oppositeAccount, name=string(oppositeAccount), value=$oppositeAccount",
+        "voiceMemoInfo:type=voiceMemoInfo, name=string(voiceMemoInfo), value=$voiceMemoUrl",
+        "textMemoInfo:type=textMemoInfo, name=string(textMemoInfo), value=$origConsumeTitle",
+        "tip-info",
+        "singleValueLine:type=transferSpeed, name=string(transferSpeed), value=$transferSpeed",
+        "@paymentType",
+        "@saleType",
+        "@createTime",
+        "@saleId"
+    ],
+    "preTransfer":
+    [
+   		"@oppositeName",
+    	"...",
+    	"@transferAmount",
+    	"@refundDetail",
+        "rechargeNo:type=oppositeAccount, name=string(oppositeAccount), value=$preTransferOppositeAccount",
+        "textMemoInfo:type=textMemoInfo, name=string(textMemoInfo), value=$origConsumeTitle",
+        "tip-info",
+        "@consumeMemo",
+        "singleValueLine:type=preSaleId, name=string(preSaleId), value=$preSaleId",
+        "@paymentType",
+        "@saleType",
+        "@createTime",
+        "@saleId"
+    ],
+    "peerpay_applicant":
+    [
+   		"oppositeInfoLine:type=agentPayee, name=$headImgUrl, value=$agentPayee",
+        "...",
+        "amountValueLine:type=peerpayAmount, name=string(shoppingAmount), value=$saleAmount",
+        "@refundDetail",
+        "@title",
+        "textMemoInfo:type=textMemoInfo, name=string(textMemoInfo), value=$agentNote",
+        "tip-info",
+        "@saleType",
+        "@createTime",
+        "@saleId"
+    ],
+    "peerpay":
+    [
+   		"oppositeInfoLine:type=agentApplicantTitle, name=$headImgUrl, value=$agentApplicant",
+        "...",
+        "amountValueLine:type=peerpayAmount, name=string(peerpayAmount), value=$saleAmount",
+        "@refundDetail",
+        "textMemoInfo:type=goodsTitles, name=string(goodsTitles), value=$goodsTitles",
+        "rechargeNo:type=agentApplicant, name=string(agentApplicant), value=$agentApplicantWithId",
+        "textMemoInfo:type=textMemoInfo, name=string(textMemoInfo), value=$agentNote",
+        "tip-info",
+        "@paymentType",
+        "@saleType",
+        "@createTime",
+        "@saleId"
+    ],
+    "studentLoans":
+    [
+    	"oppositeInfoLine:type=oppositeName, name=$headImgUrl, value=$studenLoanOppositeName",
+        "...",
+        "amountValueLine:type=studentLoanAmount, name=string(studentLoanAmount), value=$saleAmount",
+        "@refundDetail",
+        "rechargeNo:type=oppositeName, name=string(oppositeAccount), value=$oppositeName",
+    	"tip-info",
+        "@paymentType",
+        "@createTime",
+        "@saleType",
+        "@saleId"
+    ],
+    "refundDetail":
+    [
+    	"refundDetail:type=refund, reasonName=string(refundReason), reasonValue=$refundReason,
+    		typeName=string(refundType), typeValue=$refundType,
+    		timeName=string(refundTime), timeValue=$refundTime"
+    ],
+    
+    "saleStatus": 
+    [
+    	"status:type=saleStatus, name=string(saleStatus), value=$saleStatus"
+    ],
+    transferStatus: 
+    [
+    	"status:type=transferStatus, name=string(transferStatus), value=$transferStatus"
+    ],
+    ccrStatus:
+    [
+    	"status:type=CCStatus, name=string(CCStatus), value=$CCStatus"
+    ],
+    agentStatus:
+    [
+    	"status:type=agentStatus, name=string(agentStatus), value=$agentStatus"
+    ],
+    topupStatus:
+    [
+    	"status:type=topupStatus, name=string(topupStatus), value=$topupStatus"
+    ],
+    
+   	"shipInfo": 
+   	[
+   		"shipInfo:type=shipInfo, name=string(shipInfo), value=$shipInfo"
+   	],
+    "title": 
+    [
+    	"title:value=$title"
+    ],
+    "saleAmount": 
+    [
+    	"amountValueLine:type=saleAmount, name=string(saleAmount), value=$saleAmount"
+    ],
+    "transferAmount": 
+    [
+    	"amountValueLine:type=transferAmount, name=string(transferAmount), value=$saleAmount"
+    ],
+    "rechargeNo": 
+    [
+    	"rechargeNo:type=rechargeInfo, name=string(rechargeNo), value=$rechargeNo"
+    ],    
+    paymentType: 
+    [
+    	"singleValueLine:type=paymentType, name=string(paymentType), value=$paymentType"
+    ],
+    oppositeName: 
+    [
+    	"oppositeInfoLine:type=oppositeName, name=$headImgUrl, value=$oppositeName"
+    ],
+    createTime: 
+    [
+    	"singleValueLine:type=createTime, name=string(createTime), value=$createTime"
+    ], 
+    saleType: 
+    [
+    	"singleValueLine:type=saleType, name=string(saleType), value=$saleType"
+    ], 
+    agentPayee: 
+    [
+    	"singleValueLine:type=agentPayee, name=string(agentPayee), value=$agentPayee"
+    ], 
+    agentNote:
+    [
+    	"singleValueLine:type=agentNote, name=string(agentNote), value=$agentNote"
+    ],
+    consumeMemo: 
+    [
+    	"singleValueLine:type=consumeMemo, name=string(consumeMemo), value=$consumeMemo"
+    ],
+	discountInfo: 
+    [
+    	"singleValueLine:type=discountInfo, name=string(discountInfo), value=$discountInfo"
+    ],
+    saleAmountTotal:
+    [
+    	"singleValueLine:type=saleAmount, name=string(saleAmountTotal), value=$saleAmount"
+    ],
+	backTax:
+	[
+    	"singleValueLine:type=backTax, name=string(backTax), value=$backTax"
+    ],
+    
+    saleId: 
+    [
+    	"lastValueLine:type=saleId, name=string(saleId), value=$saleId"
+    ]
+}

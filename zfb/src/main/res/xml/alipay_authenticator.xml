@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="utf-8"?>
+<account-authenticator android:label="@string/account_label_alipay" android:icon="@drawable/ic_sso_alipay_account" android:accountType="com.alipay" android:smallIcon="@drawable/ic_sso_alipay_account" android:accountPreferences="@xml/alipay_account_preferences" android:customTokens="true"
+  xmlns:android="http://schemas.android.com/apk/res/android" />

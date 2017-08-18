@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="horizontal" android:id="@id/item_bg" android:background="@drawable/popmenu_item_mid_bg" android:layout_width="wrap_content" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:layout_gravity="center_vertical" android:background="@android:color/transparent" android:layout_width="14.0dip" android:layout_height="14.0dip" />
+    <ImageView android:layout_gravity="center_vertical" android:id="@id/item_icon" android:layout_width="20.0dip" android:layout_height="20.0dip" android:layout_marginRight="8.0dip" android:scaleType="centerInside" />
+    <TextView android:textSize="15.0dip" android:textColor="@android:color/black" android:layout_gravity="center_vertical" android:id="@id/item_name" android:clickable="false" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="11.0dip" android:layout_marginBottom="11.0dip" />
+    <RelativeLayout android:layout_gravity="center_vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="8.0dip">
+        <ImageView android:id="@id/red_point" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:scaleType="center" android:layout_centerInParent="true" android:contentDescription="@null" />
+        <TextView android:textSize="10.0dip" android:textColor="@android:color/white" android:gravity="center" android:id="@id/red_point_text" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:includeFontPadding="false" android:layout_centerInParent="true" />
+    </RelativeLayout>
+    <ImageView android:layout_gravity="center_vertical" android:background="@android:color/transparent" android:layout_width="14.0dip" android:layout_height="14.0dip" />
+</LinearLayout>

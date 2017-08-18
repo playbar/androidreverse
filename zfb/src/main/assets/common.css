@@ -1,0 +1,169 @@
+.main_btn {font-size:25px;}
+
+.common_p_reset {margin:0px;}
+
+.common_height_100 {height:100%;}
+
+.common_padding_left_right {padding-left:15px; padding-right:15px;}
+.common_padding_top_bottom {padding-top:15px; padding-bottom:15px;}
+.common_padding_bottom {padding-bottom:15px;}
+
+.common_marquee {background-color:#FFF391; font-size:13px; color:#F85800; height:36px; padding-left:3px; padding-right:3px;}
+.common_immersion_marquee {background-color:#FFF391; font-size:13px; color:#F85800; height:36px;}
+
+.common_button_main_bgColor {background-color:#00aaee;}
+.common_button_main {background-color:#00aaee; color:#ffffff; height:43px; width:100%; border:0px; font-size:20px; border-radius:4px;}
+.common_button_main:active {background-color:#00a3d2; color:#ffffff;}
+.common_button_main:disabled {background-color:#ebebf0; color:#d2d2d2;}
+
+.common_button_second {background-color:#FFFFFF; color:#666666; height:43px; width:100%; border:1 #dddddd solid; font-size:20px; border-radius:4px;}
+.common_button_second:active {background-color:#F8F8F8; color:#666666;}
+.common_button_second:disabled {background-color:#EBEBF0; color:#D2D2D2;}
+
+.common_checkbox {width:15px; height:15px; -webkit-appearance:none; background-image:url(com.alipay.android.app/check.png); background-size: 100% 100%;}
+.common_checkbox:checked {background-image:url(com.alipay.android.app/check_selected.png);}
+.common_checkbox:disabled {background-image:url(com.alipay.android.app/check_disable.png);}
+
+.common_radio {width:15px; height:15px; -webkit-appearance:none; background-image:url(com.alipay.android.app/check.png); background-size: 100% 100%;}
+.common_radio:checked {background-image:url(com.alipay.android.app/check_selected.png);}
+.common_radio:disabled {background-image:url(com.alipay.android.app/check_disable.png);}
+
+.common_2px_line {height:1px;background-color:#e5e5e5;}
+.common_1px_line {height:1;background-color:#e5e5e5;}
+.common_1px_title_line {height:1;background-color:#d1d1d1;}
+
+.common_line_left_margin {margin-left:15px;}
+
+.common_immersion_body_bg_color {background-color:rgba(249, 249, 249, 1);}
+
+.common_immersion_body {background-color:rgba(255, 255, 255, 0.95); display:-webkit-box; -webkit-box-orient:vertical; margin:0px; padding:0px; height:66%; min-height:400px; }
+
+.common_immersion_main {overflow:scroll;}
+
+.common_immersion_title_box {height:45.5px; display:-webkit-box; -webkit-box-align:center; }
+.common_immersion_title_left_box {padding-left:15px;width:12%; height:100%; display:-webkit-box; -webkit-box-align:center; text-align:left;}
+.common_immersion_title_left_text {font-size:14px; color:#576b95;}
+.common_immersion_title_center_box {-webkit-box-flex:1.0; display:-webkit-box; -webkit-box-align:center; -webkit-box-pack:center;}
+.common_immersion_title_center_text {font-size:18px; color:#000000;}
+.common_immersion_title_right_box {padding-right:15px;width:12%; text-align:right;}
+.common_immersion_title_right_text {font-size:14px; color:#00aaff;}
+
+.common_immersion_item {display:-webkit-box; -webkit-box-align:center; height:54px;}
+.common_immersion_item_left_box {width:23%; text-align:left;}
+.common_immersion_item_left_text {font-size:12px; color:#999999;}
+.common_immersion_item_center_box {-webkit-box-flex:1.0; display:-webkit-box; -webkit-box-align:center; }
+.common_immersion_item_center_text {font-size:15px; color:#666666;white-space:nowrap;}
+.common_immersion_item_center_text_box {-webkit-box-flex:1.0;overflow:hidden;text-overflow:ellipsis;text-align:right;}
+
+.common_immersion_item_detail {display:-webkit-box; -webkit-box-align:center; margin-top:2.5px; margin-bottom:2.5px;}
+.common_immersion_item_detail_left_box {text-align:left;}
+.common_immersion_item_detail_left_text {font-size:12px; color:#999999;}
+.common_immersion_item_detail_right_box {-webkit-box-flex:1.0; text-align:right;}
+.common_immersion_item_detail_right_text {font-size:13px; color:#666666;}
+
+.common_cell {height:43px; background-color:#ffffff; display:-webkit-box; -webkit-box-align:center; }
+.common_cell_bg_color {background-color:#ffffff;}
+.common_cell_more_height {height:64px;}
+.common_cell_text_size {font-size:16px;}
+.common_cell_small_text_size {font-size:14px;}
+.common_cell_small_text_light_color {color:#a5a5a5;}
+
+.common_cell_box {-webkit-box-flex:1.0; display:-webkit-box; -webkit-box-align:center;}
+.common_cell_left_box {width:76px; }
+.common_cell_left_box_text {font-size:16px; color:#000000; }
+.common_cell_center_box {-webkit-box-flex:1.0; display:-webkit-box; -webkit-box-align:center;}
+.common_cell_center_box_text {font-size:16px; color:#000000; }
+.common_cell_input {height:100%; width:100%; font-size:15px; border:0px;  padding:0px; color:#000000;}
+.common_cell_vert_line {width:1; height:17px;background-color:#E5E5E5;}
+.common_cell_animation {transition:0.375s;}
+.common_cell_img {width:45px; height:45px; border-radius:4px;}
+.common_cell_footer_empty_box {height:20px;}
+.common_cell_footer_box {padding-left:15px; padding-right:15px; padding-top:10.5px; padding-bottom:20px;}
+.common_cell_footer_text {font-size:11px; color:#999999;}
+.common_cell_vert_box {display:-webkit-box; -webkit-box-orient:vertical;}
+
+.common_nav_box {padding-left:15px; padding-right:15px; display:-webkit-box; height:41px; -webkit-box-align:center; -webkit-box-pack:center; background-color:#232735;}
+.common_nav_left_box {width:60px; padding-top:1px; display:-webkit-box; -webkit-box-align:center;}
+.common_nav_left_img {margin-left:0px;}
+.common_nav_left_text {font-size:14px; color:#ffffff; margin-left:4px;font-weight:bold;}
+.common_nav_center_box {width:156px;  -webkit-box-flex:1.0; display:-webkit-box; -webkit-box-align:center; -webkit-box-pack:center;}
+.common_nav_center_text {font-size:17px; color:#ffffff;}
+.common_nav_right_box {width:60px; height:30px; display:-webkit-box; -webkit-box-align:center; -webkit-box-pack:end;}
+.common_nav_right_text {font-size:14px; color:#ffffff; margin-left:4px;}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+.common_full_body {padding: 0px ; margin:0px;}
+.common_full_title {padding-top:20px;}
+.common_full_notice {padding:15px; display:-webkit-box; -webkit-box-align:center;}
+.common_full_main {padding-top:15px;padding-bottom:15px;}
+.common_full_bottom_text {font-size:14px;}
+
+.common_theme_text_color {color:#00aaee;}
+.common_theme_text_color:active {color:#00aaee;}
+.common_theme_text_color:disabled {color:#e6e6e6;}
+
+.common_button_no_bg {background-color:#ffffff;}
+.common_button_no_bg:active {background-color:#ffffff;}
+.common_button_no_bg:disabled {background-color:#ffffff;}
+
+.common_spwd_box {border:1 #979797 solid; border-radius:4px; height:47px; background-color:#ffffff; overflow:hidden;}
+.common_spwd {width:100%; height:100%; border:0px; padding:0px; color:#e5e5e5;}
+
+.common_box_flex {display:-webkit-box; -webkit-box-align:center; -webkit-box-pack:center;}
+
+
+.cashier_pre_confirm_1 {font-size:12px;}
+.cashier_pre_confirm_2 {padding-top:10px; padding-bottom:0px;}
+.cashier_pre_confirm_3 {font-size:15px;}
+.cashier_pre_confirm_4 {font-size:22px;}
+.cashier_pre_confirm_5 {overflow:hidden; margin:15px 15px 20px 15px;height:43px; border-radius:5px;}
+.cashier_pre_confirm_6 {}
+.cashier_pre_confirm_7 {width:10px; height:10px; background-color:#ff0000; border-radius:5px;}
+
+.open_pwd_check_1 {font-size:17px;}
+.open_pwd_check_2 {font-size:14px; margin-top:26px;}
+.open_pwd_check_3 {-webkit-box-flex:1.0; height:100%; font-size:15px; border:0px; padding:0px; color:#000000;}
+.open_pwd_check_4 {font-size:15px; color:#000000;}
+
+.num_box {width:97px; height:47px; border:1 #979797 solid; border-radius:4px;}
+.num_item {-webkit-box-flex:1.0; font-size:20px; text-align:center;}
+.num_line {width:1; height:100%; background-color:#E5E5E5;}
+.cashier_card_validate_1 {font-size:15px; padding-top:5px; padding-bottom:5px;}
+.cashier_card_validate_2 {font-size:34px; padding-left:15px; padding-right:15px; color:#999999;}
+
+.pcreditpay_sign_1 {font-size:15px;padding-top:5px;}
+.pcreditpay_sign_2 {font-size:14px;}
+.pcreditpay_sign_3 {padding-bottom:15px;}
+.pcreditpay_sign_4 {position:absolute;bottom:5px;}
+.pcreditpay_sign_5 {height:43px; border-radius:5px;}
+
+.pcreditpay_signretrieval_1 {padding-left:10px;font-size:16px;}
+.pcreditpay_signretrieval_2 {height:65px;}
+.pcreditpay_signretrieval_3 {font-size:13px;color:#666666;}
+.pcreditpay_signretrieval_4 {position:absolute;bottom:20px;}
+.pcreditpay_signretrieval_5 {height:15px;}
+
+.recommend_setspwd_1 {padding-top:15px; padding-bottom:15px;}
+.recommend_setspwd_2 {padding-bottom:20px;}
+.recommend_setspwd_3 {font-size:12px; color:#666666;}
+
+.num_box_2 {width:158px; height:40px; border:1 #979797 solid; border-radius:4px;}
+.num_item_2 {-webkit-box-flex:1.0; font-size:20px; text-align:center;}
+
+.num_box_cvv {width:119px; height:40px; border:1 #979797 solid; border-radius:4px;}
+.cvv_box {-webkit-box-flex:1.0;}
+.cvv_item {width:10px; height:10px; background-color:#000000;border-radius:5px; display:none;}
+
+
+.common_nav_box_android { display:-webkit-box; height:48px; -webkit-box-align:center; -webkit-box-pack:center; background-color:#232735;}
+.common_nav_title_android {-webkit-box-flex:1;display:-webkit-box;-webkit-box-align:center;}
+.common_nav_back_box_android {display:-webkit-box;width:48px;-webkit-box-align:center;height:48px;}
+.common_nav_back_box_android:active {background-color:#1d202f;}
+.common_nav_left_img_android {margin-left:0px;padding-left:16px; padding-right:16px;}
+.common_nav_line_android {display:inline-block;width:1px;height:20px;margin-right:16px;background-color:#191d2b;}
+.common_nav_right_box_android {padding-left:17px; padding-right:17px;height:48px; display:-webkit-box; -webkit-box-align:center; -webkit-box-pack:end;}
+.common_nav_right_box_android:active {background-color:#1d202f;}
+
+.common_checkbox_android {width:70px;-webkit-appearance:none; background-image:url(com.alipay.android.app/switch_off.png);}
+.common_checkbox_android:checked {background-image:url(com.alipay.android.app/switch_on.png);}
+.common_checkbox_android:disabled {background-image:url(com.alipay.android.app/switch_off.png);}
+.common_card_detail_info_android {padding-right:8px;}

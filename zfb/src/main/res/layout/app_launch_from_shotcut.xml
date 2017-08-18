@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="center" android:layout_gravity="center" android:orientation="vertical" android:background="@drawable/app_launch_from_short_bg" android:layout_width="fill_parent" android:layout_height="166.0dip" android:layout_marginLeft="24.0dip" android:layout_marginRight="24.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:layout_gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="13.0dip" android:src="@drawable/security_login_logo_a" />
+    <TextView android:textSize="16.0dip" android:textColor="#ff999999" android:layout_gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="13.0dip" android:text="正在使用支付宝账户登录..." />
+</LinearLayout>

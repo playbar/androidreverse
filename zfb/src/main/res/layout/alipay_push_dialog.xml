@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="horizontal" android:id="@id/push_dialog_title" android:background="#ff000000" android:paddingTop="8.0dip" android:paddingBottom="8.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <ImageView android:layout_gravity="center" android:id="@id/push_dialog_title_app_image" android:layout_width="36.0dip" android:layout_height="36.0dip" android:layout_marginLeft="6.0dip" android:layout_marginRight="8.0dip" android:scaleType="fitXY" />
+        <TextView android:textSize="18.699982dip" android:gravity="center_vertical" android:id="@id/push_dialog_title_msg" android:layout_width="wrap_content" android:layout_height="fill_parent" android:singleLine="true" />
+    </LinearLayout>
+    <LinearLayout android:orientation="vertical" android:background="@drawable/tiledstripes" android:padding="2.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <TextView android:textSize="16.0dip" android:id="@id/push_dialog_msg_text" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_margin="6.0dip" android:layout_marginLeft="10.0dip" android:layout_marginRight="10.0dip" />
+        <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="8.0dip">
+            <Button android:textSize="18.699982dip" android:layout_gravity="right" android:id="@id/push_dialog_btn_close" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="1.0dip" android:text="忽略" android:layout_weight="1.0" />
+            <Button android:textSize="18.699982dip" android:layout_gravity="left" android:id="@id/push_dialog_btn_enter" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="1.0dip" android:text="查看" android:layout_weight="1.0" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

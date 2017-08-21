@@ -283,6 +283,9 @@ Java_com_reverse_HelloJni_stringFromJNI( JNIEnv* env, jobject thiz )
 JNIEXPORT jstring JNICALL
 Java_com_reverse_HelloJni_stringFromJNI_11(JNIEnv* env, jobject thiz )
 {
+    StB st;
+    int size= sizeof(StB);
+    LOGE("size=%d", size);
     int result = 0;
 //    system("pwd");
     result = system("mkdir /data/data/com.bar.hellojni/temp");

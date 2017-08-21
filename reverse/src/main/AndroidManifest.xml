@@ -10,7 +10,7 @@
         android:debuggable="true"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.picovr.picovrlib.VrLib"
+            android:name="com.reverse.HelloJni"
             android:label="reverse"
             android:launchMode="singleTask"
             android:screenOrientation="portrait">

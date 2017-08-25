@@ -1,6 +1,8 @@
 #ifndef __HELLOJNI_H__
 #define __HELLOJNI_H__
 
+#include "jni.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif

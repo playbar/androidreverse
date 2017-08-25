@@ -21,15 +21,10 @@
 #include "my_log.h"
 #include <unistd.h>
 #include <stdlib.h>
+#include "uchar.h"
 #include <stdio.h>
 #include <sys/system_properties.h>
 #include "hellojni.h"
-
-#define LOG_TAG "test"
-#define LOGD(...) __android_log_print(ANDROID_LOG_DEBUG, LOG_TAG, __VA_ARGS__)
-#define LOGW(...) __android_log_print(ANDROID_LOG_WARN, LOG_TAG, __VA_ARGS__)
-#define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)
-#define ABI "armeabi-v7a"
 
 extern JavaVM *gs_jvm;
 
@@ -124,7 +119,7 @@ JNIEXPORT jstring JNICALL Java_com_utils_HelloJni_stringFromJNI( JNIEnv* env, jo
 //    MY_LOG_ASSERT(0!=env, "JNIEnv cannot be NULL");
 //    MY_LOG_INFO("REturning a new string");
 
-    if( JNI_OK == (*env)->MonitorEnter(env, thiz)){
+    if( JNI_OK == env->MonitorEnter(thiz)){
         LOGE("MonitorEnterr");
     }
 
@@ -142,6 +137,8 @@ JNIEXPORT jstring JNICALL Java_com_utils_HelloJni_stringFromJNI( JNIEnv* env, jo
     char *username = getlogin();
     LOGE("%s", username);
 
+    char16_t temp;
+
 //    char *buffer;
 //    size_t i;
 //    buffer = (char*)malloc(4);
@@ -156,15 +153,15 @@ JNIEXPORT jstring JNICALL Java_com_utils_HelloJni_stringFromJNI( JNIEnv* env, jo
 //        __android_log_assert("0!=errno","hello-jni", "There is an error.");
 //    }
 
-    if(JNI_OK == (*env)->MonitorExit(env, thiz)){
+    if(JNI_OK == env->MonitorExit(thiz)){
         LOGE("MonitorExit");
     }
 //    (*env)->ExceptionClear(env);
-    return (*env)->NewStringUTF(env, "Hello from JNI !  Compiled with ABI " ABI ".");
+    return env->NewStringUTF( "Hello from JNI !  Compiled with ABI " ABI ".");
 }
 
 JNIEXPORT jstring JNICALL Java_com_utils_HelloJni_stringFromJNI_11(JNIEnv* env, jobject thiz )
 {
-    return (*env)->NewStringUTF(env, "stringFromJNI_11");
+    return env->NewStringUTF( "stringFromJNI_11");
 }
 

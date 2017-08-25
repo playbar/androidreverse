@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.picovr.picovrlib.ble.Loggvc;
-
 public class HelloJni extends Activity {
 
     @Override
@@ -18,6 +16,7 @@ public class HelloJni extends Activity {
          * function.
          */
         Loggvc.e("HelloJni");
+        nativeStructRevers();
         setContentView(R.layout.activity_hello_jni);
         TextView tv = (TextView)findViewById(R.id.hello_textview);
         tv.setText( stringFromJNI_1() );
@@ -35,6 +34,7 @@ public class HelloJni extends Activity {
     public native String  stringFromJNI();
     public native String stringFromJNI_1();
     public native void nativeMsg();
+    public native void nativeStructRevers();
 
     /* This is another native method declaration that is *not*
      * implemented by 'hello-jni'. This is simply to show that

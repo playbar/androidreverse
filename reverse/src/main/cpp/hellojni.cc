@@ -25,13 +25,8 @@
 #include <stdio.h>
 #include <sys/system_properties.h>
 #include <dlfcn.h>
+#include "hellojni.h"
 
-#define LOG_TAG "test"
-#define LOGD(...) __android_log_print(ANDROID_LOG_DEBUG, LOG_TAG, __VA_ARGS__)
-#define LOGI(...) __android_log_print(ANDROID_LOG_INFO, LOG_TAG, __VA_ARGS__)
-#define LOGW(...) __android_log_print(ANDROID_LOG_WARN, LOG_TAG, __VA_ARGS__)
-#define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)
-#define ABI "armeabi-v7a"
 
 void * m_hDLL;
 
@@ -201,8 +196,7 @@ void testFun()
     );
 }
 
-JNIEXPORT void JNICALL
-Java_com_reverse_HelloJni_nativeMsg(JNIEnv* env, jobject thiz)
+JNIEXPORT void JNICALL Java_com_reverse_HelloJni_nativeMsg(JNIEnv* env, jobject thiz)
 {
 //    loadLib();
 //    testFun();
@@ -227,8 +221,7 @@ Java_com_reverse_HelloJni_nativeMsg(JNIEnv* env, jobject thiz)
     LOGE("func2 %d, %d, %d", bkval, ival, bval);
 }
 
-JNIEXPORT jstring JNICALL
-Java_com_reverse_HelloJni_stringFromJNI( JNIEnv* env, jobject thiz )
+JNIEXPORT jstring JNICALL Java_com_reverse_HelloJni_stringFromJNI( JNIEnv* env, jobject thiz )
 {
 
 //    testProperties();
@@ -241,7 +234,7 @@ Java_com_reverse_HelloJni_stringFromJNI( JNIEnv* env, jobject thiz )
 //    MY_LOG_ASSERT(0!=env, "JNIEnv cannot be NULL");
 //    MY_LOG_INFO("REturning a new string");
 
-    if( JNI_OK == (*env)->MonitorEnter(env, thiz)){
+    if( JNI_OK == env->MonitorEnter( thiz)){
         LOGE("MonitorEnterr");
     }
 
@@ -273,11 +266,11 @@ Java_com_reverse_HelloJni_stringFromJNI( JNIEnv* env, jobject thiz )
 //        __android_log_assert("0!=errno","hello-jni", "There is an error.");
 //    }
 
-    if(JNI_OK == (*env)->MonitorExit(env, thiz)){
+    if(JNI_OK == env->MonitorExit(thiz)){
         LOGE("MonitorExit");
     }
 //    (*env)->ExceptionClear(env);
-    return (*env)->NewStringUTF(env, "Hello from JNI !  Compiled with ABI " ABI ".");
+    return env->NewStringUTF( "Hello from JNI !  Compiled with ABI " ABI ".");
 }
 
 JNIEXPORT jstring JNICALL
@@ -300,6 +293,6 @@ Java_com_reverse_HelloJni_stringFromJNI_11(JNIEnv* env, jobject thiz )
 
     char *username = getlogin();
     LOGE("F:%s,%s", __FUNCTION__, username);
-    return (*env)->NewStringUTF(env, "stringFromJNI_11");
+    return env->NewStringUTF( "stringFromJNI_11");
 }
 

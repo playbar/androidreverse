@@ -7,15 +7,6 @@
 // our structures
 // ==============
 // information about our customers
-struct customer_t { // a typical structure
-    long id;
-    char name[32];
-    char sex; // 'm'ale - 'f'emale
-};
-// we sell books
-struct book_t {
-    char title[128]; // an ASCII string
-};
 
 #define PC 0x1 // 0x01
 #define MAC 0x2 // 0x02
@@ -25,6 +16,26 @@ struct book_t {
 #define DISASSEMBLY 0x1 // 0x20
 #define RECOVERY 0x2 // 0x40
 #define CRYPTOGRAPHY 0x3 // 0x60
+
+#define PRODUCTS_COUNT 4
+
+// generic products we're selling
+enum product_category_t { // an enumerated type
+    BOOK,
+    SOFTWARE,
+    HARDWARE // we actually don't sell hardware
+};
+
+struct customer_t { // a typical structure
+    long id;
+    char name[30];
+    char sex; // 'm'ale - 'f'emale
+};
+// we sell books
+struct book_t {
+    char title[128]; // an ASCII string
+};
+
 // and we sell computer softwares
 struct software_info_t { // a structure containing various bitfields
     unsigned int plateform : 2; // 2 bits reserved for the plateform -
@@ -46,12 +57,6 @@ struct softwares_t
     software_t softs[3];
 };
 
-// generic products we're selling
-enum product_category_t { // an enumerated type
-    BOOK,
-    SOFTWARE,
-    HARDWARE // we actually don't sell hardware
-};
 union product_u { // an union to contain product information
 // depending on its category
     book_t book;
@@ -63,21 +68,22 @@ struct product_t { // a structure containing another structure
     product_category_t category;
     product_u p;
 };
+
 // our data
 // ========
 // our customers
-customer_t customers[] = { // an initialized array to memorize our customers
+static customer_t customers[] = { // an initialized array to memorize our customers
         { 1, "Peter", 'm' },
         { 2, "John", 'm' },
         { 3, "Mary", 'f' },
         { 0 }
 };
 // our products
-book_t ida_book = { "IDA QuickStart Guide" };
+static book_t ida_book = { "IDA QuickStart Guide" };
 
 //software_t software1 =
 
-softwares_t softwares = // an initialized variable length structure
+static softwares_t softwares = // an initialized variable length structure
         {
                 3,
                 {
@@ -86,11 +92,11 @@ softwares_t softwares = // an initialized variable length structure
                         { { PC, WINDOWS, CRYPTOGRAPHY }, "aCrypt" }
                 }
         };
-#define PRODUCTS_COUNT 4
+
 // our functions
 // =============
 // check software information
-int check_software(software_info_t software_info)
+static int check_software(software_info_t software_info)
 {
     bool valid = true;
     if (software_info.plateform & PC)
@@ -109,7 +115,7 @@ int check_software(software_info_t software_info)
     return valid;
 }
 // check product category
-int check_product(product_category_t product_category)
+static int check_product(product_category_t product_category)
 {
     bool valid = true;
     if (product_category == HARDWARE)
@@ -120,19 +126,19 @@ int check_product(product_category_t product_category)
     return valid;
 }
 // print customer information
-void print_customer(customer_t *customer)
+static void print_customer(customer_t *customer)
 {
     LOGI("CUSTOMER %04X: %s (%c)\n", customer->id,
            customer->name,
            customer->sex);
 }
 // print book information
-void print_book(book_t *book)
+static void print_book(book_t *book)
 {
     LOGI("BOOK: %s\n", book->title);
 }
 // print software information
-void print_software(software_t *software)
+static void print_software(software_t *software)
 {
     LOGI("SOFTWARE: %s:", software->name);
 // plateform
@@ -168,7 +174,7 @@ void print_software(software_t *software)
     LOGI("\n");
 }
 // print product information
-bool print_product(product_t *product)
+static bool print_product(product_t *product)
 {
     if (! check_product(product->category))
         return false;
@@ -183,11 +189,10 @@ bool print_product(product_t *product)
     }
     return true;
 }
-// our main program
-// ================
-JNIEXPORT void JNICALL Java_com_reverse_HelloJni_nativeStructRevers(JNIEnv* env, jobject thiz)
+
+static void nativeStructRevers()
 {
-// print customers listing
+    // print customers listing
     LOGI("CUSTOMERS:\n");
     customer_t *customer = customers;
     while (customer->id != 0)
@@ -196,6 +201,7 @@ JNIEXPORT void JNICALL Java_com_reverse_HelloJni_nativeStructRevers(JNIEnv* env,
         customer++;
     }
 // allocate a small array to store our products in memory
+    int ilen = sizeof(product_t);
     product_t *products = (product_t*) malloc(PRODUCTS_COUNT * sizeof(product_t));
 // insert our products
     products[0].id = 1;
@@ -234,4 +240,11 @@ JNIEXPORT void JNICALL Java_com_reverse_HelloJni_nativeStructRevers(JNIEnv* env,
         print_product(&products[i]);
     }
     free(products);
+}
+
+// our main program
+// ================
+JNIEXPORT void JNICALL Java_com_reverse_HelloJni_nativeStructRevers(JNIEnv* env, jobject thiz)
+{
+    nativeStructRevers();
 }

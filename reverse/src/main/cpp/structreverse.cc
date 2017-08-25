@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <malloc.h>
 #include <jni.h>
+#include "hellojni.h"
+#include "my_log.h"
 
 // our structures
 // ==============
@@ -113,64 +115,64 @@ int check_product(product_category_t product_category)
     if (product_category == HARDWARE)
     {
         valid = false;
-        printf("We don't sell hardware for the moment...\n");
+        LOGI("We don't sell hardware for the moment...\n");
     }
     return valid;
 }
 // print customer information
 void print_customer(customer_t *customer)
 {
-    printf("CUSTOMER %04X: %s (%c)\n", customer->id,
+    LOGI("CUSTOMER %04X: %s (%c)\n", customer->id,
            customer->name,
            customer->sex);
 }
 // print book information
 void print_book(book_t *book)
 {
-    printf("BOOK: %s\n", book->title);
+    LOGI("BOOK: %s\n", book->title);
 }
 // print software information
 void print_software(software_t *software)
 {
-    printf("SOFTWARE: %s:", software->name);
+    LOGI("SOFTWARE: %s:", software->name);
 // plateform
 // we use 'if', as plateforms can be combined
     if (software->info.plateform & PC)
-        printf(" PC");
+        LOGI(" PC");
     if (software->info.plateform & MAC)
-        printf(" MAC");
-    printf(";");
+        LOGI(" MAC");
+    LOGI(";");
 // OS
 // we use 'if', as os can be combined
     if (software->info.os & WINDOWS)
-        printf(" WINDOWS");
+        LOGI(" WINDOWS");
     if (software->info.os & DOS)
-        printf(" DOS");
+        LOGI(" DOS");
     if (software->info.os & OS_X)
-        printf(" OS-X");
-    printf(";");
+        LOGI(" OS-X");
+    LOGI(";");
 // category
 // we use 'switch', as categories can't be combined
     switch(software->info.category)
     {
         case DISASSEMBLY:
-            printf(" DISASSEMBLY");
+            LOGI(" DISASSEMBLY");
             break;
         case RECOVERY:
-            printf(" RECOVERY");
+            LOGI(" RECOVERY");
             break;
         case CRYPTOGRAPHY:
-            printf(" CRYPTOGRAPHY");
+            LOGI(" CRYPTOGRAPHY");
             break;
     }
-    printf("\n");
+    LOGI("\n");
 }
 // print product information
 bool print_product(product_t *product)
 {
     if (! check_product(product->category))
         return false;
-    printf("PRODUCT %04X: ", product->id);
+    LOGI("PRODUCT %04X: ", product->id);
     switch(product->category) {
         case BOOK:
             print_book(&product->p.book);
@@ -186,7 +188,7 @@ bool print_product(product_t *product)
 JNIEXPORT void JNICALL Java_com_reverse_HelloJni_nativeStructRevers(JNIEnv* env, jobject thiz)
 {
 // print customers listing
-    printf("CUSTOMERS:\n");
+    LOGI("CUSTOMERS:\n");
     customer_t *customer = customers;
     while (customer->id != 0)
     {
@@ -210,13 +212,13 @@ JNIEXPORT void JNICALL Java_com_reverse_HelloJni_nativeStructRevers(JNIEnv* env,
     products[3].category = SOFTWARE;
     products[3].p.software = softwares.softs[2];
 // verify and print each product
-    printf("\nPRODUCTS:\n");
+    LOGI("\nPRODUCTS:\n");
     for (int i = 0; i < PRODUCTS_COUNT; i++)
     {
 // check validity of the product category
         if (! check_product(products[i].category))
         {
-            printf("Invalid product !!!\n");
+            LOGI("Invalid product !!!\n");
             break;
         }
 // check validity of softwares
@@ -224,7 +226,7 @@ JNIEXPORT void JNICALL Java_com_reverse_HelloJni_nativeStructRevers(JNIEnv* env,
         {
             if (! check_software(products[i].p.software.info))
             {
-                printf("Invalid software !!!\n");
+                LOGI("Invalid software !!!\n");
                 break;
             }
         }

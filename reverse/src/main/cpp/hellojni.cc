@@ -26,6 +26,7 @@
 #include <sys/system_properties.h>
 #include <dlfcn.h>
 #include "hellojni.h"
+#include "utils/CallStack.h"
 
 
 void * m_hDLL;
@@ -36,6 +37,15 @@ FP_GetTicks gpFunGetTicks;
 extern JavaVM *gs_jvm;
 
 extern void testFun1();
+
+void *handle = dlopen(NULL, RTLD_NOW);
+void* (*callstack_handle)(void*,const char*, int32_t) = (void *(*)(void*,const char *, int32_t)) dlsym(handle, "_ZN7android9CallStackC2EPKci");
+
+void sysCallstack(){
+//    android::CallStack cs("CallStack",1);
+    void* p=malloc(sizeof(android::CallStack));
+    callstack_handle(p,"CallStack",1);
+}
 
 void testcode6()
 {

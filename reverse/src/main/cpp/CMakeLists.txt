@@ -8,6 +8,10 @@ add_library(reverse SHARED
             load.cc
             structreverse.cc)
 
+target_include_directories(reverse PRIVATE
+                          ${CMAKE_CURRENT_SOURCE_DIR}
+                          )
+
 # Include libraries needed for hello-jni lib
 target_link_libraries(reverse
                       android

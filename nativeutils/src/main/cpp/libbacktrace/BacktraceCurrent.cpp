@@ -30,6 +30,7 @@
 
 #include <backtrace/Backtrace.h>
 #include <backtrace/BacktraceMap.h>
+#include <libgen.h>
 
 #include "BacktraceCurrent.h"
 #include "BacktraceLog.h"

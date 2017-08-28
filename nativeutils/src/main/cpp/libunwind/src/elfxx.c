@@ -509,7 +509,7 @@ elf_w (xz_decompress) (uint8_t* src, size_t src_size,
   *dst = realloc(*dst, *dst_size);
   return true;
 #else
-  Debug (1, "Decompression failed - compiled without LZMA support.\n",
+//  Debug (1, "Decompression failed - compiled without LZMA support.\n",
   return false;
 #endif // HAVE_LZMA
 }

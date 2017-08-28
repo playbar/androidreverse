@@ -63,7 +63,8 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.  */
 #elif defined(HAVE_SYS_ELF_H)
 # include <sys/elf.h>
 #else
-# error Could not locate <elf.h>
+//# error Could not locate <elf.h>
+#include <elf.h>
 #endif
 
 #if defined(HAVE_ENDIAN_H)

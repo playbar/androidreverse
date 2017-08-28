@@ -7,6 +7,8 @@
 extern "C" {
 #endif
 
+void sysCallstack();
+
 int func2(int a, int b);
 
 JNIEXPORT void JNICALL Java_com_reverse_HelloJni_nativeMsg(JNIEnv* env, jobject thiz);

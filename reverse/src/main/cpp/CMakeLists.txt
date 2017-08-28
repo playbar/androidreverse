@@ -6,6 +6,7 @@ add_library(reverse SHARED
             hellojni.cc
             assembly.s
             load.cc
+            syscallstack.cc
             structreverse.cc)
 
 target_include_directories(reverse PRIVATE

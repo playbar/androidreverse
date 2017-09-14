@@ -288,7 +288,7 @@ Java_com_reverse_HelloJni_stringFromJNI_11(JNIEnv* env, jobject thiz )
         LOGE("error");
     }
 
-    sysCallstack();
+//    sysCallstack();
 
     pid_t pid = getpid();
     uid_t uid = getuid();

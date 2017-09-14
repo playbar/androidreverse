@@ -3,6 +3,7 @@
 #include <jni.h>
 #include "hellojni.h"
 #include "my_log.h"
+#include "syscallstack.h"
 
 // our structures
 // ==============
@@ -128,9 +129,8 @@ static int check_product(product_category_t product_category)
 // print customer information
 static void print_customer(customer_t *customer)
 {
-    LOGI("CUSTOMER %04X: %s (%c)\n", customer->id,
-           customer->name,
-           customer->sex);
+    sys_call_stack();
+    LOGI("CUSTOMER %04X: %s (%c)\n", customer->id, customer->name, customer->sex);
 }
 // print book information
 static void print_book(book_t *book)

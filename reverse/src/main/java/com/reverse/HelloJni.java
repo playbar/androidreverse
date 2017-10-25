@@ -16,7 +16,6 @@ public class HelloJni extends Activity {
          * function.
          */
         Loggvc.e("HelloJni");
-        nativeStructRevers();
         setContentView(R.layout.activity_hello_jni);
         TextView tv = (TextView)findViewById(R.id.hello_textview);
         tv.setText( stringFromJNI_1() );
@@ -24,6 +23,7 @@ public class HelloJni extends Activity {
 
     public void onClick(View v){
         if(v.getId() == R.id.button) {
+            nativeStructRevers();
             nativeMsg();
         }
     }

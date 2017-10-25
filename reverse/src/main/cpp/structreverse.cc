@@ -73,18 +73,18 @@ struct product_t { // a structure containing another structure
 // our data
 // ========
 // our customers
-static customer_t customers[] = { // an initialized array to memorize our customers
+customer_t customers[] = { // an initialized array to memorize our customers
         { 1, "Peter", 'm' },
         { 2, "John", 'm' },
         { 3, "Mary", 'f' },
         { 0 }
 };
 // our products
-static book_t ida_book = { "IDA QuickStart Guide" };
+book_t ida_book = { "IDA QuickStart Guide" };
 
 //software_t software1 =
 
-static softwares_t softwares = // an initialized variable length structure
+softwares_t softwares = // an initialized variable length structure
         {
                 3,
                 {
@@ -97,7 +97,7 @@ static softwares_t softwares = // an initialized variable length structure
 // our functions
 // =============
 // check software information
-static int check_software(software_info_t software_info)
+int check_software(software_info_t software_info)
 {
     bool valid = true;
     if (software_info.plateform & PC)
@@ -116,7 +116,7 @@ static int check_software(software_info_t software_info)
     return valid;
 }
 // check product category
-static int check_product(product_category_t product_category)
+int check_product(product_category_t product_category)
 {
     bool valid = true;
     if (product_category == HARDWARE)
@@ -127,18 +127,19 @@ static int check_product(product_category_t product_category)
     return valid;
 }
 // print customer information
-static void print_customer(customer_t *customer)
-{
+void print_customer(customer_t *customer) {
     sys_call_stack();
-    LOGI("CUSTOMER %04X: %s (%c)\n", customer->id, customer->name, customer->sex);
+    __android_log_print(ANDROID_LOG_INFO, "structrevser", "CUSTOMER %04X: %s (%c)\n", customer->id,
+                        customer->name, customer->sex);
 }
+
 // print book information
-static void print_book(book_t *book)
+inline void print_book(book_t *book)
 {
-    LOGI("BOOK: %s\n", book->title);
+    __android_log_print(ANDROID_LOG_INFO,  "structrevser", "BOOK: %s\n", book->title);
 }
 // print software information
-static void print_software(software_t *software)
+void print_software(software_t *software)
 {
     LOGI("SOFTWARE: %s:", software->name);
 // plateform
@@ -174,7 +175,7 @@ static void print_software(software_t *software)
     LOGI("\n");
 }
 // print product information
-static bool print_product(product_t *product)
+bool print_product(product_t *product)
 {
     if (! check_product(product->category))
         return false;
@@ -190,14 +191,14 @@ static bool print_product(product_t *product)
     return true;
 }
 
-static void nativeStructRevers()
+void nativeStructRevers()
 {
     // print customers listing
     LOGI("CUSTOMERS:\n");
     customer_t *customer = customers;
+    print_customer(customer);
     while (customer->id != 0)
     {
-        print_customer(customer);
         customer++;
     }
 // allocate a small array to store our products in memory
@@ -240,6 +241,20 @@ static void nativeStructRevers()
         print_product(&products[i]);
     }
     free(products);
+}
+
+int EncryptBound (int r0) {
+    uint r3;
+    r3 = (r0 << 28);
+    if(r3){
+        r3 = (r0 >> 31);
+        r3 >>= 28;
+        r0 += r3;
+        r0 >>= 4;
+        r0++;
+        r0 <<= 4;
+    }
+    return r0;
 }
 
 // our main program

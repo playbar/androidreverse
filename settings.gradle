@@ -1,7 +1,7 @@
 //include ':allhook'
 //include ':crack'
 //include ':elfhook'
-//include ':hook'
+include ':hook'
 //include ':androidmk'
 include ':reverse'
 //include ':swathook'

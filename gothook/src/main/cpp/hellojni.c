@@ -27,6 +27,12 @@
 #include <dlfcn.h>
 #include "hellojni.h"
 
+#include "config.h"
+#include "elf_utils.h"
+#include "injector.h"
+#include "ptrace.h"
+#include "utils.h"
+
 #define ABI "armeabi-v7a"
 
 void * m_hDLL;
@@ -187,9 +193,28 @@ int new_puts(const char *string)
     old_puts("inlineHook success");
 }
 
+
+int gothookfun()
+{
+    const char* hook_library_path = "libhook.so";
+    const char* target_library_path = "libgothook.so";
+    pid_t pid = getpid();
+    long so_handle = InjectLibrary(pid, hook_library_path);
+    PtraceAttach(pid);
+    long hook_fuction_addr = CallDlsym(pid, so_handle, "my_printf");
+    PtraceDetach(pid);
+    long original_function_addr = GetRemoteFuctionAddr(pid, LIBC_PATH, (long)printf);
+    if (DEBUG) {
+        printf("hook_fuction_addr: %lx, original_function_addr: %lx\n", hook_fuction_addr, original_function_addr);
+    }
+    PatchRemoteGot(pid, target_library_path, original_function_addr, hook_fuction_addr);
+    return 0;
+}
+
 JNIEXPORT void JNICALL
 Java_com_inlinehook_HelloJni_nativeMsg(JNIEnv* env, jobject thiz)
 {
+//    gothookfun();
 //    loadLib();
     int i = 1, j = 2;
 //    funcTest();

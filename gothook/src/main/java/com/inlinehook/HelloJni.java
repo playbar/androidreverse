@@ -54,6 +54,6 @@ public class HelloJni extends Activity {
 
     static
     {
-        System.loadLibrary("inlinehook");
+        System.loadLibrary("gothook");
     }
 }

@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">HookDemo</string>
+    <string name="action_settings">Hook</string>
+</resources>

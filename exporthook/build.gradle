@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion '25.0.0'
+    buildToolsVersion '26.0.2'
 
     defaultConfig {
         applicationId "demo.hook.hookdemo"
@@ -10,6 +10,13 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+
+        externalNativeBuild {
+            cmake {
+                abiFilters 'armeabi-v7a'
+                arguments '-DANDROID_TOOLCHAIN=clang'
+            }
+        }
     }
     buildTypes {
         release {
@@ -18,41 +25,16 @@ android {
         }
     }
 
-    sourceSets {
-        main {
-            manifest.srcFile  'src/main/AndroidManifest.xml'
-            java.srcDirs = ['src/main/java']
-            resources.srcDirs = ['src']
-            aidl.srcDirs = ['src']
-            renderscript.srcDirs = ['src']
-            res.srcDirs = ['src/main/res']
-            assets.srcDirs = ['assets']
-            jniLibs.srcDirs = ['libs']
-            jni.srcDirs = []
+    repositories {
+        flatDir {
+            dirs 'libs'
         }
     }
 
-    task buildNative(type: Exec, description: 'Compile JNI source via NDK') {
-        def ndkDir = android.ndkDirectory
-        commandLine "$ndkDir/ndk-build.cmd",
-                '-C',
-                file('jni').absolutePath, // Change src/main/jni the relative path to your jni source
-                '-j', Runtime.runtime.availableProcessors(),
-                'all'//,
-                //'NDK_DEBUG=1'
-    }
-
-    task cleanNative(type: Exec, description: 'Clean JNI object files') {
-        def ndkDir = android.ndkDirectory
-        commandLine "$ndkDir/ndk-build.cmd",
-                '-C', file('jni').absolutePath, // Change src/main/jni the relative path to your jni source
-                'clean'
-    }
-
-    clean.dependsOn 'cleanNative'
-
-    tasks.withType(JavaCompile) {
-        compileTask -> compileTask.dependsOn buildNative
+    externalNativeBuild {
+        cmake {
+            path "src/main/cpp/CMakeLists.txt"
+        }
     }
 
 }

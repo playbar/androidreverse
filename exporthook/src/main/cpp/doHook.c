@@ -3,6 +3,9 @@
 #include <stdio.h>
 #include <dlfcn.h>
 #include <sys/types.h>
+#include <string.h>
+#include <unistd.h>
+#include "hook_libc.h"
 
 #define LOG_TAG "ThomasKing"
 #define LOGI(fmt, args...) __android_log_print(ANDROID_LOG_INFO, LOG_TAG, fmt, ##args)
@@ -31,6 +34,12 @@ char *hook_so[] = {
 };
 
 int *old_fun[13];
+
+const char *strrpl(const char *path, char *buf, int len )
+{
+    memset(buf, path, len);
+    return buf;
+}
 
 int buf_len = 256;
 int added_fun0(const char *path){
@@ -183,6 +192,9 @@ JNIEXPORT void JNICALL Java_demo_hook_hookdemo_MainActivity_doHook(JNIEnv *env, 
     LOGI("Start %d", getpid());
     if (inline_hook == 1) {
         init_hook_libc();
+        FILE *p = fopen("libdoHook.so", "rb");
+        if( !p)
+           return;
     } else {// export table hook
         void *handle;
         handle = dlopen("libTKHooklib.so", RTLD_NOW);

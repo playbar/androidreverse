@@ -14,7 +14,7 @@
 #include <jni.h>
 #include <stdlib.h>
 
-#include "hook.h"
+#include "exporthook.h"
 //#include "replace_path.h"
 
 #include <android/log.h>
@@ -253,18 +253,18 @@ void init_hook_libc(void)
 {
     LOGI("%s started\n", __FILE__);
 
-    hook(&eph[0], getpid(), "libc.", "rmdir", my_rmdir_arm, my_rmdir);
-    hook(&eph[1], getpid(), "libc.", "access", my_access_arm, my_access);
-    hook(&eph[2], getpid(), "libc.", "chmod", my_chmod_arm, my_chmod);
-    hook(&eph[3], getpid(), "libc.", "chown", my_chown_arm, my_chown);
-    hook(&eph[4], getpid(), "libc.", "execv", my_execv_arm, my_execv);
-    hook(&eph[5], getpid(), "libc.", "execve", my_execve_arm, my_execve);
-    hook(&eph[6], getpid(), "libc.", "mkdir", my_mkdir_arm, my_mkdir);
-    hook(&eph[7], getpid(), "libc.", "fopen", my_fopen_arm, my_fopen);
-    hook(&eph[8], getpid(), "libc.", "remove", my_remove_arm, my_remove);
-    hook(&eph[9], getpid(), "libc.", "rename", my_rename_arm, my_rename);
-    hook(&eph[10], getpid(), "libc.", "stat", my_stat_arm, my_stat);
-    hook(&eph[11], getpid(), "libc.", "symlink", my_symlink_arm, my_symlink);
-    hook(&eph[12], getpid(), "libc.", "statvfs", my_statvfs_arm, my_statvfs);
+    exporthook(&eph[0], getpid(), "libc.", "rmdir", my_rmdir_arm, my_rmdir);
+    exporthook(&eph[1], getpid(), "libc.", "access", my_access_arm, my_access);
+    exporthook(&eph[2], getpid(), "libc.", "chmod", my_chmod_arm, my_chmod);
+    exporthook(&eph[3], getpid(), "libc.", "chown", my_chown_arm, my_chown);
+    exporthook(&eph[4], getpid(), "libc.", "execv", my_execv_arm, my_execv);
+    exporthook(&eph[5], getpid(), "libc.", "execve", my_execve_arm, my_execve);
+    exporthook(&eph[6], getpid(), "libc.", "mkdir", my_mkdir_arm, my_mkdir);
+    exporthook(&eph[7], getpid(), "libc.", "fopen", my_fopen_arm, my_fopen);
+    exporthook(&eph[8], getpid(), "libc.", "remove", my_remove_arm, my_remove);
+    exporthook(&eph[9], getpid(), "libc.", "rename", my_rename_arm, my_rename);
+    exporthook(&eph[10], getpid(), "libc.", "stat", my_stat_arm, my_stat);
+    exporthook(&eph[11], getpid(), "libc.", "symlink", my_symlink_arm, my_symlink);
+    exporthook(&eph[12], getpid(), "libc.", "statvfs", my_statvfs_arm, my_statvfs);
 }
 

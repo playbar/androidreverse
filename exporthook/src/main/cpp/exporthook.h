@@ -32,5 +32,5 @@ int start_coms(int *coms, char *ptsn);
 void hook_cacheflush(unsigned int begin, unsigned int end);	
 void hook_precall(struct hook_t *h);
 void hook_postcall(struct hook_t *h);
-int hook(struct hook_t *h, int pid, char *libname, char *funcname, void *hook_arm, void *hook_thumb);
+int exporthook(struct hook_t *h, int pid, char *libname, char *funcname, void *hook_arm, void *hook_thumb);
 void unhook(struct hook_t *h);

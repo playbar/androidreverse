@@ -28,7 +28,7 @@
 #include <termios.h>
 #include <sys/ioctl.h>
 
-#include "hook.h"
+#include "exporthook.h"
 
 #include <android/log.h>
 #define LOG_TAG "ThomasKing"

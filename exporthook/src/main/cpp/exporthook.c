@@ -26,7 +26,8 @@
 #include <jni.h>
 
 #include "util.h"
-#include "hook.h"
+#include "exporthook.h"
+#include "exportutil.h"
 
 //void __attribute__ ((constructor)) my_init(void);
 #define LOG_TAG "ThomasKing"
@@ -74,7 +75,7 @@ int hook_direct(struct hook_t *h, unsigned int addr, void *hookf)
 	return 1;
 }
 
-int hook(struct hook_t *h, int pid, char *libname, char *funcname, void *hook_arm, void *hook_thumb)
+int exporthook(struct hook_t *h, int pid, char *libname, char *funcname, void *hook_arm, void *hook_thumb)
 {
 	unsigned long int addr;
 	int i;

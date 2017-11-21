@@ -4,7 +4,7 @@
 #include "ptrace.h"
 #include "utils.h"
 
-int main(int argc, char const *argv[]) {
+int main_1(int argc, char const *argv[]) {
   if (argc < 4) {
     return -1;
   }

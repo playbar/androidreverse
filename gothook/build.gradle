@@ -4,7 +4,7 @@ android {
     compileSdkVersion 19
     buildToolsVersion '26.0.2'
     defaultConfig {
-        applicationId 'com.inlinehook'
+        applicationId 'com.gothook'
         minSdkVersion 19
         targetSdkVersion 19
 //        renderscriptTargetApi 19

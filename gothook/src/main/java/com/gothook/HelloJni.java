@@ -1,5 +1,5 @@
 
-package com.inlinehook;
+package com.gothook;
 
 import android.app.Activity;
 import android.os.Bundle;

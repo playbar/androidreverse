@@ -4,15 +4,18 @@ android {
     compileSdkVersion 19
     buildToolsVersion '26.0.2'
     defaultConfig {
-        applicationId 'com.mktest'
+        applicationId 'com.hook'
         minSdkVersion 19
         targetSdkVersion 19
 //        renderscriptTargetApi 19
 //        renderscriptSupportModeEnabled true
         versionCode 1
         versionName "1.0"
-        ndk {
-            abiFilters 'armeabi-v7a'
+        externalNativeBuild {
+            cmake {
+                abiFilters 'armeabi-v7a'
+                arguments '-DANDROID_TOOLCHAIN=clang'
+            }
         }
     }
     buildTypes {
@@ -22,8 +25,8 @@ android {
         }
     }
     externalNativeBuild {
-        ndkBuild {
-            path "src/main/jni/Android.mk"
+        cmake {
+            path "src/main/cpp/CMakeLists.txt"
         }
     }
 

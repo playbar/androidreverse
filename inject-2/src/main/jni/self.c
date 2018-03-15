@@ -51,12 +51,12 @@ void dlNative(const char *path, const char *function, const char *param){
 
 // MainActivity
 JNIEXPORT void JNICALL
-Java_cn_syang2forever_androidinject_MainActivity_mmapNative(JNIEnv *env, jobject instance) {
+Java_com_android_inject_MainActivity_mmapNative(JNIEnv *env, jobject instance) {
    mmapNative();
 }
 
 JNIEXPORT void JNICALL
-Java_cn_syang2forever_androidinject_MainActivity_dlNatvie(JNIEnv *env, jobject instance,
+Java_com_android_inject_MainActivity_dlNatvie(JNIEnv *env, jobject instance,
                                                           jstring path_, jstring function_,
                                                           jstring param_) {
     const char *path = (*env)->GetStringUTFChars(env, path_, 0);
@@ -73,12 +73,12 @@ Java_cn_syang2forever_androidinject_MainActivity_dlNatvie(JNIEnv *env, jobject i
 
 // ChildService
 JNIEXPORT void JNICALL
-Java_cn_syang2forever_androidinject_ChildService_mmapNative(JNIEnv *env, jobject instance) {
+Java_com_android_inject_ChildService_mmapNative(JNIEnv *env, jobject instance) {
     mmapNative();
 }
 
 JNIEXPORT void JNICALL
-Java_cn_syang2forever_androidinject_ChildService_dlNatvie(JNIEnv *env, jobject instance,
+Java_com_android_inject_ChildService_dlNatvie(JNIEnv *env, jobject instance,
                                                           jstring path_, jstring function_,
                                                           jstring param_) {
     const char *path = (*env)->GetStringUTFChars(env, path_, 0);

@@ -10,6 +10,6 @@ add_library( inject SHARED src/main/jni/inject/inject.c )
 #add_executable( inject2 src/main/cpp/inject/inject2.c)
 find_library( log-lib log )
 
-target_link_libraries( hello ${log-lib} )
+target_link_libraries( hello ${log-lib} EGL )
 target_link_libraries( self ${log-lib} )
 target_link_libraries( inject ${log-lib} )

@@ -1,4 +1,4 @@
-package cn.syang2forever.androidinject;
+package com.android.inject;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
     public int injectProcessWrapper(String input){
         if(input.equals("")){
-            input = "cn.syang2forever.androidinject:child";
+            input = "com.android.inject:child";
         }
 
         String soPath = MainActivity.this.getApplicationInfo().nativeLibraryDir + "/libhello.so";

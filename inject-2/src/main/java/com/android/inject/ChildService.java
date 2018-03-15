@@ -1,4 +1,4 @@
-package cn.syang2forever.androidinject;
+package com.android.inject;
 
 import android.app.Service;
 import android.content.Intent;

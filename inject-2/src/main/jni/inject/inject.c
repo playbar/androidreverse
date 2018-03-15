@@ -473,7 +473,7 @@ int exec(const char *process_name, const char *library_name, const char *functio
 }
 
 JNIEXPORT jint JNICALL
-Java_cn_syang2forever_androidinject_MainActivity_injectProcess(JNIEnv *env, jobject instance,
+Java_com_android_inject_MainActivity_injectProcess(JNIEnv *env, jobject instance,
                                                                jstring processName_,
                                                                jstring soName_, jstring function_,
                                                                jstring param_) {
@@ -494,7 +494,7 @@ Java_cn_syang2forever_androidinject_MainActivity_injectProcess(JNIEnv *env, jobj
 }
 
 JNIEXPORT jint JNICALL
-Java_cn_syang2forever_androidinject_MainActivity_injectProcess2(JNIEnv *env, jobject instance,
+Java_com_android_inject_MainActivity_injectProcess2(JNIEnv *env, jobject instance,
                                                                 jint pid, jstring so_, jstring fun_,
                                                                 jstring param_) {
     const char *so = (*env)->GetStringUTFChars(env, so_, 0);

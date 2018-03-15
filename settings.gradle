@@ -7,6 +7,7 @@
 //include ':exporthook'
 //include ':swathook'
 include ':inject'
+include ':inject-2'
 //include ':inlinehook'
 //include ':inputmethodholder'
 //include ':zfb'

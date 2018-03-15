@@ -57,13 +57,13 @@ void* get_module_base(pid_t pid, const char* module_name)
     return (void *)addr;
 }
 
-#define LIBSF_PATH  "/system/lib/libsurfaceflinger.so"
+#define LIBSF_PATH  "/system/lib/libEGL.so"
 int hook_eglSwapBuffers()
 {
     old_eglSwapBuffers = eglSwapBuffers;
     LOGI("Orig eglSwapBuffers = %p\n", old_eglSwapBuffers);
     void * base_addr = get_module_base(getpid(), LIBSF_PATH);
-    LOGI("libsurfaceflinger.so address = %p\n", base_addr);
+    LOGI("libEGL.so address = %p\n", base_addr);
 
     int fd;
     fd = open(LIBSF_PATH, O_RDONLY);
@@ -132,8 +132,10 @@ int hook_eglSwapBuffers()
     close(fd);
 }
 
-int hook_entry(char * a){
-    printf("in hook_entry\n");
+int hook_entry(char * a, int len){
+    printf("begin hook_entry, pid=%d\n", getpid());
+//    printf("in hook_entry, parameter=%s\n", a);
     hook_eglSwapBuffers();
+    printf("end hook_entry\n");
     return 0;
 }

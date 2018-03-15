@@ -437,7 +437,7 @@ int inject_remote_process(pid_t target_pid, const char *library_path, const char
     ptrace_writedata(target_pid, map_base + FUNCTION_PARAM_ADDR_OFFSET, param, strlen(param) + 1);    
     parameters[0] = map_base + FUNCTION_PARAM_ADDR_OFFSET;      
   
-    if (ptrace_call_wrapper(target_pid, "hook_entry", hook_entry_addr, parameters, 1, &regs) == -1)    
+    if (ptrace_call_wrapper(target_pid, function_name, hook_entry_addr, parameters, 1, &regs) == -1)
         goto exit;        
     
     printf("Press enter to dlclose and detach\n");    
@@ -456,17 +456,18 @@ exit:
     return ret;    
 }    
     
-int main(int argc, char** argv) {    
+int main(int argc, char** argv) {
+    printf("current pid=%d\n", getpid());
     pid_t target_pid;    
-//    target_pid = find_pid_of("com.inject");
-    target_pid = find_pid_of("./hello");
+    target_pid = find_pid_of("com.inject");
+//    target_pid = find_pid_of("./hello");
     if (-1 == target_pid) {  
         printf("Can't find the process\n");  
         return -1;  
     }
     printf("pid=%d\n", target_pid);
     //target_pid = find_pid_of("/data/test");    
-    inject_remote_process(target_pid, "/data/temp/libhello.so", "hook_entry",  "I'm parameter!", strlen("I'm parameter!"));
+    inject_remote_process(target_pid, "/data/local/tmp/libhello.so", "hook_entry",  "I'm parameter!", strlen("I'm parameter!"));
 
     return 0;  
 }    

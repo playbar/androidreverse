@@ -559,9 +559,9 @@ int InjectRemoteProcess(int nPid, const char *lpLibraryPath, const char *lpFunct
     }
 
     printf("Fun:%s, Line:%d\r\n", __FUNCTION__, __LINE__ );
-    /*
+
     printf("Press enter to dlclose and detach\r\n");
-    getchar();
+//    getchar();
 
     //传递参数, 准备调用dlclose
     ParamArg[0] = hSo;
@@ -570,7 +570,7 @@ int InjectRemoteProcess(int nPid, const char *lpLibraryPath, const char *lpFunct
     {
         nRet = -1;
     }
-    */
+
 
 SAFE_END:
     //恢复原始寄存器信息
@@ -598,7 +598,7 @@ int main(int argc, char* argv[])
         return -1;
     }
 
-    if (InjectRemoteProcess(nProId, "/data/temp/libhello.so", "MyHook", NULL) == -1)
+    if (InjectRemoteProcess(nProId, "/data/local/tmp/libhello.so", "MyHook", NULL) == -1)
     {
         printf("[+]InjectRemoteProcess Failed\r\n");
     }

@@ -6,8 +6,8 @@ int count = 0;
  
 void sevenWeapons(int number)
 {
-    char* str = "Hello,LiBieGou!";
-    printf("%s %d\n",str,number);
+    char* str = "Hello, inject!";
+    printf("%s %d, pid=%d\n",str,number, getpid());
 }
 
 int main(int argc, char* argv[])

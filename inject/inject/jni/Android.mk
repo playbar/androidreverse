@@ -2,7 +2,7 @@ LOCAL_PATH := $(call my-dir)
   
 include $(CLEAR_VARS)  
 LOCAL_MODULE := inject   
-LOCAL_SRC_FILES := inject.c
+LOCAL_SRC_FILES := inject_1.c
   
 #shellcode.s  
 

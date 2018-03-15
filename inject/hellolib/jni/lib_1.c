@@ -129,6 +129,7 @@ SAFE_END:
 
 void MyHook()
 {
+    printf("Fun:%s, L:%d, entry\n", __FUNCTION__, __LINE__);
     DEBUG_PRINT("entry myhook, L:%d", __LINE__);
     int nVirtualAddr = 0;
     int nSize = 0;
@@ -153,4 +154,5 @@ void MyHook()
         }
     }
     DEBUG_PRINT("level myhook, L:%d", __LINE__);
+    printf("Fun:%s, L:%d, level", __FUNCTION__, __LINE__);
 }

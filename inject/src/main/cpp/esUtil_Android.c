@@ -40,7 +40,9 @@
 #include <android/log.h>
 #include "android_native_app_glue.h"
 #include <time.h>
+#include <unistd.h>
 #include "esUtil.h"
+#include "mylog.h"
 
 #define LOGI(...) ((void)__android_log_print(ANDROID_LOG_INFO, "esUtil", __VA_ARGS__))
 
@@ -189,6 +191,7 @@ void android_main ( struct android_app *pApp )
       if ( esContext.drawFunc != NULL )
       {
          esContext.drawFunc ( &esContext );
+//         LOGE("Fun:%s, Line:%d, tid=%d", __FUNCTION__, __LINE__, gettid());
          eglSwapBuffers ( esContext.eglDisplay, esContext.eglSurface );
       }
    }

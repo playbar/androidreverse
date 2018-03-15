@@ -1,41 +1,138 @@
-// The MIT License (MIT)
-//
-// Copyright (c) 2013 Dan Ginsburg, Budirijanto Purnomo
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
-
-//
-// Book:      OpenGL(R) ES 3.0 Programming Guide, 2nd Edition
-// Authors:   Dan Ginsburg, Budirijanto Purnomo, Dave Shreiner, Aaftab Munshi
-// ISBN-10:   0-321-93388-5
-// ISBN-13:   978-0-321-93388-1
-// Publisher: Addison-Wesley Professional
-// URLs:      http://www.opengles-book.com
-//            http://my.safaribooksonline.com/book/animation-and-3d/9780133440133
-//
-// Hello_Triangle.c
-//
-//    This is a simple example that draws a single triangle with
-//    a minimal vertex/fragment shader.  The purpose of this
-//    example is to demonstrate the basic concepts of
-//    OpenGL ES 3.0 rendering.
 #include "esUtil.h"
+#include "mylog.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <sys/exec_elf.h>
+#include <sys/mman.h>
+
+EGLBoolean (*old_eglSwapBuffers)(EGLDisplay dpy, EGLSurface surf) = -1;
+
+EGLBoolean new_eglSwapBuffers(EGLDisplay dpy, EGLSurface surface)
+{
+    LOGI("New eglSwapBuffers\n");
+    if (old_eglSwapBuffers == -1)
+        LOGI("error\n");
+    return old_eglSwapBuffers(dpy, surface);
+}
+
+void* get_module_base(pid_t pid, const char* module_name)
+{
+    FILE *fp;
+    long addr = 0;
+    char *pch;
+    char filename[32];
+    char line[1024];
+
+    if (pid < 0) {
+        /* self process */
+        snprintf(filename, sizeof(filename), "/proc/self/maps", pid);
+    } else {
+        snprintf(filename, sizeof(filename), "/proc/%d/maps", pid);
+    }
+
+    fp = fopen(filename, "r");
+
+    if (fp != NULL) {
+        while (fgets(line, sizeof(line), fp)) {
+            if (strstr(line, module_name)) {
+                pch = strtok( line, "-" );
+                addr = strtoul( pch, NULL, 16 );
+
+                if (addr == 0x8000)
+                    addr = 0;
+
+                break;
+            }
+        }
+
+        fclose(fp) ;
+    }
+
+    return (void *)addr;
+}
+
+#define LIBSF_PATH  "/system/lib/libEGL.so"
+int hook_eglSwapBuffers()
+{
+    old_eglSwapBuffers = eglSwapBuffers;
+    LOGI("Orig eglSwapBuffers = %p\n", old_eglSwapBuffers);
+    void * base_addr = get_module_base(getpid(), LIBSF_PATH);
+    LOGI("libEGL.so address = %p\n", base_addr);
+    if(base_addr == 0 )
+    {
+        LOGE("libEGL.so address = %p\n", base_addr);
+        return -1;
+    }
+
+    int fd;
+    fd = open(LIBSF_PATH, O_RDONLY);
+    if (-1 == fd) {
+        LOGI("error\n");
+        return -1;
+    }
+
+    Elf32_Ehdr ehdr;
+    read(fd, &ehdr, sizeof(Elf32_Ehdr));
+
+    unsigned long shdr_addr = ehdr.e_shoff;
+    int shnum = ehdr.e_shnum;
+    int shent_size = ehdr.e_shentsize;
+    unsigned long stridx = ehdr.e_shstrndx;
+
+    Elf32_Shdr shdr;
+    lseek(fd, shdr_addr + stridx * shent_size, SEEK_SET);
+    read(fd, &shdr, shent_size);
+
+    char * string_table = (char *)malloc(shdr.sh_size);
+    lseek(fd, shdr.sh_offset, SEEK_SET);
+    read(fd, string_table, shdr.sh_size);
+    lseek(fd, shdr_addr, SEEK_SET);
+
+    int i;
+    uint32_t out_addr = 0;
+    uint32_t out_size = 0;
+    uint32_t got_item = 0;
+    int32_t got_found = 0;
+
+    for (i = 0; i < shnum; i++) {
+        read(fd, &shdr, shent_size);
+        if (shdr.sh_type == SHT_PROGBITS) {
+            int name_idx = shdr.sh_name;
+            if (strcmp(&(string_table[name_idx]), ".got.plt") == 0
+                || strcmp(&(string_table[name_idx]), ".got") == 0) {
+                out_addr = base_addr + shdr.sh_addr;
+                out_size = shdr.sh_size;
+                LOGI("out_addr = %lx, out_size = %lx\n", out_addr, out_size);
+
+                for (i = 0; i < out_size; i += 4) {
+                    got_item = *(uint32_t *)(out_addr + i);
+                    if (got_item  == old_eglSwapBuffers) {
+                        LOGI("Found eglSwapBuffers in got\n");
+                        got_found = 1;
+
+                        uint32_t page_size = getpagesize();
+                        uint32_t entry_page_start = (out_addr + i) & (~(page_size - 1));
+                        mprotect((uint32_t *)entry_page_start, page_size, PROT_READ | PROT_WRITE);
+                        *(uint32_t *)(out_addr + i) = new_eglSwapBuffers;
+
+                        break;
+                    } else if (got_item == new_eglSwapBuffers) {
+                        LOGI("Already hooked\n");
+                        break;
+                    }
+                }
+                if (got_found)
+                    break;
+            }
+        }
+    }
+
+    free(string_table);
+    close(fd);
+    return 0;
+}
 
 typedef struct
 {
@@ -259,6 +356,7 @@ void Shutdown ( ESContext *esContext )
 
 int esMain ( ESContext *esContext )
 {
+    hook_eglSwapBuffers();
    esContext->userData = malloc ( sizeof ( UserData ) );
 
    esCreateWindow ( esContext, "Hello Triangle", 320, 240, ES_WINDOW_RGB );

@@ -467,6 +467,9 @@ int exec(const char *process_name, const char *library_name, const char *functio
         return -1;
     }
 
+//    system("adb shell");
+//    system("su");
+
     DEBUG_PRINT("P:%d L:%s F:%s P:%s", target_pid, library_name, function_name, param);
     //target_pid = find_pid_of("/data/test");
     return inject_remote_process(target_pid, library_name, function_name, param, strlen(param));

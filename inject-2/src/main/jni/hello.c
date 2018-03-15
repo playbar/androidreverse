@@ -13,9 +13,6 @@
 #include <stdlib.h>
 
 
-#define LOG_TAG "hook"
-#define LOGI(fmt, args...) __android_log_print(ANDROID_LOG_INFO, LOG_TAG, fmt, ##args)
-
 EGLBoolean (*old_eglSwapBuffers)(EGLDisplay dpy, EGLSurface surf) = -1;
 
 EGLBoolean new_eglSwapBuffers(EGLDisplay dpy, EGLSurface surface)
@@ -68,10 +65,10 @@ int hook_eglSwapBuffers()
     old_eglSwapBuffers = eglSwapBuffers;
     LOGI("Orig eglSwapBuffers = %p\n", old_eglSwapBuffers);
     void * base_addr = get_module_base(getpid(), LIBSF_PATH);
-    LOGI("libsurfaceflinger.so address = %p\n", base_addr);
+    LOGI("libEGL.so address = %p\n", base_addr);
     if(base_addr == 0 )
     {
-        LOGE("libsurfaceflinger.so address = %p\n", base_addr);
+        LOGE("libEGL.so address = %p\n", base_addr);
         return -1;
     }
 
@@ -145,9 +142,8 @@ int hook_eglSwapBuffers()
 
 int hook_entry(char * a){
     LOGI("begin hook_entry, pid=%d\n", getpid());
-//    LOGI("in hook_entry, parameter=%s\n", a);
     hook_eglSwapBuffers();
-    LOGI("end hook_entry\n");
+    LOGI("hook_entry succeed\n");
     return 0;
 }
 

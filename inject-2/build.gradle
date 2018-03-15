@@ -4,7 +4,7 @@ android {
     compileSdkVersion 24
     buildToolsVersion '26.0.2'
     defaultConfig {
-        applicationId "cn.syang2forever.androidinject"
+        applicationId "com.android.inject"
         minSdkVersion 19
         targetSdkVersion 24
         versionCode 1
@@ -14,7 +14,7 @@ android {
             cmake {
                 cppFlags ""
                 targets "hello", "inject", "self"
-                abiFilters 'x86', "armeabi-v7a"
+                abiFilters "armeabi-v7a"
             }
         }
     }

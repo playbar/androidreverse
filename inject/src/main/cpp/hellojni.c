@@ -184,7 +184,7 @@ void loadLib()
 JNIEXPORT void JNICALL
 Java_com_inject_HelloJni_nativeMsg(JNIEnv* env, jobject thiz)
 {
-    loadLib();
+//    loadLib();
     int i = 1, j = 2;
 //    funcTest();
     int res = func(i, j, 3, 4);

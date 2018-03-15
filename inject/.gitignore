@@ -1,2 +1,10 @@
 /build
 /.externalNativeBuild
+demo/libs
+demo/obj
+
+hellolib/libs
+hellolib/obj
+
+inject/libs
+inject/obj

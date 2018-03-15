@@ -19,7 +19,7 @@
 #define ENABLE_DEBUG 1    
     
 #if ENABLE_DEBUG    
-#define  LOG_TAG "INJECT"    
+#define  LOG_TAG "hook"
 #define  LOGD(fmt, args...)  __android_log_print(ANDROID_LOG_DEBUG,LOG_TAG, fmt, ##args)    
 #define DEBUG_PRINT(format,args...) LOGD(format, ##args)    
 #else    
@@ -441,7 +441,7 @@ int inject_remote_process(pid_t target_pid, const char *library_path, const char
         goto exit;        
     
     printf("Press enter to dlclose and detach\n");    
-    getchar();    
+    getchar();
     parameters[0] = sohandle;       
     
     if (ptrace_call_wrapper(target_pid, "dlclose", dlclose, parameters, 1, &regs) == -1)    
@@ -458,12 +458,15 @@ exit:
     
 int main(int argc, char** argv) {    
     pid_t target_pid;    
-    target_pid = find_pid_of("/system/bin/surfaceflinger");    
+//    target_pid = find_pid_of("com.inject");
+    target_pid = find_pid_of("./hello");
     if (-1 == target_pid) {  
         printf("Can't find the process\n");  
         return -1;  
-    }  
+    }
+    printf("pid=%d\n", target_pid);
     //target_pid = find_pid_of("/data/test");    
-    inject_remote_process(target_pid, "/sdcard/libhello.so", "hook_entry",  "I'm parameter!", strlen("I'm parameter!"));    
+    inject_remote_process(target_pid, "/data/temp/libhello.so", "hook_entry",  "I'm parameter!", strlen("I'm parameter!"));
+
     return 0;  
 }    

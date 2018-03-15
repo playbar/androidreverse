@@ -1,10 +1,17 @@
 cmake_minimum_required(VERSION 3.4.1)
 
-add_library(inject SHARED
-            hellojni.c
-            load.c
-            inject.c)
+add_library(triangle SHARED
+            android_native_app_glue.c
+            esShader.c
+            esShapes.c
+            esTransform.c
+            esUtil.c
+            esUtil_Android.c
+            Hello_Triangle.c)
 
-target_link_libraries(inject
+# Include libraries needed for hello-jni lib
+target_link_libraries(triangle
                       android
-                      log)
+                      log
+                      EGL
+                      GLESv3)

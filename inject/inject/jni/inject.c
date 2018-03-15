@@ -15,16 +15,11 @@
 #if defined(__i386__)    
 #define pt_regs         user_regs_struct    
 #endif    
-    
-#define ENABLE_DEBUG 1    
-    
-#if ENABLE_DEBUG    
+
 #define  LOG_TAG "hook"
-#define  LOGD(fmt, args...)  __android_log_print(ANDROID_LOG_DEBUG,LOG_TAG, fmt, ##args)    
+#define  LOGD(fmt, args...)  __android_log_print(ANDROID_LOG_INFO, LOG_TAG, fmt, ##args)
 #define DEBUG_PRINT(format,args...) LOGD(format, ##args)    
-#else    
-#define DEBUG_PRINT(format,args...)    
-#endif    
+
     
 #define CPSR_T_MASK     ( 1u << 5 )    
     
@@ -458,16 +453,18 @@ exit:
     
 int main(int argc, char** argv) {
     printf("current pid=%d\n", getpid());
-    pid_t target_pid;    
+    pid_t target_pid;
     target_pid = find_pid_of("com.inject");
 //    target_pid = find_pid_of("./hello");
-    if (-1 == target_pid) {  
-        printf("Can't find the process\n");  
-        return -1;  
+    if (-1 == target_pid) {
+        printf("Can't find the process\n");
+        return -1;
     }
     printf("pid=%d\n", target_pid);
-    //target_pid = find_pid_of("/data/test");    
+    //target_pid = find_pid_of("/data/test");
     inject_remote_process(target_pid, "/data/local/tmp/libhello.so", "hook_entry",  "I'm parameter!", strlen("I'm parameter!"));
 
-    return 0;  
-}    
+    return 0;
+}
+
+

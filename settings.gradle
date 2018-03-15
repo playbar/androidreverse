@@ -8,6 +8,7 @@
 //include ':swathook'
 include ':inject'
 include ':inject-2'
+//include ':InjectApk'
 //include ':inlinehook'
 //include ':inputmethodholder'
 //include ':zfb'

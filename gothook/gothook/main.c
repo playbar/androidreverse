@@ -1,3 +1,4 @@
+#include <string.h>
 #include "config.h"
 #include "elf_utils.h"
 #include "injector.h"
@@ -14,9 +15,9 @@ int main(int argc, char const *argv[]) {
   pid_t pid = GetPid(process_name);
   long so_handle = InjectLibrary(pid, hook_library_path);
   PtraceAttach(pid);
-  long hook_fuction_addr = CallDlsym(pid, so_handle, "my_printf");
+  long hook_fuction_addr = CallDlsym(pid, so_handle, "new_strcmp");
   PtraceDetach(pid);
-  long original_function_addr = GetRemoteFuctionAddr(pid, LIBC_PATH, (long)printf);
+  long original_function_addr = GetRemoteFuctionAddr(pid, LIBC_PATH, (long)strcmp);
 
   if (DEBUG)
   {

@@ -2,6 +2,7 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <EGL/egl.h>
 
 #define TAG "Hook Library"
 
@@ -32,6 +33,20 @@ int new_strcmp(const char* c1, const char* c2)
         LOGE("[+] success:old_strcmp ===============  [+]\n");
         return old_strcmp(c1, c2);
     }
+}
+
+
+
+typedef EGLBoolean (*Fn_eglSwapBuffers)(EGLDisplay dpy, EGLSurface surf);
+Fn_eglSwapBuffers old_eglSwapBuffers = eglSwapBuffers;
+
+EGLBoolean new_eglSwapBuffers(EGLDisplay dpy, EGLSurface surface)
+{
+    LOGE("New eglSwapBuffers\n");
+    if (old_eglSwapBuffers == -1)
+        LOGE("error\n");
+//    return old_eglSwapBuffers(dpy, surface);
+    return EGL_FALSE;
 }
 
 void set_strcmp(fn_strcmp fn)

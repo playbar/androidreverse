@@ -17,7 +17,8 @@ int main(int argc, char const *argv[]) {
     pid_t pid = GetPid(process_name);
     long so_handle = InjectLibrary(pid, hook_library_path);
     PtraceAttach(pid);
-    long hook_new_strcmp_addr = CallDlsym(pid, so_handle, "new_strcmp");
+//    long hook_new_fun_addr = CallDlsym(pid, so_handle, "new_strcmp");
+    long hook_new_fun_addr = CallDlsym(pid, so_handle, "new_eglSwapBuffers");
 //    long set_strcmp_add = CallDlsym(pid, so_handle, "set_strcmp");
     PtraceDetach(pid);
     long original_function_addr = GetRemoteFuctionAddr(pid, LIBC_PATH, (long)strcmp);
@@ -26,9 +27,9 @@ int main(int argc, char const *argv[]) {
     printf("---------------\n");
     if (DEBUG)
     {
-        printf("hook_new_strcmp_addr: %lx, original_function_addr: %lx\n", hook_new_strcmp_addr, original_function_addr);
+        printf("hook_new_fun_addr: %lx, original_function_addr: %lx\n", hook_new_fun_addr, original_function_addr);
     }
 
-    PatchRemoteGot(pid, target_library_path, original_function_addr, hook_new_strcmp_addr);
+    PatchRemoteGot(pid, target_library_path, original_function_addr, hook_new_fun_addr);
     return 0;
 }

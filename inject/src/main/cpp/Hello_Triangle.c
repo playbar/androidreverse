@@ -341,6 +341,7 @@ void Draw ( ESContext *esContext )
    glViewport ( 0, 0, esContext->width, esContext->height );
 
    // Clear the color buffer
+    glClearColor ( 0.0f, 0.0f, 0.0f, 0.0f );
    glClear ( GL_COLOR_BUFFER_BIT );
 
    // Use the program object

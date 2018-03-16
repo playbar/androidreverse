@@ -12,16 +12,16 @@
 #include <fcntl.h>
 #include <sys/mman.h>
 
-#define LOG_TAG "DEBUG"
-#define LOGD(fmt, args...) __android_log_print(ANDROID_LOG_DEBUG, LOG_TAG, fmt, ##args)
+#define LOG_TAG "injecttest"
+#define LOGI(fmt, args...) __android_log_print(ANDROID_LOG_INFO, LOG_TAG, fmt, ##args)
 
 EGLBoolean (*old_eglSwapBuffers)(EGLDisplay dpy, EGLSurface surf) = -1;
 
 EGLBoolean new_eglSwapBuffers(EGLDisplay dpy, EGLSurface surface)
 {
-    LOGD("New eglSwapBuffers\n");
+    LOGI("New eglSwapBuffers\n");
     if (old_eglSwapBuffers == -1)
-        LOGD("error\n");
+        LOGI("error\n");
     return old_eglSwapBuffers(dpy, surface);
 }
 
@@ -65,14 +65,14 @@ void* get_module_base(pid_t pid, const char* module_name)
 int hook_eglSwapBuffers()
 {
     old_eglSwapBuffers = eglSwapBuffers;
-    LOGD("Orig eglSwapBuffers = %p\n", old_eglSwapBuffers);
+    LOGI("Orig eglSwapBuffers = %p\n", old_eglSwapBuffers);
     void * base_addr = get_module_base(getpid(), LIBSF_PATH);
-    LOGD("libsurfaceflinger.so address = %p\n", base_addr);
+    LOGI("libsurfaceflinger.so address = %p\n", base_addr);
 
     int fd;
     fd = open(LIBSF_PATH, O_RDONLY);
     if (-1 == fd) {
-        LOGD("error\n");
+        LOGI("error\n");
         return -1;
     }
 
@@ -107,12 +107,12 @@ int hook_eglSwapBuffers()
                 || strcmp(&(string_table[name_idx]), ".got") == 0) {
                 out_addr = base_addr + shdr.sh_addr;
                 out_size = shdr.sh_size;
-                LOGD("out_addr = %lx, out_size = %lx\n", out_addr, out_size);
+                LOGI("out_addr = %lx, out_size = %lx\n", out_addr, out_size);
 
                 for (i = 0; i < out_size; i += 4) {
                     got_item = *(uint32_t *)(out_addr + i);
                     if (got_item  == old_eglSwapBuffers) {
-                        LOGD("Found eglSwapBuffers in got\n");
+                        LOGI("Found eglSwapBuffers in got\n");
                         got_found = 1;
 
                         uint32_t page_size = getpagesize();
@@ -122,7 +122,7 @@ int hook_eglSwapBuffers()
 
                         break;
                     } else if (got_item == new_eglSwapBuffers) {
-                        LOGD("Already hooked\n");
+                        LOGI("Already hooked\n");
                         break;
                     }
                 }
@@ -137,9 +137,9 @@ int hook_eglSwapBuffers()
 }
 
 int hook_entry(char * a){
-    LOGD("Hook success\n");
-    LOGD("Start hooking\n");
-    hook_eglSwapBuffers();
+    LOGI("Hook success\n");
+    LOGI("Start hooking\n");
+//    hook_eglSwapBuffers();
     return 0;
 }
 

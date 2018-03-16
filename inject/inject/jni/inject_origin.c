@@ -15,21 +15,17 @@
 #include <string.h>
 #include <elf.h>
 #include <android/log.h>
+#include <asm/ptrace.h>
 
 #if defined(__i386__)
 #define pt_regs         user_regs_struct
 #endif
 
-#define ENABLE_DEBUG 1
 
-#if ENABLE_DEBUG
-#define  LOG_TAG "INJECT"
-#define  LOGD(fmt, args...)  __android_log_print(ANDROID_LOG_DEBUG,LOG_TAG, fmt, ##args)
-#define DEBUG_PRINT(format,args...) \
-    LOGD(format, ##args)
-#else
-#define DEBUG_PRINT(format,args...)
-#endif
+#define  LOG_TAG "injecttest"
+#define  LOGI(fmt, args...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG, fmt, ##args)
+
+
 
 #define CPSR_T_MASK     ( 1u << 5 )
 
@@ -101,7 +97,6 @@ int ptrace_writedata(pid_t pid, uint8_t *dest, uint8_t *data, size_t size)
     return 0;
 }
 
-#if defined(__arm__)
 int ptrace_call(pid_t pid, uint32_t addr, long *params, uint32_t num_params, struct pt_regs* regs)
 {
     uint32_t i;
@@ -148,39 +143,7 @@ int ptrace_call(pid_t pid, uint32_t addr, long *params, uint32_t num_params, str
     return 0;
 }
 
-#elif defined(__i386__)
-long ptrace_call(pid_t pid, uint32_t addr, long *params, uint32_t num_params, struct user_regs_struct * regs)
-{
-    regs->esp -= (num_params) * sizeof(long) ;
-    ptrace_writedata(pid, (void *)regs->esp, (uint8_t *)params, (num_params) * sizeof(long));
 
-    long tmp_addr = 0x00;
-    regs->esp -= sizeof(long);
-    ptrace_writedata(pid, regs->esp, (char *)&tmp_addr, sizeof(tmp_addr));
-
-    regs->eip = addr;
-
-    if (ptrace_setregs(pid, regs) == -1
-            || ptrace_continue( pid) == -1) {
-        printf("error\n");
-        return -1;
-    }
-
-    int stat = 0;
-    waitpid(pid, &stat, WUNTRACED);
-    while (stat != 0xb7f) {
-        if (ptrace_continue(pid) == -1) {
-            printf("error\n");
-            return -1;
-        }
-        waitpid(pid, &stat, WUNTRACED);
-    }
-
-    return 0;
-}
-#else
-#error "Not supported"
-#endif
 
 int ptrace_getregs(pid_t pid, struct pt_regs * regs)
 {
@@ -278,7 +241,7 @@ void* get_remote_addr(pid_t target_pid, const char* module_name, void* local_add
     local_handle = get_module_base(-1, module_name);
     remote_handle = get_module_base(target_pid, module_name);
 
-    DEBUG_PRINT("[+] get_remote_addr: local[%x], remote[%x]\n", local_handle, remote_handle);
+    LOGI("[+] get_remote_addr: local[%x], remote[%x]\n", local_handle, remote_handle);
 
     void * ret_addr = (void *)((uint32_t)local_addr + (uint32_t)remote_handle - (uint32_t)local_handle);
 
@@ -354,13 +317,13 @@ long ptrace_ip(struct pt_regs * regs)
 
 int ptrace_call_wrapper(pid_t target_pid, const char * func_name, void * func_addr, long * parameters, int param_num, struct pt_regs * regs)
 {
-    DEBUG_PRINT("[+] Calling %s in target process.\n", func_name);
+    LOGI("[+] Calling %s in target process.\n", func_name);
     if (ptrace_call(target_pid, (uint32_t)func_addr, parameters, param_num, regs) == -1)
         return -1;
 
     if (ptrace_getregs(target_pid, regs) == -1)
         return -1;
-    DEBUG_PRINT("[+] Target process returned from %s, return value=%x, pc=%x \n",
+    LOGI("[+] Target process returned from %s, return value=%x, pc=%x \n",
                 func_name, ptrace_retval(regs), ptrace_ip(regs));
     return 0;
 }
@@ -381,7 +344,7 @@ int inject_remote_process(pid_t target_pid, const char *library_path, const char
     uint32_t code_length;
     long parameters[10];
 
-    DEBUG_PRINT("[+] Injecting process: %d\n", target_pid);
+    LOGI("[+] Injecting process: %d\n", target_pid);
 
     if (ptrace_attach(target_pid) == -1)
         goto exit;
@@ -393,7 +356,7 @@ int inject_remote_process(pid_t target_pid, const char *library_path, const char
     memcpy(&original_regs, &regs, sizeof(regs));
 
     mmap_addr = get_remote_addr(target_pid, libc_path, (void *)mmap);
-    DEBUG_PRINT("[+] Remote mmap address: %x\n", mmap_addr);
+    LOGI("[+] Remote mmap address: %x\n", mmap_addr);
 
     /* call mmap */
     parameters[0] = 0;  // addr
@@ -413,7 +376,7 @@ int inject_remote_process(pid_t target_pid, const char *library_path, const char
     dlclose_addr = get_remote_addr( target_pid, linker_path, (void *)dlclose );
     dlerror_addr = get_remote_addr( target_pid, linker_path, (void *)dlerror );
 
-    DEBUG_PRINT("[+] Get imports: dlopen: %x, dlsym: %x, dlclose: %x, dlerror: %x\n",
+    LOGI("[+] Get imports: dlopen: %x, dlsym: %x, dlclose: %x, dlerror: %x\n",
                 dlopen_addr, dlsym_addr, dlclose_addr, dlerror_addr);
 
     printf("library path = %s\n", library_path);
@@ -436,7 +399,7 @@ int inject_remote_process(pid_t target_pid, const char *library_path, const char
         goto exit;
 
     void * hook_entry_addr = ptrace_retval(&regs);
-    DEBUG_PRINT("hook_entry_addr = %p\n", hook_entry_addr);
+    LOGI("hook_entry_addr = %p\n", hook_entry_addr);
 
 #define FUNCTION_PARAM_ADDR_OFFSET      0x200
     ptrace_writedata(target_pid, map_base + FUNCTION_PARAM_ADDR_OFFSET, param, strlen(param) + 1);
@@ -463,7 +426,7 @@ int inject_remote_process(pid_t target_pid, const char *library_path, const char
 
 int main(int argc, char** argv) {
     pid_t target_pid;
-    target_pid = find_pid_of("/system/bin/surfaceflinger");
+    target_pid = find_pid_of("./demo");
     if (-1 == target_pid) {
         printf("Can't find the process\n");
         return -1;

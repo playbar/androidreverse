@@ -7,16 +7,18 @@ android {
         applicationId 'com.inject'
         minSdkVersion 19
         targetSdkVersion 19
-//        renderscriptTargetApi 19
-//        renderscriptSupportModeEnabled true
         versionCode 1
         versionName "1.0"
-        externalNativeBuild {
-            cmake {
-                abiFilters 'armeabi-v7a'
-                arguments '-DANDROID_TOOLCHAIN=clang'
+//        externalNativeBuild {
+//            cmake {
+//                abiFilters 'armeabi-v7a'
+//                arguments '-DANDROID_TOOLCHAIN=clang'
+//
+//            }
+//        }
 
-            }
+        ndk {
+            abiFilters 'armeabi-v7a'
         }
     }
     buildTypes {
@@ -26,8 +28,11 @@ android {
         }
     }
     externalNativeBuild {
-        cmake {
-            path "src/main/cpp/CMakeLists.txt"
+//        cmake {
+//            path "src/main/cpp/CMakeLists.txt"
+//        }
+        ndkBuild {
+            path "Android.mk"
         }
     }
 

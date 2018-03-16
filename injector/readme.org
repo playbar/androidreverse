@@ -1,0 +1,30 @@
+** 下载编译
+下载和编译方法
+#+BEGIN_SRC shell
+git clone git@github.com:flysands/injector.git 
+cd injector
+ndk-build NDK_PROJECT_PATH=. NDK_APPLICATION_MK=Application.mk
+#+END_SRC
+** 注入测试
+#+BEGIN_SRC shell
+adb push inject /data/local/tmp
+adb shell chmod 777 /data/local/tmp/inject
+adb push libpayload.so /data/local/tmp
+adb shell /data/local/tmp/inject packagename /data/local/tmp/libpayload.so string_you_want_print
+#+END_SRC
+** 结果判定
+查看adb logcat输出.出现Inject message by 360AnFu即可.
+#+BEGIN_SRC shell
+D/360Inject(18656): start injecting process< 32381 >
+D/360Inject(18656): target mmap address: 40082c5d
+D/360Inject(18656): Calling [mmap] in target process <32381>
+D/360Inject(18656): target_mmap_base: 756ef000
+D/360Inject(18656): target dlopen address: 40055f31
+D/360Inject(18656): Calling [dlopen] in target process <32381>
+D/360Inject(18656): target dlsym address: 40055e81
+D/360Inject(18656): Calling [dlsym] in target process <32381>
+D/360Inject(18656): target inject_log_message address: 40055e81
+D/360Inject(18656): Calling [inject_log_message] in target process <32381>
+D/360Inject(32381): Inject message by 360AnFu: kavia
+D/360Inject(18656): Calling [dlclose] in target process <32381>
+#+END_SRC

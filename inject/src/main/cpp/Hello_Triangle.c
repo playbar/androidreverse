@@ -325,6 +325,12 @@ int Init ( ESContext *esContext )
 //
 void Draw ( ESContext *esContext )
 {
+    if(strcmp("test", "test"))
+    {
+        LOGE("strcmp is equal");
+    } else{
+        LOGE("strcmp is not equal");
+    }
    UserData *userData = esContext->userData;
    GLfloat vVertices[] = {  0.0f,  0.5f, 0.0f,
                             -0.5f, -0.5f, 0.0f,

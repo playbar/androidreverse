@@ -2,7 +2,7 @@
 //include ':allhook'
 //include ':crack'
 //include ':elfhook'
-//include ':gothook'
+include ':gothook'
 //include ':androidmk'
 //include ':hookzz'
 //include ':exporthook'

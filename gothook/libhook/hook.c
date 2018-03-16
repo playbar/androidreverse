@@ -11,13 +11,16 @@
 //  return ret;
 //}
 
+#define LOG_TAG "test"
+#define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)
+
 int (*old_strcmp)(const char* c1, const char* c2) = -1;
 
 int new_strcmp(const char* c1, const char* c2)
 {
-    printf("[+]new_strcmp called [+]\n");
-    printf("[+] s1 = %s [+]\n", c1);
-    printf("[+] s2 = %s [+]\n", c2);
+    LOGE("[+]new_strcmp called [+]\n");
+    LOGE("[+] s1 = %s [+]\n", c1);
+    LOGE("[+] s2 = %s [+]\n", c2);
 //    if (old_strcmp == 0)
 //        printf("[+] error:old_strcmp = -1 [+]\n");
 //    return old_strcmp(c1, c2);

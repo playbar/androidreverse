@@ -5,6 +5,8 @@
 #include "ptrace.h"
 #include "utils.h"
 
+
+// ./gothook com.inject /data/local/tmp/libhook.so /data/app/com.inject-1/lib/arm/libtriangle.so
 int main(int argc, char const *argv[]) {
   if (argc < 4) {
     return -1;
@@ -18,6 +20,7 @@ int main(int argc, char const *argv[]) {
   long hook_fuction_addr = CallDlsym(pid, so_handle, "new_strcmp");
   PtraceDetach(pid);
   long original_function_addr = GetRemoteFuctionAddr(pid, LIBC_PATH, (long)strcmp);
+//    long original_function_addr = GetRemoteFuctionAddr(pid, target_library_path, (long)strcmp);
 
   if (DEBUG)
   {

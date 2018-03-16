@@ -98,6 +98,7 @@ void PatchRemoteGot(pid_t pid, const char* library_path, long original_function_
   if (DEBUG) {
     printf("Get got content of %s in process %d\n", library_path, pid);
   }
+  printf("Fun:%s, Line:%d", __FUNCTION__, __LINE__ );
   PtraceAttach(pid);
   FILE* elf_file = OpenElfFile(library_path);
   Elf32_Shdr* got_section_header = (Elf32_Shdr*) malloc(sizeof(Elf32_Shdr));
@@ -108,6 +109,7 @@ void PatchRemoteGot(pid_t pid, const char* library_path, long original_function_
   if (DEBUG) {
     printf("got section size: %u, got addr offset: %lx\n", got_section_size, got_addr_offset);
   }
+  printf("Fun:%s, Line:%d", __FUNCTION__, __LINE__ );
   long module_base_addr = GetModuleBaseAddr(pid, library_path);
   long got_section_address = module_base_addr + got_addr_offset;
   if (DEBUG) {
@@ -122,6 +124,8 @@ void PatchRemoteGot(pid_t pid, const char* library_path, long original_function_
       }
     }
   }
+  printf("Fun:%s, Line:%d", __FUNCTION__, __LINE__ );
   PtraceDetach(pid);
   CloseElfFile(elf_file);
+  printf("Fun:%s, Line:%d", __FUNCTION__, __LINE__ );
 }

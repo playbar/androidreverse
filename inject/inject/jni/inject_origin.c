@@ -409,7 +409,7 @@ int inject_remote_process(pid_t target_pid, const char *library_path, const char
         goto exit;
 
     printf("Press enter to dlclose and detach\n");
-    getchar();
+//    getchar();
     parameters[0] = sohandle;
 
     if (ptrace_call_wrapper(target_pid, "dlclose", dlclose, parameters, 1, &regs) == -1)
@@ -425,12 +425,14 @@ int inject_remote_process(pid_t target_pid, const char *library_path, const char
 }
 
 int main(int argc, char** argv) {
+    printf("current pid=%d\n", getpid());
     pid_t target_pid;
-    target_pid = find_pid_of("./demo");
+    target_pid = find_pid_of(argv[1]);
     if (-1 == target_pid) {
         printf("Can't find the process\n");
         return -1;
     }
+    printf("target_pid=%d\n", target_pid);
     //target_pid = find_pid_of("/data/test");
     inject_remote_process(target_pid, "/data/local/tmp/libhello.so", "hook_entry",  "I'm parameter!", strlen("I'm parameter!"));
     return 0;

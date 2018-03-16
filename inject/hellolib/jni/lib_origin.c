@@ -137,7 +137,7 @@ int hook_eglSwapBuffers()
 }
 
 int hook_entry(char * a){
-    LOGI("Hook success\n");
+    LOGI("Hook success, pid=%d\n", getpid());
     LOGI("Start hooking\n");
 //    hook_eglSwapBuffers();
     return 0;

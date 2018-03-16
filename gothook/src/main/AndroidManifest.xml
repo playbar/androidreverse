@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.gothook"
+    package="com.mktest"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -10,7 +10,9 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".HelloJni"
-            android:label="reverse" >
+            android:label="mktest"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

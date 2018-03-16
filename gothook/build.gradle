@@ -4,19 +4,15 @@ android {
     compileSdkVersion 19
     buildToolsVersion '26.0.2'
     defaultConfig {
-        applicationId 'com.gothook'
+        applicationId 'com.mktest'
         minSdkVersion 19
         targetSdkVersion 19
 //        renderscriptTargetApi 19
 //        renderscriptSupportModeEnabled true
         versionCode 1
         versionName "1.0"
-        externalNativeBuild {
-            cmake {
-                abiFilters 'armeabi-v7a'
-                arguments '-DANDROID_TOOLCHAIN=clang'
-
-            }
+        ndk {
+            abiFilters 'armeabi-v7a'
         }
     }
     buildTypes {
@@ -26,8 +22,8 @@ android {
         }
     }
     externalNativeBuild {
-        cmake {
-            path "src/main/cpp/CMakeLists.txt"
+        ndkBuild {
+            path "Android.mk"
         }
     }
 

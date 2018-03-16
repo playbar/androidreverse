@@ -153,17 +153,38 @@ int main(int argc, char **argv) {
     printf("Fun:%s, Line:%d\n", __FUNCTION__, __LINE__ );
     char *remote_func_name = "inject_log_message";
     target_pid = find_pid_of(argv[1]);
-    if (argc < 4) {
-        printf("Usage inject processName payloadPath.\n");
-        return 0;
-    }
+//    if (argc < 4) {
+//        printf("Usage inject processName payloadPath.\n");
+//        return 0;
+//    }
     if (-1 == target_pid) {
         LOGD("Can't find the process\n");
         return -1;
     }
     printf("Fun:%s, Line:%d\n", __FUNCTION__, __LINE__ );
-    inject_remote_process(target_pid, argv[2], remote_func_name, argv[3],
-                          strlen(argv[3]));
+    inject_remote_process(target_pid, "/data/local/tmp/libpayload.so", remote_func_name, "test",
+                          strlen("test"));
 
     return 0;
 }
+
+//int main(int argc, char **argv) {
+//
+//    pid_t target_pid;
+//    printf("Fun:%s, Line:%d\n", __FUNCTION__, __LINE__ );
+//    char *remote_func_name = "inject_log_message";
+//    target_pid = find_pid_of(argv[1]);
+//    if (argc < 4) {
+//        printf("Usage inject processName payloadPath.\n");
+//        return 0;
+//    }
+//    if (-1 == target_pid) {
+//        LOGD("Can't find the process\n");
+//        return -1;
+//    }
+//    printf("Fun:%s, Line:%d\n", __FUNCTION__, __LINE__ );
+//    inject_remote_process(target_pid, argv[2], remote_func_name, argv[3],
+//                          strlen(argv[3]));
+//
+//    return 0;
+//}

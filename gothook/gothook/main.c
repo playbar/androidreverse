@@ -1,4 +1,5 @@
 #include <string.h>
+#include <EGL/egl.h>
 #include "config.h"
 #include "elf_utils.h"
 #include "injector.h"
@@ -7,23 +8,32 @@
 
 
 // ./gothook com.gothook /data/local/tmp/libhook.so /data/app/com.gothook-1/lib/arm/libtriangle.so
+
+// ./gothook com.inject /data/local/tmp/libhook.so /data/app/com.inject-1/lib/arm/libtriangle.so
 int main(int argc, char const *argv[]) {
-    if (argc < 4) {
-        return -1;
-    }
-    const char* process_name = argv[1];
-    const char* hook_library_path = argv[2];
-    const char* target_library_path = argv[3];
+//    if (argc < 4) {
+//        return -1;
+//    }
+//    const char* process_name = argv[1];
+//    const char* hook_library_path = argv[2];
+//    const char* target_library_path = argv[3];
+    const char* process_name = "com.inject";
+    const char* hook_library_path = "/data/local/tmp/libhook.so";
+    const char* target_library_path = "/data/app/com.inject-1/lib/arm/libtriangle.so";
     pid_t pid = GetPid(process_name);
+    printf("process: %s, pid=%d\n", process_name, pid);
     long so_handle = InjectLibrary(pid, hook_library_path);
     PtraceAttach(pid);
-//    long hook_new_fun_addr = CallDlsym(pid, so_handle, "new_strcmp");
-    long hook_new_fun_addr = CallDlsym(pid, so_handle, "new_eglSwapBuffers");
-//    long set_strcmp_add = CallDlsym(pid, so_handle, "set_strcmp");
-    PtraceDetach(pid);
+//    long hook_new_fun_addr = CallDlsym(pid, so_handle, "new_eglSwapBuffers");
+//    long original_function_addr = GetRemoteFuctionAddr(pid, LIBEGL_PATH, (long)eglSwapBuffers);
+
+    long hook_new_fun_addr = CallDlsym(pid, so_handle, "new_strcmp");
     long original_function_addr = GetRemoteFuctionAddr(pid, LIBC_PATH, (long)strcmp);
-//    long original_function_addr = GetRemoteFuctionAddr(pid, target_library_path, (long)strcmp);
+
+//    long set_strcmp_add = CallDlsym(pid, so_handle, "set_strcmp");
 //    CallRemoteFunction( pid, set_strcmp_add, &original_function_addr, 1);
+
+    PtraceDetach(pid);
     printf("---------------\n");
     if (DEBUG)
     {

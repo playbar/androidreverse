@@ -14,13 +14,13 @@ android {
         ndk {
             abiFilters 'armeabi-v7a'
         }
-        externalNativeBuild {
-            cmake {
-                abiFilters 'armeabi-v7a'
-                arguments '-DANDROID_TOOLCHAIN=clang'
-
-            }
-        }
+//        externalNativeBuild {
+//            cmake {
+//                abiFilters 'armeabi-v7a'
+//                arguments '-DANDROID_TOOLCHAIN=clang'
+//
+//            }
+//        }
     }
     buildTypes {
         release {
@@ -29,12 +29,12 @@ android {
         }
     }
     externalNativeBuild {
-        cmake {
-            path "src/main/cpp/CMakeLists.txt"
-        }
-//        ndkBuild {
-//            path "Android.mk"
+//        cmake {
+//            path "src/main/cpp/CMakeLists.txt"
 //        }
+        ndkBuild {
+            path "Android.mk"
+        }
     }
 
 }

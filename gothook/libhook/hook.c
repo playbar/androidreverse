@@ -33,6 +33,7 @@ int new_strcmp(const char* c1, const char* c2)
         LOGE("[+] success:old_strcmp ===============  [+]\n");
         return old_strcmp(c1, c2);
     }
+//    return 1;
 }
 
 
@@ -45,7 +46,7 @@ EGLBoolean new_eglSwapBuffers(EGLDisplay dpy, EGLSurface surface)
     LOGE("New eglSwapBuffers\n");
     if (old_eglSwapBuffers == -1)
         LOGE("error\n");
-//    return old_eglSwapBuffers(dpy, surface);
+    return old_eglSwapBuffers(dpy, surface);
     return EGL_FALSE;
 }
 

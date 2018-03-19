@@ -325,7 +325,7 @@ int Init ( ESContext *esContext )
 //
 void Draw ( ESContext *esContext )
 {
-    if(strcmp("test", "test"))
+    if(strcmp("testaa", "testbb"))
     {
         LOGE("strcmp is equal");
     } else{

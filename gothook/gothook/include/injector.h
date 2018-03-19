@@ -4,6 +4,7 @@
 #define INJECTOR_H_
 #define LIBC_PATH "/system/lib/libc.so"
 #define LINKER_PATH "/system/bin/linker"
+#define LIBEGL_PATH "/system/lib/libEGL.so"
 
 long CallMmap(pid_t pid, size_t length);
 long CallDlopen(pid_t pid, const char* library_path);

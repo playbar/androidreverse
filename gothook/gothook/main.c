@@ -6,7 +6,7 @@
 #include "utils.h"
 
 
-// ./gothook com.inject /data/local/tmp/libhook.so /data/app/com.inject-1/lib/arm/libtriangle.so
+// ./gothook com.gothook /data/local/tmp/libhook.so /data/app/com.gothook-1/lib/arm/libtriangle.so
 int main(int argc, char const *argv[]) {
     if (argc < 4) {
         return -1;

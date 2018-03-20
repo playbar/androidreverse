@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <EGL/egl.h>
+#include <SLES/OpenSLES.h>
 
 #define TAG "Hook Library"
 
@@ -19,7 +20,6 @@
 
 typedef int (*fn_strcmp)(const char* c1, const char* c2);
 fn_strcmp old_strcmp = strcmp;
-
 int new_strcmp(const char* c1, const char* c2)
 {
     LOGE("[+]new_strcmp called [+]\n");
@@ -38,6 +38,33 @@ int new_strcmp(const char* c1, const char* c2)
 
 
 
+typedef SLresult (*Fn_slCreateEngine)(
+        SLObjectItf             *pEngine,
+        SLuint32                numOptions,
+        const SLEngineOption    *pEngineOptions,
+        SLuint32                numInterfaces,
+        const SLInterfaceID     *pInterfaceIds,
+        const SLboolean         * pInterfaceRequired);
+Fn_slCreateEngine old_slCreateEngine = slCreateEngine;
+
+
+SLresult  new_slCreateEngine(
+        SLObjectItf             *pEngine,
+        SLuint32                numOptions,
+        const SLEngineOption    *pEngineOptions,
+        SLuint32                numInterfaces,
+        const SLInterfaceID     *pInterfaceIds,
+        const SLboolean         * pInterfaceRequired)
+{
+    LOGE("New slCreateEngine\n");
+    if( old_slCreateEngine ) {
+        return old_slCreateEngine(pEngine, numOptions, pEngineOptions,
+                                  numInterfaces, pInterfaceIds, pInterfaceRequired);
+    } else{
+        return 0;
+    }
+}
+
 typedef EGLBoolean (*Fn_eglSwapBuffers)(EGLDisplay dpy, EGLSurface surf);
 Fn_eglSwapBuffers old_eglSwapBuffers = eglSwapBuffers;
 
@@ -47,7 +74,7 @@ EGLBoolean new_eglSwapBuffers(EGLDisplay dpy, EGLSurface surface)
     if (old_eglSwapBuffers == -1)
         LOGE("error\n");
     return old_eglSwapBuffers(dpy, surface);
-    return EGL_FALSE;
+//    return EGL_FALSE;
 }
 
 void set_strcmp(fn_strcmp fn)

@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.4.1)
 
 add_library(hook SHARED
             hellojni.c
+            native-lib.cpp
             load.c
             allocator.c
             interceptor.c
@@ -20,6 +21,7 @@ add_library(hook SHARED
             platforms/arch-arm/relocator-thumb.c
             platforms/arch-arm/writer-arm.c
             platforms/arch-arm/writer-thumb.c
+            platforms/backend-arm/backend-arm-helper.c
             platforms/backend-arm/interceptor-arm.c
             platforms/backend-arm/thunker-arm.c
             kitzz/CommonKit/memory/common_memory_kit.c

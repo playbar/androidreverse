@@ -36,7 +36,7 @@ public class HelloJni extends Activity {
         Loggvc.e("HelloJni");
         setContentView(R.layout.activity_hello_jni);
         TextView tv = (TextView)findViewById(R.id.hello_textview);
-        tv.setText( stringFromJNI() );
+        tv.setText( stringFromJNITest() );
     }
 
     public void onClick(View v){
@@ -49,6 +49,7 @@ public class HelloJni extends Activity {
      * with this application.
      */
     public native String  stringFromJNI();
+    public native String  stringFromJNITest();
     public native String stringFromJNI_1();
     public native void nativeMsg();
 

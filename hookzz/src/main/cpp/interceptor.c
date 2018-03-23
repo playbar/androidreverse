@@ -33,13 +33,14 @@ ZZSTATUS ZzInitializeInterceptor(void) {
             interceptor->allocator = ZzNewAllocator();
             interceptor->backend   = ZzBuildInteceptorBackend(interceptor->allocator);
         }
+
         return ZZ_DONE_INIT;
     }
     return ZZ_ALREADY_INIT;
 }
 
 static ZzInterceptor *ZzGlobalInterceptorInstance(void) {
-    ZzInterceptor *interceptor                      = g_interceptor;
+    ZzInterceptor *interceptor = g_interceptor;
 
     /* check g_intercepter initialization */
     if (!interceptor) {
@@ -54,15 +55,14 @@ static ZzInterceptor *ZzGlobalInterceptorInstance(void) {
 
     interceptor = g_interceptor;
     return interceptor;
-
 }
 
 ZzHookFunctionEntry *ZzFindHookFunctionEntry(zz_ptr_t target_ptr) {
-    ZzInterceptor *interceptor = NULL;
+    ZzInterceptor *interceptor                      = NULL;
     ZzHookFunctionEntrySet *hook_function_entry_set = NULL;
 
     interceptor = ZzGlobalInterceptorInstance();
-    if(!interceptor) {
+    if (!interceptor) {
         return NULL;
     }
     hook_function_entry_set = &(interceptor->hook_function_entry_set);
@@ -76,11 +76,11 @@ ZzHookFunctionEntry *ZzFindHookFunctionEntry(zz_ptr_t target_ptr) {
 }
 
 ZZSTATUS ZzAddHookFunctionEntry(ZzHookFunctionEntry *entry) {
-    ZzInterceptor *interceptor = NULL;
+    ZzInterceptor *interceptor                      = NULL;
     ZzHookFunctionEntrySet *hook_function_entry_set = NULL;
 
     interceptor = ZzGlobalInterceptorInstance();
-    if(!interceptor) {
+    if (!interceptor) {
         return ZZ_FAILED;
     }
     hook_function_entry_set = &(interceptor->hook_function_entry_set);
@@ -98,30 +98,29 @@ ZZSTATUS ZzAddHookFunctionEntry(ZzHookFunctionEntry *entry) {
     return ZZ_SUCCESS;
 }
 
-void ZzInitializeHookFunctionEntry(ZzHookFunctionEntry *entry, int hook_type, zz_ptr_t target_ptr,
-                                   zz_ptr_t replace_call, PRECALL pre_call,
-                                   POSTCALL post_call, bool try_near_jump) {
+void ZzInitializeHookFunctionEntry(ZzHookFunctionEntry *entry, ZZHOOKTYPE hook_type, zz_ptr_t target_ptr,
+                                   zz_ptr_t replace_call, PRECALL pre_call, POSTCALL post_call, bool try_near_jump) {
     ZzInterceptor *interceptor                      = NULL;
     ZzHookFunctionEntrySet *hook_function_entry_set = NULL;
 
     interceptor = ZzGlobalInterceptorInstance();
-    if(!interceptor) {
+    if (!interceptor) {
         return;
     }
     hook_function_entry_set = &(interceptor->hook_function_entry_set);
 
-    entry->hook_type               = hook_type;
-    entry->id                      = hook_function_entry_set->size;
-    entry->isEnabled               = 0;
-    entry->try_near_jump           = try_near_jump;
-    entry->interceptor             = interceptor;
-    entry->target_ptr              = target_ptr;
-    entry->replace_call            = replace_call;
-    entry->pre_call                = (zz_ptr_t)pre_call;
-    entry->post_call               = (zz_ptr_t)post_call;
-    entry->on_enter_trampoline     = NULL;
-    entry->on_invoke_trampoline    = NULL;
-//    entry->on_half_trampoline      = NULL;
+    entry->hook_type            = hook_type;
+    entry->id                   = hook_function_entry_set->size;
+    entry->isEnabled            = 0;
+    entry->try_near_jump        = try_near_jump;
+    entry->interceptor          = interceptor;
+    entry->target_ptr           = target_ptr;
+    entry->replace_call         = replace_call;
+    entry->pre_call             = (zz_ptr_t)pre_call;
+    entry->post_call            = (zz_ptr_t)post_call;
+    entry->on_enter_trampoline  = NULL;
+    entry->on_invoke_trampoline = NULL;
+    //    entry->on_half_trampoline      = NULL;
     entry->on_leave_trampoline     = NULL;
     entry->origin_prologue.address = target_ptr;
     entry->thread_local_key        = ZzThreadNewThreadLocalKeyPtr();
@@ -132,12 +131,12 @@ void ZzFreeHookFunctionEntry(ZzHookFunctionEntry *entry) {
     ZzHookFunctionEntrySet *hook_function_entry_set = NULL;
     ZzHookFunctionEntry **entries                   = NULL;
 
-    interceptor                      = ZzGlobalInterceptorInstance();
-    if(!interceptor) {
+    interceptor = ZzGlobalInterceptorInstance();
+    if (!interceptor) {
         return;
     }
     hook_function_entry_set = &(interceptor->hook_function_entry_set);
-    entries                   = hook_function_entry_set->entries;
+    entries                 = hook_function_entry_set->entries;
 
     int i;
     for (i = 0; i < hook_function_entry_set->size; ++i) {
@@ -154,21 +153,20 @@ void ZzFreeHookFunctionEntry(ZzHookFunctionEntry *entry) {
 }
 
 ZZSTATUS ZzBuildHook(zz_ptr_t target_ptr, zz_ptr_t replace_call_ptr, zz_ptr_t *origin_ptr, PRECALL pre_call_ptr,
-                     POSTCALL post_call_ptr, bool try_near_jump) {
-    // HookZz do not support x86 now.
+                     POSTCALL post_call_ptr, bool try_near_jump, ZZHOOKTYPE hook_type) {
+// HookZz do not support x86 now.
 #if defined(__i386__) || defined(__x86_64__)
-    ZzDebugInfoLog("%s", "x86 & x86_64 arch not support");
+    HookZzDebugInfoLog("%s", "x86 & x86_64 arch not support");
     return ZZ_FAILED;
 #endif
 
     ZZSTATUS status                                 = ZZ_DONE_HOOK;
     ZzInterceptor *interceptor                      = NULL;
     ZzHookFunctionEntrySet *hook_function_entry_set = NULL;
-    ZzHookFunctionEntry *entry = NULL;
-    int hook_type;
+    ZzHookFunctionEntry *entry                      = NULL;
 
-    interceptor                      = ZzGlobalInterceptorInstance();
-    if(!interceptor) {
+    interceptor = ZzGlobalInterceptorInstance();
+    if (!interceptor) {
         return ZZ_FAILED;
     }
     hook_function_entry_set = &(interceptor->hook_function_entry_set);
@@ -181,15 +179,9 @@ ZZSTATUS ZzBuildHook(zz_ptr_t target_ptr, zz_ptr_t replace_call_ptr, zz_ptr_t *o
         }
         entry = (ZzHookFunctionEntry *)zz_malloc_with_zero(sizeof(ZzHookFunctionEntry));
 
-        if (pre_call_ptr || post_call_ptr) {
-            hook_type = HOOK_TYPE_FUNCTION_via_PRE_POST;
-        } else {
-            hook_type = HOOK_TYPE_FUNCTION_via_REPLACE;
-        }
-
         // TODO: check return status
-        ZzInitializeHookFunctionEntry(entry, hook_type, target_ptr, replace_call_ptr, pre_call_ptr,
-                                      post_call_ptr, try_near_jump);
+        ZzInitializeHookFunctionEntry(entry, hook_type, target_ptr, replace_call_ptr, pre_call_ptr, post_call_ptr,
+                                      try_near_jump);
         ZzBuildTrampoline(interceptor->backend, entry);
         ZzAddHookFunctionEntry(entry);
 
@@ -202,18 +194,18 @@ ZZSTATUS ZzBuildHook(zz_ptr_t target_ptr, zz_ptr_t replace_call_ptr, zz_ptr_t *o
 ZZSTATUS ZzBuildHookGOT(zz_ptr_t target_ptr, zz_ptr_t replace_call_ptr, zz_ptr_t *origin_ptr, PRECALL pre_call_ptr,
                         POSTCALL post_call_ptr) {
 #if defined(__i386__) || defined(__x86_64__)
-    ZzDebugInfoLog("%s", "x86 & x86_64 arch not support");
+    HookZzDebugInfoLog("%s", "x86 & x86_64 arch not support");
     return ZZ_FAILED;
 #endif
 
     ZZSTATUS status                                 = ZZ_DONE_HOOK;
     ZzInterceptor *interceptor                      = NULL;
     ZzHookFunctionEntrySet *hook_function_entry_set = NULL;
-    ZzHookFunctionEntry *entry = NULL;
-    int hook_type;
+    ZzHookFunctionEntry *entry                      = NULL;
+    ZZHOOKTYPE hook_type;
 
-    interceptor             = ZzGlobalInterceptorInstance();
-    if(!interceptor) {
+    interceptor = ZzGlobalInterceptorInstance();
+    if (!interceptor) {
         return ZZ_FAILED;
     }
     hook_function_entry_set = &(interceptor->hook_function_entry_set);
@@ -227,7 +219,8 @@ ZZSTATUS ZzBuildHookGOT(zz_ptr_t target_ptr, zz_ptr_t replace_call_ptr, zz_ptr_t
         entry = (ZzHookFunctionEntry *)zz_malloc_with_zero(sizeof(ZzHookFunctionEntry));
 
         // TODO: check return status
-        ZzInitializeHookFunctionEntry(entry, HOOK_TYPE_FUNCTION_via_GOT, target_ptr, replace_call_ptr, pre_call_ptr, post_call_ptr, false);
+        ZzInitializeHookFunctionEntry(entry, HOOK_TYPE_FUNCTION_via_GOT, target_ptr, replace_call_ptr, pre_call_ptr,
+                                      post_call_ptr, false);
         ZzBuildTrampoline(interceptor->backend, entry);
         ZzAddHookFunctionEntry(entry);
 
@@ -237,10 +230,12 @@ ZZSTATUS ZzBuildHookGOT(zz_ptr_t target_ptr, zz_ptr_t replace_call_ptr, zz_ptr_t
     return status;
 }
 
+// TODO: delete
+#if 0
 ZZSTATUS ZzBuildHookOneInstruction(zz_ptr_t insn_address, zz_ptr_t target_end_ptr, PRECALL pre_call_ptr, POSTCALL  post_call_ptr, bool try_near_jump) {
     // HookZz do not support x86 now.
 #if defined(__i386__) || defined(__x86_64__)
-    ZzDebugInfoLog("%s", "x86 & x86_64 arch not support");
+    HookZzDebugInfoLog("%s", "x86 & x86_64 arch not support");
     return ZZ_FAILED;
 #endif
 
@@ -271,14 +266,15 @@ ZZSTATUS ZzBuildHookOneInstruction(zz_ptr_t insn_address, zz_ptr_t target_end_pt
     } while (0);
     return status;
 }
+#endif
 
 ZZSTATUS ZzEnableHook(zz_ptr_t target_ptr) {
     ZZSTATUS status            = ZZ_DONE_ENABLE;
     ZzInterceptor *interceptor = NULL;
     ZzHookFunctionEntry *entry = NULL;
 
-    interceptor             = ZzGlobalInterceptorInstance();
-    if(!interceptor) {
+    interceptor = ZzGlobalInterceptorInstance();
+    if (!interceptor) {
         return ZZ_FAILED;
     }
     entry = ZzFindHookFunctionEntry(target_ptr);
@@ -293,6 +289,8 @@ ZZSTATUS ZzEnableHook(zz_ptr_t target_ptr) {
         status = ZZ_ALREADY_ENABLED;
         ZZ_ERROR_LOG("%p already enable!", target_ptr);
         return status;
+    } else {
+        entry->isEnabled = true;
     }
 
     // key function.
@@ -304,10 +302,9 @@ ZZSTATUS ZzDisableHook(zz_ptr_t target_ptr) {
     ZzInterceptor *interceptor = NULL;
     ZzHookFunctionEntry *entry = NULL;
 
-
-    entry = ZzFindHookFunctionEntry(target_ptr);
-    interceptor             = ZzGlobalInterceptorInstance();
-    if(!interceptor) {
+    entry       = ZzFindHookFunctionEntry(target_ptr);
+    interceptor = ZzGlobalInterceptorInstance();
+    if (!interceptor) {
         return ZZ_FAILED;
     }
 
@@ -317,39 +314,70 @@ ZZSTATUS ZzDisableHook(zz_ptr_t target_ptr) {
         ZzMemoryPatchCode((const zz_addr_t)entry->origin_prologue.address, entry->origin_prologue.data,
                           entry->origin_prologue.size);
     }
-    ZzFreeHookFunctionEntry(entry);
+
+    entry->isEnabled = false;
+
     return status;
 }
 
 ZZSTATUS ZzHook(zz_ptr_t target_ptr, zz_ptr_t replace_ptr, zz_ptr_t *origin_ptr, PRECALL pre_call_ptr,
                 POSTCALL post_call_ptr, bool try_near_jump) {
-    ZzBuildHook(target_ptr, replace_ptr, origin_ptr, pre_call_ptr, post_call_ptr, try_near_jump);
+    ZZHOOKTYPE hook_type;
+    if (pre_call_ptr || post_call_ptr) {
+        hook_type = HOOK_TYPE_FUNCTION_via_PRE_POST;
+    } else {
+        hook_type = HOOK_TYPE_FUNCTION_via_REPLACE;
+    }
+
+    ZzBuildHook(target_ptr, replace_ptr, origin_ptr, pre_call_ptr, post_call_ptr, try_near_jump, hook_type);
     ZzEnableHook(target_ptr);
     return ZZ_SUCCESS;
 }
 
 ZZSTATUS ZzHookPrePost(zz_ptr_t target_ptr, PRECALL pre_call_ptr, POSTCALL post_call_ptr) {
     ZZSTATUS status = ZZ_SUCCESS;
-    status = ZzBuildHook(target_ptr, NULL, NULL, pre_call_ptr, post_call_ptr, FALSE);
+    status = ZzBuildHook(target_ptr, NULL, NULL, pre_call_ptr, post_call_ptr, FALSE, HOOK_TYPE_FUNCTION_via_PRE_POST);
     status = ZzEnableHook(target_ptr);
     return status;
 }
 
 ZZSTATUS ZzHookReplace(zz_ptr_t target_ptr, zz_ptr_t replace_ptr, zz_ptr_t *origin_ptr) {
     ZZSTATUS status = ZZ_SUCCESS;
-    status = ZzBuildHook(target_ptr, replace_ptr, origin_ptr, NULL, NULL, FALSE);
+    status = ZzBuildHook(target_ptr, replace_ptr, origin_ptr, NULL, NULL, FALSE, HOOK_TYPE_FUNCTION_via_REPLACE);
     status = ZzEnableHook(target_ptr);
     return status;
 }
 
-//ZZSTATUS ZzDynamicBinaryInstrumentation(zz_ptr_t insn_address, STUBCALL stub_call_ptr) {
-//
-//}
-
-ZZSTATUS ZzHookOneInstruction(zz_ptr_t insn_address, PRECALL pre_call_ptr,
-                       POSTCALL post_call_ptr, bool try_near_jump) {
+ZZSTATUS ZzDynamicBinaryInstrumentation(zz_ptr_t insn_address, STUBCALL stub_call_ptr) {
     ZZSTATUS status = ZZ_SUCCESS;
+    ZzInterceptor *interceptor;
+    ZzHookFunctionEntry *entry;
+    interceptor = ZzGlobalInterceptorInstance();
+    if (!interceptor) {
+        return ZZ_FAILED;
+    }
 
+    // check is already hooked ?
+    if (ZzFindHookFunctionEntry(insn_address)) {
+        status = ZZ_ALREADY_HOOK;
+        return status;
+    }
+    entry = (ZzHookFunctionEntry *)zz_malloc_with_zero(sizeof(ZzHookFunctionEntry));
+    ZzInitializeHookFunctionEntry(entry, HOOK_TYPE_DBI, insn_address, NULL, NULL, NULL, true);
+    entry->stub_call = stub_call_ptr;
+    ZzBuildTrampoline(interceptor->backend, entry);
+    ZzAddHookFunctionEntry(entry);
+
+    status = ZzEnableHook(insn_address);
+    return status;
+}
+
+ZZSTATUS ZzHookOneInstruction(zz_ptr_t insn_address, PRECALL pre_call_ptr, POSTCALL post_call_ptr, bool try_near_jump) {
+    ZZSTATUS status = ZZ_SUCCESS;
+    status =
+        ZzBuildHook(insn_address, NULL, NULL, pre_call_ptr, post_call_ptr, try_near_jump, HOOK_TYPE_ONE_INSTRUCTION);
+    status = ZzEnableHook(insn_address);
+    return status;
 }
 
 // #ifdef TARGET_IS_IOS

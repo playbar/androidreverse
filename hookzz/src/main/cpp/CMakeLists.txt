@@ -1,5 +1,17 @@
 cmake_minimum_required(VERSION 3.4.1)
 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -frtti -fexceptions")
+
+
+add_definitions(-DTEST_printf)
+#add_definitions(-DTEST_send)
+add_definitions(-DTEST_sendto)
+add_definitions(-DTEST_connect)
+add_definitions(-DTEST_freeaddrinfo)
+add_definitions(-DTEST_getaddrinfo)
+add_definitions(-DTEST_case_001)
+
+
 add_library(hook SHARED
             hellojni.c
             native-lib.cpp

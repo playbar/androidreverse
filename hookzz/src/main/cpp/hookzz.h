@@ -97,6 +97,14 @@ typedef enum _ZZSTATUS {
     ZZ_NO_BUILD_HOOK
 } ZZSTATUS;
 
+typedef enum _ZZHOOKTYPE {
+    HOOK_TYPE_ONE_INSTRUCTION = 0,
+    HOOK_TYPE_FUNCTION_via_PRE_POST,
+    HOOK_TYPE_FUNCTION_via_REPLACE,
+    HOOK_TYPE_FUNCTION_via_GOT,
+    HOOK_TYPE_DBI
+}ZZHOOKTYPE;
+
 typedef struct _CallStack {
     unsigned long call_id;
     struct _ThreadStack *ts;
@@ -132,7 +140,8 @@ void printf_post_call(RegState *rs, ThreadStack *ts, CallStack *cs, const HookEn
 
 typedef void (*PRECALL)(RegState *rs, ThreadStack *ts, CallStack *cs, const HookEntryInfo *info);
 typedef void (*POSTCALL)(RegState *rs, ThreadStack *ts, CallStack *cs, const HookEntryInfo *info);
-typedef void (*HALFCALL)(RegState *rs, ThreadStack *ts, CallStack *cs, const HookEntryInfo *info);
+
+typedef void (*STUBCALL)(RegState *rs, const HookEntryInfo *info);
 
 // ------- export API -------
 
@@ -160,32 +169,28 @@ void printf_post_call(RegState *rs, ThreadStack *ts, CallStack *cs, const HookEn
 void *ZzGetCallStackData(CallStack *callstack_ptr, char *key_str);
 bool ZzSetCallStackData(CallStack *callstack_ptr, char *key_str, void *value_ptr, unsigned long value_size);
 
-ZZSTATUS ZzBuildHook(void *target_ptr, void *replace_call_ptr, void **origin_ptr, PRECALL pre_call_ptr, POSTCALL post_call_ptr, bool try_near_jump);
-ZZSTATUS ZzBuildHookAddress(void *target_start_ptr, void *target_end_ptr, PRECALL pre_call_ptr, HALFCALL half_call_ptr, bool try_near_jump);
+ZZSTATUS ZzBuildHook(void *target_ptr, void *replace_call_ptr, void **origin_ptr, PRECALL pre_call_ptr, POSTCALL post_call_ptr, bool try_near_jump, ZZHOOKTYPE hook_type);
 ZZSTATUS ZzEnableHook(void *target_ptr);
-
-/* ------- example -------
-
-ZzHook((void *)printf_ptr, (void *)fake_printf, (void **)&orig_printf, printf_pre_call, printf_post_call, true);
-ZzHookPrePost((void *)printf_ptr, printf_pre_call, printf_post_call, true);
-ZzHookReplace((void *)printf_ptr, (void *)fake_printf, (void **)&orig_printf);
-
-------- example end ------- */
 
 ZZSTATUS ZzHook(void *target_ptr, void *replace_ptr, void **origin_ptr, PRECALL pre_call_ptr, POSTCALL post_call_ptr, bool try_near_jump);
 ZZSTATUS ZzHookPrePost(void *target_ptr, PRECALL pre_call_ptr, POSTCALL post_call_ptr);
 ZZSTATUS ZzHookReplace(void *target_ptr, void *replace_ptr, void **origin_ptr);
-ZZSTATUS ZzHookAddress(void *target_start_ptr, void *target_end_ptr, PRECALL pre_call_ptr, HALFCALL half_call_ptr);
 
-// enable debug info
-void ZzEnableDebugMode(void);
+// hook only one instruciton with instruction address
+ZZSTATUS ZzHookOneInstruction(void *insn_address, PRECALL pre_call_ptr, POSTCALL post_call_ptr, bool try_near_jump);
+
+// got hook (only support macho)
+ZZSTATUS ZzHookGOT(const char *name, void *replace_ptr, void **origin_ptr, PRECALL pre_call_ptr, POSTCALL post_call_ptr);
 
 // runtime code patch
 ZZSTATUS ZzRuntimeCodePatch(void *address, void *code_data, unsigned long code_length);
 
-ZZSTATUS ZzHookGOT(const char *name, void *replace_ptr, void **origin_ptr, PRECALL pre_call_ptr,
-                   POSTCALL post_call_ptr);
+ZZSTATUS ZzDynamicBinaryInstrumentation(void *address, STUBCALL stub_call_ptr);
 
+// enable debug info
+void HookZzDebugInfoEnable(void);
+
+// disable hook
 ZZSTATUS ZzDisableHook(void *target_ptr);
 
 // ------- export API end -------

@@ -33,7 +33,7 @@ public class HelloJni extends Activity {
          * the text is retrieved by calling a native
          * function.
          */
-        Loggvc.e("HelloJni");
+        Loggvc.e("log");
         setContentView(R.layout.activity_hello_jni);
         TextView tv = (TextView)findViewById(R.id.hello_textview);
         tv.setText( stringFromJNITest() );

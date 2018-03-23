@@ -13,7 +13,7 @@ import java.text.SimpleDateFormat;
  */
 public class Loggvc {
 
-	private static String TAG = "viewcore";
+	private static String TAG = "hook";
 	private static String MSG = "";
 	protected static boolean debugMode = true;
 

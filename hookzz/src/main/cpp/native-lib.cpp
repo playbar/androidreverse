@@ -25,7 +25,7 @@
 
 #include "hookzz.h"
 
-#define TEST_printf 1
+#define TEST_printf 0
 #define TEST_send 1
 #define TEST_sendto 1
 #define TEST_connect 1
@@ -53,7 +53,7 @@ void send_pre_call(RegState *rs, ThreadStack *ts, CallStack *cs, const HookEntry
 }
 
 __attribute__((constructor)) void hook_send() {
-    ZzEnableDebugMode();
+//    ZzEnableDebugMode();
     ZzHookPrePost((void *)send, send_pre_call, common_post_call);
     send(-1, "test", 4, 0);
 
@@ -133,13 +133,14 @@ void printf_pre_call(RegState *rs, ThreadStack *ts, CallStack *cs, const HookEnt
     puts(">>> printf-pre-call");
 }
 #endif
-__attribute__((constructor)) void test_hook_printf() {
+__attribute__((constructor))
+void test_hook_printf() {
     void *printf_ptr = (void *)printf;
 
 //    if(freopen("/data/data/com.zz.hooktester/test.output","w",stdout) == NULL)
 //        __android_log_print(ANDROID_LOG_DEBUG, "HOOK_TESTER", "%s", "open stdout file error!");
 
-    ZzEnableDebugMode();
+//    ZzEnableDebugMode();
     ZzHook((void *)printf_ptr, (void *)fake_printf, (void **)&orig_printf, printf_pre_call,
            printf_post_call, false);
 
@@ -148,8 +149,7 @@ __attribute__((constructor)) void test_hook_printf() {
 //    int errorno = errno;
 //    fwrite(data, strlen(data), 1, fd);
 
-    printf("HookZzzzzzz, %d, %p, %d, %d, %d, %d, %d, %d, %d\n", 1, (void *)2, 3, (char)4, (char)5,
-           (char)6, 7, 8, 9);
+//    printf("HookZzzzzzz, %d, %p, %d, %d, %d, %d, %d, %d, %d\n", 1, (void *)2, 3, (char)4, (char)5, (char)6, 7, 8, 9);
 //    fclose(stdout);
 }
 #endif
@@ -162,7 +162,7 @@ ssize_t fake_send (int __fd, const void *__buf, size_t __n, int __flags) {
     return x;
 }
 __attribute__((constructor)) void hook_send() {
-    ZzEnableDebugMode();
+//    ZzEnableDebugMode();
     ZzHook((void *)send, (void *)fake_send, (void **)&orig_send, common_pre_call, common_post_call, true);
     send(-1, "test", 4, 0);
 }
@@ -190,7 +190,7 @@ __attribute__((constructor)) void hook_sendto() {
     addr.sin_port = htons(3306);
     addr.sin_addr.s_addr = htonl(INADDR_ANY) ;
 
-    ZzEnableDebugMode();
+//    ZzEnableDebugMode();
     // ZzHook((void *)sendto, NULL, NULL, precall, postcall, TRUE);
 
     ZzHook((void *)sendto, (void *)fake_sendto, (void **)&orig_sendto, common_pre_call, common_post_call, false);
@@ -212,7 +212,7 @@ int fake_connect(int sockfd, const struct sockaddr *addr, socklen_t addrlen) {
     return x;
 }
 __attribute__((constructor)) void test_hook_connect() {
-    ZzEnableDebugMode();
+//    ZzEnableDebugMode();
     ZzHook((void *)connect, (void *)fake_connect, (void **)&orig_connect, common_pre_call, common_post_call, false);
     LOGI("test_hook_connect:%p", orig_connect);
     int socket_desc;
@@ -246,7 +246,7 @@ void fake_freeaddrinfo(struct addrinfo *ai) {
 }
 
 __attribute__((constructor)) void test_hook_freeaddrinfo() {
-    ZzEnableDebugMode();
+//    ZzEnableDebugMode();
     ZzHook((void *)freeaddrinfo, (void *)fake_freeaddrinfo, (void **)&orig_freeaddrinfo, NULL, NULL, true);
 
     int sockfd;
@@ -298,7 +298,7 @@ Java_com_hook_project_HelloJni_stringFromJNITest(
         jobject /* this */)
 {
     std::string hello = "Hello from C++";
-    test_hook_printf();
+//    test_hook_printf();
     return env->NewStringUTF(hello.c_str());
 }
 

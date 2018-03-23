@@ -20,10 +20,9 @@
 #include "hookzz.h"
 #include "kitzz.h"
 
+#include "platforms/arch-arm64/reader-arm64.h"
 #include "platforms/arch-arm64/relocator-arm64.h"
 #include "platforms/arch-arm64/writer-arm64.h"
-#include "platforms/arch-arm64/reader-arm64.h"
-
 
 #include "allocator.h"
 #include "interceptor.h"
@@ -39,8 +38,9 @@ typedef struct _ZzInterceptorBackend {
     ZzARM64Reader arm64_reader;
 
     zz_ptr_t enter_thunk;
-    zz_ptr_t half_thunk;
+    zz_ptr_t insn_leave_thunk;
     zz_ptr_t leave_thunk;
+    zz_ptr_t dynamic_binary_instrumentation_thunk;
 } ZzInterceptorBackend;
 
 typedef struct _ZzARM64HookFuntionEntryBackend {

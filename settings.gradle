@@ -4,7 +4,7 @@
 //include ':elfhook'
 include ':gothook'
 //include ':androidmk'
-//include ':hookzz'
+include ':hookzz'
 //include ':exporthook'
 //include ':swathook'
 include ':inject'

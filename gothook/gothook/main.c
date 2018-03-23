@@ -30,7 +30,8 @@ int main(int argc, char const *argv[]) {
 //    long original_function_addr = GetRemoteFuctionAddr(pid, LIBEGL_PATH, (long)eglSwapBuffers);
 
     long hook_new_fun_addr = CallDlsym(pid, so_handle, "new_strcmp");
-    long original_function_addr = GetRemoteFuctionAddr(pid, LIBC_PATH, (long)strcmp);
+    long original_function_addr = CallDlsym(pid, so_handle, "hook_strcmp");
+//    long original_function_addr = GetRemoteFuctionAddr(pid, LIBC_PATH, (long)strcmp);
 //
     long set_strcmp_add = CallDlsym(pid, so_handle, "set_strcmp");
     CallRemoteFunction( pid, set_strcmp_add, &original_function_addr, 1);

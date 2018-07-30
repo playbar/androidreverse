@@ -65,6 +65,9 @@ void testcode6()
 
 void testProperties()
 {
+    // adb shell getprop ro.product.model
+    // adb shell getprop | grep product
+
     char value[PROP_VALUE_MAX];
     if(0 == __system_property_get("ro.product.model", value))
     {
@@ -74,6 +77,13 @@ void testProperties()
     {
         LOGW("product model: %s", value);
     }
+
+    int ire = strcasecmp("20", "19");
+
+    __system_property_get("ro.product.manufacturer",value);
+
+    __system_property_get("ro.build.version.sdk",value);
+    LOGE("%s", value);
 
     const prop_info *property;
     property = __system_property_find("ro.product.model");
@@ -237,6 +247,7 @@ Java_com_inlinehook_HelloJni_stringFromJNI( JNIEnv* env, jobject thiz )
         LOGE("MonitorEnterr");
     }
 
+    testProperties();
     int result = 0;
 //    system("pwd");
     result = system("mkdir /data/data/com.reverse/temp");

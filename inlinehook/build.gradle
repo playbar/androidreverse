@@ -5,7 +5,7 @@ android {
     buildToolsVersion '25.0.0'
     defaultConfig {
         applicationId 'com.inlinehook'
-        minSdkVersion 19
+        minSdkVersion 18
         targetSdkVersion 19
 //        renderscriptTargetApi 19
 //        renderscriptSupportModeEnabled true

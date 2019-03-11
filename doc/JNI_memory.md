@@ -1,6 +1,6 @@
-#在 JNI 编程中避免内存泄漏
+# 在JNI 编程中避免内存泄漏
 
-##JNI 编程简介
+## JNI 编程简介
 
 JNI，Java Native Interface，是 native code 的编程接口。
 JNI 使 Java 代码程序可以与 native code 交互——在 Java
@@ -19,12 +19,12 @@ JNI 编程在软件开发中运用广泛，其优势可以归结为以下几点�
 * JNI 编程，如果操作不当，可能引起 Java 虚拟机的崩溃。
 * JNI 编程，如果操作不当，可能引起内存泄漏。
 
-##JAVA 中的内存泄漏
+##  JAVA 中的内存泄漏
 JAVA 编程中的内存泄漏，从泄漏的内存位置角度可以分为两种：
 - JVM 中 Java Heap 的内存泄漏；
 - JVM 内存中 native memory 的内存泄漏。
 
-###Java Heap 的内存泄漏
+###  Java Heap 的内存泄漏
 Java 对象存储在 JVM 进程空间中的 Java Heap 中，Java Heap 可以在 JVM 运行过程中动态变化。
 如果 Java 对象越来越多，占据 Java Heap 的空间也越来越大，JVM 会在运行时扩充 Java Heap 的容量。
 如果 Java Heap 容量扩充到上限，并且在 GC 后仍然没有足够空间分配新的 Java 对象，便会抛出 out of memory 异常，
@@ -273,28 +273,42 @@ Local Reference 导致内存泄漏
 
 ![Image](pic/4.jpg)
 
-图 4 中，局部变量 str 被赋新值，间接指向了 Local Ref i+1。在 native method 运行过程中，我们已经无法释放 Local Ref i 占用的内存，以及 Local Ref i 所引用的第 i 个 string 对象所占据的 Java Heap 内存。所以，native memory 中 Local Ref i 被泄漏，Java Heap 中创建的第 i 个 string 对象被泄漏了。
+图 4 中，局部变量 str 被赋新值，间接指向了 Local Ref i+1。在 native method 运行过程中，我们已经无法释放 Local Ref i 占用的内存，
+以及 Local Ref i 所引用的第 i 个 string 对象所占据的 Java Heap 内存。所以，native memory 中 Local Ref i 被泄漏，
+Java Heap 中创建的第 i 个 string 对象被泄漏了。
 
-也就是说在循环中，前面创建的所有 i 个 Local Reference 都泄漏了 native memory 的内存，创建的所有 i 个 string 对象都泄漏了 Java Heap 的内存。
+也就是说在循环中，前面创建的所有 i 个 Local Reference 都泄漏了 native memory 的内存，创建的所有 i 个 string 
+对象都泄漏了 Java Heap 的内存。
 
-直到 native memory 执行完毕，返回到 Java 程序时（N2J），这些泄漏的内存才会被释放，但是 Local Reference 表所分配到的内存往往很小，在很多情况下 N2J 之前可能已经引发严重内存泄漏，导致 Local Reference 表的内存耗尽，使 JVM 崩溃，例如错误实例 1。
+直到 native memory 执行完毕，返回到 Java 程序时（N2J），这些泄漏的内存才会被释放，但是 Local Reference 表所分配到的内存往往很小，
+在很多情况下 N2J 之前可能已经引发严重内存泄漏，导致 Local Reference 表的内存耗尽，使 JVM 崩溃，例如错误实例 1。
 
 
 ####### 分析错误实例 2：
 
-实例 2 与实例 1 相似，虽然每次循环中调用工具函数 CreateStringUTF(env) 来创建对象，但是在 CreateStringUTF(env) 返回退栈过程中，只是局部变量被删除，而每次调用创建的 Local Reference 仍然存在 Local Ref 表中，并且有效引用到每个新创建的 string 对象。str 局部变量在每次循环中被赋新值。
+实例 2 与实例 1 相似，虽然每次循环中调用工具函数 CreateStringUTF(env) 来创建对象，但是在 CreateStringUTF(env) 返回退栈过程中，
+只是局部变量被删除，而每次调用创建的 Local Reference 仍然存在 Local Ref 表中，并且有效引用到每个新创建的 string 对象。
+str 局部变量在每次循环中被赋新值。
 
-这样的内存泄漏是潜在的，但是这样的错误在 JNI 程序员编程过程中却经常出现。通常情况，在触发 out of memory 之前，native method 已经执行完毕，切换回 Java 环境，所有 Local Reference 被删除，问题也就没有显露出来。但是某些情况下就会引发 out of memory，导致实例 1 和实例 2 中的 JVM 崩溃。
+这样的内存泄漏是潜在的，但是这样的错误在 JNI 程序员编程过程中却经常出现。通常情况，在触发 out of memory 之前，native method
+ 已经执行完毕，切换回 Java 环境，所有 Local Reference 被删除，问题也就没有显露出来。但是某些情况下就会引发 out of memory，
+ 导致实例 1 和实例 2 中的 JVM 崩溃。
 
 ### 控制 Local Reference 生命期
-因此，在 JNI 编程时，正确控制 JNI Local Reference 的生命期。如果需要创建过多的 Local Reference，那么在对被引用的 Java 对象操作结束后，需要调用 JNI function（如 DeleteLocalRef()），及时将 JNI Local Reference 从 Local Ref 表中删除，以避免潜在的内存泄漏。
+因此，在 JNI 编程时，正确控制 JNI Local Reference 的生命期。如果需要创建过多的 Local Reference，那么在对被引用的 
+Java 对象操作结束后，需要调用 JNI function（如 DeleteLocalRef()），及时将 JNI Local Reference 从 Local Ref 表中删除，
+以避免潜在的内存泄漏。
 
 ##总结
-本文阐述了 JNI 编程可能引发的内存泄漏，JNI 编程既可能引发 Java Heap 的内存泄漏，也可能引发 native memory 的内存泄漏，严重的情况可能使 JVM 运行异常终止。JNI 软件开发人员在编程中，应当考虑以下几点，避免内存泄漏：
+本文阐述了 JNI 编程可能引发的内存泄漏，JNI 编程既可能引发 Java Heap 的内存泄漏，也可能引发 native memory 的内存泄漏，
+严重的情况可能使 JVM 运行异常终止。JNI 软件开发人员在编程中，应当考虑以下几点，避免内存泄漏：
 
 native code 本身的内存管理机制依然要遵循。
-使用 Global reference 时，当 native code 不再需要访问 Global reference 时，应当调用 JNI 函数 DeleteGlobalRef() 删除 Global reference 和它引用的 Java 对象。Global reference 管理不当会导致 Java Heap 的内存泄漏。
+使用 Global reference 时，当 native code 不再需要访问 Global reference 时，应当调用 JNI 函数 DeleteGlobalRef() 
+删除 Global reference 和它引用的 Java 对象。Global reference 管理不当会导致 Java Heap 的内存泄漏。
 透彻理解 Local reference，区分 Local reference 和 native code 的局部变量，避免混淆两者所引起的 native memory 的内存泄漏。
-使用 Local reference 时，如果 Local reference 引用了大的 Java 对象，当不再需要访问 Local reference 时，应当调用 JNI 函数 DeleteLocalRef() 删除 Local reference，从而也断开对 Java 对象的引用。这样可以避免 Java Heap 的 out of memory。
-使用 Local reference 时，如果在 native method 执行期间会创建大量的 Local reference，当不再需要访问 Local reference 时，应当调用 JNI 函数 DeleteLocalRef() 删除 Local reference。Local reference 表空间有限，这样可以避免 Local reference 表的内存溢出，避免 native memory 的 out of memory。
-严格遵循 Java JNI 规范书中的使用规则。
+使用 Local reference 时，如果 Local reference 引用了大的 Java 对象，当不再需要访问 Local reference 时，
+应当调用 JNI 函数 DeleteLocalRef() 删除 Local reference，从而也断开对 Java 对象的引用。这样可以避免 Java Heap 的
+out of memory。使用 Local reference 时，如果在 native method 执行期间会创建大量的 Local reference，当不再需要访问
+Local reference 时，应当调用 JNI 函数 DeleteLocalRef() 删除 Local reference。Local reference 表空间有限，这样可以避免
+Local reference 表的内存溢出，避免 native memory 的 out of memory。严格遵循 Java JNI 规范书中的使用规则。

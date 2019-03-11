@@ -31,12 +31,13 @@ public class HelloJni extends Activity {
 
     public void testNativeArray()
     {
-        for( int count = 0; count < 10; ++count) {
+        for( int count = 0; count < 40; ++count) {
             DiskInfo[] infos = getStructArray();
             for (int i = 0; i < infos.length; i++) {
                 Log.e("native_array", infos[i].name + " : " + infos[i].serialNo);
             }
         }
+        Log.e("native_array", "done");
     }
 
     public native String  stringFromJNI();

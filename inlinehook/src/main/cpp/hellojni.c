@@ -316,7 +316,7 @@ Java_com_inlinehook_HelloJni_getStructArray(JNIEnv *env, jobject jobj)
     int i;
 
     clsDiskInfo = (*env)->FindClass(env, "com/inlinehook/DiskInfo");
-    len = 5;
+    len = 500;
     infos = (*env)->NewObjectArray(env, len, clsDiskInfo, NULL);
     nameID = (*env)->GetFieldID(env, clsDiskInfo, "name", "Ljava/lang/String;");
     serialNoID = (*env)->GetFieldID(env, clsDiskInfo, "serialNo", "I");
@@ -327,6 +327,7 @@ Java_com_inlinehook_HelloJni_getStructArray(JNIEnv *env, jobject jobj)
         (*env)->SetObjectField(env, obj, nameID, (*env)->NewStringUTF(env, "disk"));
         (*env)->SetIntField(env, obj, serialNoID, (jint)i);
         (*env)->SetObjectArrayElement(env, infos, i, obj);
+//        (*env)->DeleteLocalRef(env, obj);  // not call DeleteLocalRef, or memory error
     }
     return infos;
 }

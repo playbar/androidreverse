@@ -303,6 +303,35 @@ Java_com_inlinehook_HelloJni_stringFromJNI_11(JNIEnv* env, jobject thiz )
     return (*env)->NewStringUTF(env, "stringFromJNI_11");
 }
 
+JNIEXPORT jobjectArray JNICALL
+Java_com_inlinehook_HelloJni_getStructArray(JNIEnv *env, jobject jobj)
+{
+    jobjectArray infos = NULL;	// jobjectArray 为指针类型
+    jclass clsDiskInfo = NULL;		// jclass 为指针类型
+    jobject obj;
+    jfieldID nameID;
+    jfieldID serialNoID;
+    jmethodID consID;
+    jsize len;
+    int i;
+
+    clsDiskInfo = (*env)->FindClass(env, "com/inlinehook/DiskInfo");
+    len = 5;
+    infos = (*env)->NewObjectArray(env, len, clsDiskInfo, NULL);
+    nameID = (*env)->GetFieldID(env, clsDiskInfo, "name", "Ljava/lang/String;");
+    serialNoID = (*env)->GetFieldID(env, clsDiskInfo, "serialNo", "I");
+    consID = (*env)->GetMethodID(env, clsDiskInfo, "<init>", "()V");
+    for(i = 0; i < len; i++)
+    {
+        obj = (*env)->NewObject(env, clsDiskInfo, consID);
+        (*env)->SetObjectField(env, obj, nameID, (*env)->NewStringUTF(env, "disk"));
+        (*env)->SetIntField(env, obj, serialNoID, (jint)i);
+        (*env)->SetObjectArrayElement(env, infos, i, obj);
+    }
+    return infos;
+}
+
+
 JavaVM *gs_jvm=0;
 jint JNI_OnLoad( JavaVM* vm, void *reserved){
     gs_jvm = vm;

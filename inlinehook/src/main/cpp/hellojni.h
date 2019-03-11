@@ -12,6 +12,7 @@ typedef int (*FP_old_puts)(const char *);
 JNIEXPORT void JNICALL Java_com_inlinehook_HelloJni_nativeMsg(JNIEnv* env, jobject thiz);
 JNIEXPORT jstring JNICALL Java_com_inlinehook_HelloJni_stringFromJNI( JNIEnv* env, jobject thiz );
 JNIEXPORT jstring JNICALL Java_com_inlinehook_HelloJni_stringFromJNI_11(JNIEnv* env, jobject thiz );
+JNIEXPORT jobjectArray JNICALL Java_com_inlinehook_HelloJni_getStructArray(JNIEnv *env, jobject jobj);
 jint JNI_OnLoad( JavaVM* vm, void *reserved);
 
 #ifdef __cplusplus

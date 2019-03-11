@@ -3,6 +3,7 @@ package com.inlinehook;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -23,15 +24,24 @@ public class HelloJni extends Activity {
 
     public void onClick(View v){
         if(v.getId() == R.id.button) {
+            testNativeArray();
             nativeMsg();
         }
     }
-    /* A native method that is implemented by the
-     * 'hello-jni' native library, which is packaged
-     * with this application.
-     */
+
+    public void testNativeArray()
+    {
+        for( int count = 0; count < 10; ++count) {
+            DiskInfo[] infos = getStructArray();
+            for (int i = 0; i < infos.length; i++) {
+                Log.e("native_array", infos[i].name + " : " + infos[i].serialNo);
+            }
+        }
+    }
+
     public native String  stringFromJNI();
     public native String stringFromJNI_1();
+    public native DiskInfo[] getStructArray();
     public native void nativeMsg();
 
     /* This is another native method declaration that is *not*

@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 public class HelloJni extends Activity {
 
+    String mStr;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,7 +21,10 @@ public class HelloJni extends Activity {
         Loggvc.e("HelloJni");
         setContentView(R.layout.activity_hello_jni);
         TextView tv = (TextView)findViewById(R.id.hello_textview);
-        tv.setText( stringFromJNI() );
+        mStr = stringFromJNI();
+        int ilen = mStr.length();
+        Log.e("test", "len:" + ilen);
+        tv.setText( mStr );
     }
 
     public void onClick(View v){
@@ -31,11 +36,12 @@ public class HelloJni extends Activity {
 
     public void testNativeArray()
     {
-        for( int count = 0; count < 40; ++count) {
+        for( int count = 0; count < 4; ++count) {
             DiskInfo[] infos = getStructArray();
             for (int i = 0; i < infos.length; i++) {
                 Log.e("native_array", infos[i].name + " : " + infos[i].serialNo);
             }
+            Log.e("test", "str:" + mStr);
         }
         Log.e("native_array", "done");
     }

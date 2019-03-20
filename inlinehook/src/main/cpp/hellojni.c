@@ -279,8 +279,14 @@ Java_com_inlinehook_HelloJni_stringFromJNI( JNIEnv* env, jobject thiz )
     if(JNI_OK == (*env)->MonitorExit(env, thiz)){
         LOGE("MonitorExit");
     }
+    char chData[512] = {0};
+    sprintf(chData, "Hello from JNI !  Compiled with ABI %s.", ABI);
+
+    jstring jstr = (*env)->NewStringUTF(env, chData);
+    memset( chData, 0, 512);
 //    (*env)->ExceptionClear(env);
-    return (*env)->NewStringUTF(env, "Hello from JNI !  Compiled with ABI " ABI ".");
+    return jstr;
+
 }
 
 JNIEXPORT jstring JNICALL
@@ -316,7 +322,7 @@ Java_com_inlinehook_HelloJni_getStructArray(JNIEnv *env, jobject jobj)
     int i;
 
     clsDiskInfo = (*env)->FindClass(env, "com/inlinehook/DiskInfo");
-    len = 500;
+    len = 50;
     infos = (*env)->NewObjectArray(env, len, clsDiskInfo, NULL);
     nameID = (*env)->GetFieldID(env, clsDiskInfo, "name", "Ljava/lang/String;");
     serialNoID = (*env)->GetFieldID(env, clsDiskInfo, "serialNo", "I");

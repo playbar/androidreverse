@@ -71,6 +71,10 @@ public class HelloJni extends Activity {
 
     static
     {
-        System.loadLibrary("inlinehook");
+        try {
+            System.loadLibrary("inlinehook");
+        }catch (Exception e){
+            Log.e("error", e.getMessage());
+        }
     }
 }

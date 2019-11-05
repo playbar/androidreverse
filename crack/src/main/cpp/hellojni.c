@@ -93,6 +93,16 @@ void testProperties()
     return;
 }
 
+void testNoPara()
+{
+    LOGE(" %s", __FUNCTION__ );
+}
+
+void testOnePara(int a1 )
+{
+    LOGE("%s, %d, ", __FUNCTION__, a1);
+}
+
 void testParameter(int a1,  int a2, int a3, int a4, int a5, int a6, int a7, int a8, int a9, int a10,
           int a11,  int a12, int a13, int a14, int a15, int a16, int a17, int a18, int a19, int a20,
           int a21, int a22, int a23, int a24, int a25, int a26, int a27, int a28, int a29, int a30,
@@ -126,6 +136,8 @@ Java_com_droider_HelloJni_nativeMsg(JNIEnv* env, jobject thiz)
     pid_t pid = getpid();
     uid_t uid = getuid();
 
+    testNoPara();
+    testOnePara(2);
     testParameter(1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
                   11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
                   21, 22, 23, 24, 25, 26, 27, 28, 29, 30,

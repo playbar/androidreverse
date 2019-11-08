@@ -37,7 +37,7 @@
 /mywork/github/androidreverse/crash/src/main/cpp/hellojni.c:128
 /mywork/github/androidreverse/crash/src/main/cpp/hellojni.c:165
 
-** 方法2： 
+** 方法2：使用arm-linux-androideabi-objdump  定位出错的函数信息
 /program/ndk/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64/bin/arm-linux-androideabi-objdump -S -D /mywork/github/androidreverse/crash/build/intermediates/cmake/debug/obj/armeabi-v7a/libcrash.so > ./dump.log  
 
 
@@ -78,7 +78,21 @@ void willCrash()
     1084:	f7ff ec5a 	blx	93c <__android_log_print@plt>
 }
 
-** 方式3
+arm assemble的一些基本指令
+
+ldr 从指定地址加载寄存器运算数，
+str 将寄存器运算数存到指定地址，
+add两个寄存器相加，
+adds寄存器和数值相加，
+mov寄存器之间赋值，
+movs将数值赋给寄存器，
+cmp为比较两个寄存器
+
+
+** 方式3：ndk-stack实时分析日志：
+
+使用adb获取logcat的日志，并通过管道输出给ndk-stack分析，并指定包含符号表的so文件位置。如果程序包含多种CPU架构，需要根据手机的CPU类型，来选择不同的CPU架构目录。以armv7架构为例，执行如下命令
+
  adb logcat | ndk-stack -sym /mywork/github/androidreverse/crash/build/intermediates/cmake/debug/obj/armeabi-v7a
  
 当程序发生crash时，会输出如下信息
@@ -97,5 +111,5 @@ adb logcat | ndk-stack -sym /mywork/github/androidreverse/crash/build/intermedia
  adb logcat > crash.log  
  ndk-stack -sym /mywork/github/androidreverse/crash/build/intermediates/cmake/debug/obj/armeabi-v7a -dump crash.log  
  
-** 方法4
-直接使用IDA，跳转到对应的地址即可
+** 方法4：直接使用IDA，跳转到对应的地址即可
+

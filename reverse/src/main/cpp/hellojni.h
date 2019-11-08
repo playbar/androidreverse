@@ -21,4 +21,11 @@ jint JNI_OnLoad( JavaVM* vm, void *reserved);
 }
 #endif
 
+class TestThis
+{
+public:
+    int mA;
+    TestThis() { mA = 0;}
+};
+
 #endif

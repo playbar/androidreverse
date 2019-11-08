@@ -1,4 +1,5 @@
 #include <dlfcn.h>
+#include <malloc.h>
 #include "stdint.h"
 #include "utils/CallStack.h"
 #include "syscallstack.h"

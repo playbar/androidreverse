@@ -207,6 +207,12 @@ JNIEXPORT void JNICALL Java_com_reverse_HelloJni_nativeMsg(JNIEnv* env, jobject 
 //    int ival = 0;
 //    ival = func2(1, 2);
 //    testFun1();
+    TestThis sz;
+    void *p1 = (void *)&sz;
+    void *p2 = (void *)&sz.mA;
+    
+
+
     int bkval = 10;
     int ival = 0;
     int bval = 0;

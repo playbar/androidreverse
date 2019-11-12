@@ -1,4 +1,4 @@
-package com.droider.crackme0201;
+package com.asm.test;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -9,8 +9,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import com.droider.R;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

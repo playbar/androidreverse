@@ -1,4 +1,4 @@
-使用objdump进行Android crash 日志 分析
+# 使用objdump进行Android crash 日志 分析
 
 崩溃日志
 11-08 14:05:38.833 2002-2011/? E/ANDR-PERF-RESOURCEQS: Failed to apply optimization [2, 0]
@@ -25,7 +25,7 @@
 11-08 14:05:39.329 763-23272/? E/ACDB-LOADER: Error: ACDB AudProc vol returned = -19
 
 
-** 方式1：使用arm-linux-androideabi-addr2line  定位出错位置
+### 方式1：使用arm-linux-androideabi-addr2line  定位出错位置
 以arm架构的CPU为例，执行如下命令：
 /program/ndk/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64/bin/arm-linux-androideabi-addr2line -e /mywork/github/androidreverse/crash/build/intermediates/cmake/debug/obj/armeabi-v7a/libcrash.so 0000105a 0000130b
  
@@ -37,59 +37,7 @@
 /mywork/github/androidreverse/crash/src/main/cpp/hellojni.c:128
 /mywork/github/androidreverse/crash/src/main/cpp/hellojni.c:165
 
-** 方法2：使用arm-linux-androideabi-objdump  定位出错的函数信息
-/program/ndk/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64/bin/arm-linux-androideabi-objdump -S -D /mywork/github/androidreverse/crash/build/intermediates/cmake/debug/obj/armeabi-v7a/libcrash.so > ./dump.log  
-
-
-在生成的asm文件中，找出我们开始定位到的那两个出错的汇编指令地址, 在文件中搜索105a
-
-void willCrash()
-{
-    104c:	b580      	push	{r7, lr}
-    104e:	466f      	mov	r7, sp
-    1050:	b086      	sub	sp, #24
-    1052:	2000      	movs	r0, #0
-    int *p = NULL;
-    1054:	9005      	str	r0, [sp, #20]
-    *p = 10;
-    1056:	9805      	ldr	r0, [sp, #20]
-    1058:	210a      	movs	r1, #10
-    105a:	6001      	str	r1, [r0, #0]
-    LOGE("Fun : %s, Line : %d", __FUNCTION__, __LINE__ );
-    105c:	4668      	mov	r0, sp
-    105e:	2181      	movs	r1, #129	; 0x81
-    1060:	6001      	str	r1, [r0, #0]
-    1062:	480b      	ldr	r0, [pc, #44]	; (1090 <willCrash+0x44>)
-    1064:	4478      	add	r0, pc
-    1066:	490b      	ldr	r1, [pc, #44]	; (1094 <willCrash+0x48>)
-    1068:	4479      	add	r1, pc
-    106a:	4a0b      	ldr	r2, [pc, #44]	; (1098 <willCrash+0x4c>)
-    106c:	447a      	add	r2, pc
-    106e:	2306      	movs	r3, #6
-    1070:	9004      	str	r0, [sp, #16]
-    1072:	4618      	mov	r0, r3
-    1074:	9b04      	ldr	r3, [sp, #16]
-    1076:	9103      	str	r1, [sp, #12]
-    1078:	4619      	mov	r1, r3
-    107a:	f8dd c00c 	ldr.w	ip, [sp, #12]
-    107e:	9202      	str	r2, [sp, #8]
-    1080:	4662      	mov	r2, ip
-    1082:	9b02      	ldr	r3, [sp, #8]
-    1084:	f7ff ec5a 	blx	93c <__android_log_print@plt>
-}
-
-arm assemble的一些基本指令
-
-ldr 从指定地址加载寄存器运算数，
-str 将寄存器运算数存到指定地址，
-add两个寄存器相加，
-adds寄存器和数值相加，
-mov寄存器之间赋值，
-movs将数值赋给寄存器，
-cmp为比较两个寄存器
-
-
-** 方式3：ndk-stack实时分析日志：
+### 方式2：ndk-stack实时分析日志：
 
 使用adb获取logcat的日志，并通过管道输出给ndk-stack分析，并指定包含符号表的so文件位置。如果程序包含多种CPU架构，需要根据手机的CPU类型，来选择不同的CPU架构目录。以armv7架构为例，执行如下命令
 
@@ -110,6 +58,58 @@ adb logcat | ndk-stack -sym /mywork/github/androidreverse/crash/build/intermedia
  先获取日志再分析：
  adb logcat > crash.log  
  ndk-stack -sym /mywork/github/androidreverse/crash/build/intermediates/cmake/debug/obj/armeabi-v7a -dump crash.log  
- 
-** 方法4：直接使用IDA，跳转到对应的地址即可
+
+### 方法3：使用arm-linux-androideabi-objdump  定位出错的函数信息
+ /program/ndk/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64/bin/arm-linux-androideabi-objdump -S -D /mywork/github/androidreverse/crash/build/intermediates/cmake/debug/obj/armeabi-v7a/libcrash.so > ./dump.log
+
+
+ 在生成的asm文件中，找出我们开始定位到的那两个出错的汇编指令地址, 在文件中搜索105a
+
+ void willCrash()
+ {
+     104c:	b580      	push	{r7, lr}
+     104e:	466f      	mov	r7, sp
+     1050:	b086      	sub	sp, #24
+     1052:	2000      	movs	r0, #0
+     int *p = NULL;
+     1054:	9005      	str	r0, [sp, #20]
+     *p = 10;
+     1056:	9805      	ldr	r0, [sp, #20]
+     1058:	210a      	movs	r1, #10
+     105a:	6001      	str	r1, [r0, #0]
+     LOGE("Fun : %s, Line : %d", __FUNCTION__, __LINE__ );
+     105c:	4668      	mov	r0, sp
+     105e:	2181      	movs	r1, #129	; 0x81
+     1060:	6001      	str	r1, [r0, #0]
+     1062:	480b      	ldr	r0, [pc, #44]	; (1090 <willCrash+0x44>)
+     1064:	4478      	add	r0, pc
+     1066:	490b      	ldr	r1, [pc, #44]	; (1094 <willCrash+0x48>)
+     1068:	4479      	add	r1, pc
+     106a:	4a0b      	ldr	r2, [pc, #44]	; (1098 <willCrash+0x4c>)
+     106c:	447a      	add	r2, pc
+     106e:	2306      	movs	r3, #6
+     1070:	9004      	str	r0, [sp, #16]
+     1072:	4618      	mov	r0, r3
+     1074:	9b04      	ldr	r3, [sp, #16]
+     1076:	9103      	str	r1, [sp, #12]
+     1078:	4619      	mov	r1, r3
+     107a:	f8dd c00c 	ldr.w	ip, [sp, #12]
+     107e:	9202      	str	r2, [sp, #8]
+     1080:	4662      	mov	r2, ip
+     1082:	9b02      	ldr	r3, [sp, #8]
+     1084:	f7ff ec5a 	blx	93c <__android_log_print@plt>
+ }
+
+ arm assemble的一些基本指令
+
+ ldr 从指定地址加载寄存器运算数，
+ str 将寄存器运算数存到指定地址，
+ add两个寄存器相加，
+ adds寄存器和数值相加，
+ mov寄存器之间赋值，
+ movs将数值赋给寄存器，
+ cmp为比较两个寄存器
+
+### 方法4：直接使用IDA，跳转到对应的地址即可
+使用 IDA打开出错的so库，0000105a 0000130b：出错的汇编指令地址，使用快捷键G，输入出错地址，直接跳转到错误位置，结果与方法3很类似。
 

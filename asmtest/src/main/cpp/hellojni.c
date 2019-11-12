@@ -122,8 +122,27 @@ void testParameter(int a1,  int a2, int a3, int a4, int a5, int a6, int a7, int 
     return;
 }
 
+int func2(int a, int b)
+{
+    return a + b;
+}
+
+void testFun()
+{
+//    int * p = malloc(sizeof(int) * 1);
+//    int *p = 0xdbebf7d0;
+//    *p = 1;
+    asm(
+    "movs r0, #0xdb \n\t"
+    "str r0, [sp] \n\t"
+    "movs r1, #1 \n\t"
+    "str r1, [r0]"
+    );
+}
+
+
 JNIEXPORT void JNICALL
-Java_com_droider_HelloJni_nativeMsg(JNIEnv* env, jobject thiz)
+Java_com_asm_test_HelloJni_nativeMsg(JNIEnv* env, jobject thiz)
 {
     int result = 0;
 //    system("pwd");
@@ -132,6 +151,22 @@ Java_com_droider_HelloJni_nativeMsg(JNIEnv* env, jobject thiz)
     {
         LOGE("error");
     }
+
+
+    int bkval = 10;
+    int ival = 0;
+    int bval = 0;
+    asm(
+    "mov r0, #1 \n\t"
+    "mov r1, #2 \n\t"
+    //    "mov r2, #3 \n\t"
+    //    "mov r3, #4 \n\t"
+    "blx func2 \n\t"
+    "str r0, [sp, #0x20]"
+    );
+    LOGE("func2 %d, %d, %d", bkval, ival, bval);
+
+
 
     pid_t pid = getpid();
     uid_t uid = getuid();
@@ -149,7 +184,7 @@ Java_com_droider_HelloJni_nativeMsg(JNIEnv* env, jobject thiz)
 }
 
 JNIEXPORT jstring JNICALL
-Java_com_droider_HelloJni_stringFromJNI( JNIEnv* env,
+Java_com_asm_test_HelloJni_stringFromJNI( JNIEnv* env,
                                                   jobject thiz )
 {
 
@@ -204,7 +239,7 @@ Java_com_droider_HelloJni_stringFromJNI( JNIEnv* env,
 }
 
 JNIEXPORT jstring JNICALL
-Java_com_droider_HelloJni_stringFromJNI_11(
+Java_com_asm_test_HelloJni_stringFromJNI_11(
         JNIEnv* env, jobject thiz )
 {
     return (*env)->NewStringUTF(env, "stringFromJNI_11");

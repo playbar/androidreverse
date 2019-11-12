@@ -122,11 +122,11 @@ void testParameter(int a1,  int a2, int a3, int a4, int a5, int a6, int a7, int 
     return;
 }
 
-void testparam(int ai)
-{
-    int i = ai;
-    LOGE("Fun : %s, ai : %d", __FUNCTION__, i );
-}
+//void testparam(int ai)
+//{
+//    int i = ai;
+//    LOGE("Fun : %s, ai : %d", __FUNCTION__, i );
+//}
 
 
 void willCrash()
@@ -147,9 +147,9 @@ Java_com_crash_test_HelloJni_nativeMsg(JNIEnv* env, jobject thiz)
         LOGE("error");
     }
 
-    testparam( 5);
-
     willCrash();
+
+//    testparam( 5);
 
     pid_t pid = getpid();
     uid_t uid = getuid();

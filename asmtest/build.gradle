@@ -4,7 +4,7 @@ android {
     compileSdkVersion 19
     buildToolsVersion '28.0.2'
     defaultConfig {
-        applicationId 'com.droider'
+        applicationId 'com.asm.test'
         minSdkVersion 19
         targetSdkVersion 19
 //        renderscriptTargetApi 19

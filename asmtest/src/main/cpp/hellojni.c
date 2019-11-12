@@ -103,6 +103,101 @@ void testOnePara(int a1 )
     LOGE("%s, %d, ", __FUNCTION__, a1);
 }
 
+
+int my_thumb_wjh(int dummy)
+{
+    __asm__(
+    "mov r0,#1 \t\n"
+    "mov r1,#2 \t\n"
+    "add r0,r0,r1 \t\n"
+    "bx lr"
+
+    );
+    return dummy;
+
+}
+int my_thumb(int dummy)
+{
+
+    __asm__(
+
+    "mov r0,#13 \t\n"
+
+    "mov r1,#2 \t\n"
+
+    "add r0,r0,r1 \t\n"
+
+    "bx lr"
+
+    );
+    return dummy;
+
+}
+int my_thumb2(int dummy)
+{
+    __asm(
+    "mov r0,#0x1\t\n"
+    "ldr r0,__start\t\n"
+    "adr r0,__start\t\n"
+    "ldr r0,__start\t\n"
+    "__start:\t\n"
+    "nop\t\n"
+    );
+    return dummy;
+}
+int data_function()
+{
+    printf("data_function run\n");
+    return 1024;
+}
+
+static int my_arm(int dummy)
+{
+    __asm__(
+
+    "mov r0,#13 \t\n"
+
+    "mov r1,#2 \t\n"
+
+    "add r0,r0,r1 \t\n"
+    "mov r3,#5 \t\n"
+    "sub r0,r0,r3 \t\n"
+    "mov r3,#9 \t\n"
+    "mul r0,r0,r3 \t\n"
+    "bx lr"
+    );
+    return dummy;
+}
+void test()
+{
+    __asm__(
+    "bl data_function \t\n"
+    );
+
+    printf("test run\n");
+
+}
+
+
+int test_asm()
+{
+
+    int n = my_thumb(12);
+    printf("result=%d\n", n);
+
+    int result = my_thumb2(12);
+    printf("result=%d\n", result);
+
+    int result_my_arm = my_arm(12);
+    printf("result_my_arm=%d\n", result_my_arm);
+
+    test();
+
+    printf("Hello, World!\n");	//Set a breakpoint here or press F10 to step into.
+    return 0;
+}
+
+
 void testParameter(int a1,  int a2, int a3, int a4, int a5, int a6, int a7, int a8, int a9, int a10,
           int a11,  int a12, int a13, int a14, int a15, int a16, int a17, int a18, int a19, int a20,
           int a21, int a22, int a23, int a24, int a25, int a26, int a27, int a28, int a29, int a30,
@@ -152,6 +247,7 @@ Java_com_asm_test_HelloJni_nativeMsg(JNIEnv* env, jobject thiz)
         LOGE("error");
     }
 
+    test_asm();
 
     int bkval = 10;
     int ival = 0;

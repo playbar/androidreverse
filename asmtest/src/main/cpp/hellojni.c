@@ -25,10 +25,6 @@
 #include <stdio.h>
 #include <sys/system_properties.h>
 
-#define LOG_TAG "test"
-#define LOGD(...) __android_log_print(ANDROID_LOG_DEBUG, LOG_TAG, __VA_ARGS__)
-#define LOGW(...) __android_log_print(ANDROID_LOG_WARN, LOG_TAG, __VA_ARGS__)
-#define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)
 #define ABI "armeabi-v7a"
 
 extern JavaVM *gs_jvm;
@@ -235,10 +231,10 @@ void testFun()
     );
 }
 
-
 JNIEXPORT void JNICALL
 Java_com_asm_test_HelloJni_nativeMsg(JNIEnv* env, jobject thiz)
 {
+    LOGE("Fun: %s", __FUNCTION__ );
     int result = 0;
 //    system("pwd");
     result = system("mkdir /data/data/com.bar.hellojni/temp");

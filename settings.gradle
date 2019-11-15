@@ -1,7 +1,7 @@
 //include 'aescrypto'
 //include ':AndroidHook'
 //include ':allhook'
-include ':asmtest'
+include ':crash'
 //include ':crash'
 //include ':elfhook'
 //include ':gothook'

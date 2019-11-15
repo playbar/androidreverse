@@ -167,8 +167,7 @@ Java_com_crash_test_HelloJni_nativeMsg(JNIEnv* env, jobject thiz)
 }
 
 JNIEXPORT jstring JNICALL
-Java_com_crash_test_HelloJni_stringFromJNI( JNIEnv* env,
-                                                  jobject thiz )
+Java_com_crash_test_HelloJni_stringFromJNI( JNIEnv* env, jobject thiz )
 {
 
     LOGE(__FUNCTION__);
@@ -223,8 +222,7 @@ Java_com_crash_test_HelloJni_stringFromJNI( JNIEnv* env,
 }
 
 JNIEXPORT jstring JNICALL
-Java_com_crash_test_HelloJni_stringFromJNI_11(
-        JNIEnv* env, jobject thiz )
+Java_com_crash_test_HelloJni_stringFromJNI_11(JNIEnv* env, jobject thiz )
 {
     return (*env)->NewStringUTF(env, "stringFromJNI_11");
 }

@@ -27,13 +27,13 @@
 
 ### 方式1：使用arm-linux-androideabi-addr2line  定位出错位置
 以arm架构的CPU为例，执行如下命令：
-/program/ndk/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64/bin/arm-linux-androideabi-addr2line -e /mywork/github/androidreverse/crash/build/intermediates/cmake/debug/obj/armeabi-v7a/libcrash.so 0000105a 0000130b
+/program/ndk/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64/bin/arm-linux-androideabi-addr2line -e /mywork/github/androidreverse/crash/build/intermediates/cmake/debug/obj/armeabi-v7a/libcrash.so 0000105a 000010ed
  
 -e：指定so文件路
-0000105a 0000130b：出错的汇编指令地址
+0000105a 000010ed：出错的汇编指令地址
 
 结果如下：
-/program/ndk/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64/bin/arm-linux-androideabi-addr2line -e /mywork/github/androidreverse/crash/build/intermediates/cmake/debug/obj/armeabi-v7a/libcrash.so 0000105a 0000130b
+/program/ndk/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64/bin/arm-linux-androideabi-addr2line -e /mywork/github/androidreverse/crash/build/intermediates/cmake/debug/obj/armeabi-v7a/libcrash.so 0000105a 000010ed
 /mywork/github/androidreverse/crash/src/main/cpp/hellojni.c:128
 /mywork/github/androidreverse/crash/src/main/cpp/hellojni.c:165
 
@@ -50,7 +50,7 @@ adb logcat | ndk-stack -sym /mywork/github/androidreverse/crash/build/intermedia
  pid: 9816, tid: 9816, name: com.crash.test  >>> com.crash.test <<<
  signal 11 (SIGSEGV), code 1 (SEGV_MAPERR), fault addr 0x0
  Stack frame #00 pc 0000105a  /data/app/com.crash.test-PeLkKWs4KTzIW-hM2zoEig==/lib/arm/libcrash.so (willCrash+13): Routine willCrash at /mywork/github/androidreverse/crash/src/main/cpp/hellojni.c:128
- Stack frame #01 pc 0000130b  /data/app/com.crash.test-PeLkKWs4KTzIW-hM2zoEig==/lib/arm/libcrash.so (Java_com_crash_test_HelloJni_stringFromJNI+54): Routine Java_com_crash_test_HelloJni_stringFromJNI at /mywork/github/androidreverse/crash/src/main/cpp/hellojni.c:165
+ Stack frame #01 pc 000010ed  /data/app/com.crash.test-PeLkKWs4KTzIW-hM2zoEig==/lib/arm/libcrash.so (Java_com_crash_test_HelloJni_stringFromJNI+54): Routine Java_com_crash_test_HelloJni_stringFromJNI at /mywork/github/androidreverse/crash/src/main/cpp/hellojni.c:165
  Stack frame #02 pc 000020f3  /data/app/com.crash.test-PeLkKWs4KTzIW-hM2zoEig==/oat/arm/base.odex (offset 0x2000)
  Crash dump is completed
 
@@ -111,5 +111,5 @@ adb logcat | ndk-stack -sym /mywork/github/androidreverse/crash/build/intermedia
  cmp为比较两个寄存器
 
 ### 方法4：直接使用IDA，跳转到对应的地址即可
-使用 IDA打开出错的so库，0000105a 0000130b：出错的汇编指令地址，使用快捷键G，输入出错地址，直接跳转到错误位置，结果与方法3很类似。
+使用 IDA打开出错的so库，0000105a 000010ed：出错的汇编指令地址，使用快捷键G，输入出错地址，直接跳转到错误位置，结果与方法3很类似。
 

@@ -113,3 +113,4 @@ adb logcat | ndk-stack -sym /mywork/github/androidreverse/crash/build/intermedia
 ### 方法4：直接使用IDA，跳转到对应的地址即可
 使用 IDA打开出错的so库，0000105a 000010ed：出错的汇编指令地址，使用快捷键G，输入出错地址，直接跳转到错误位置，结果与方法3很类似。
 
+

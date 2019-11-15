@@ -136,6 +136,12 @@ void willCrash()
     LOGE("Fun : %s, Line : %d", __FUNCTION__, __LINE__ );
 }
 
+void testString(char *pdata )
+{
+    pdata[0] = 'a';
+    LOGE("Fun : %s, Line : %d", __FUNCTION__, __LINE__ );
+}
+
 JNIEXPORT void JNICALL
 Java_com_crash_test_HelloJni_nativeMsg(JNIEnv* env, jobject thiz)
 {
@@ -147,6 +153,7 @@ Java_com_crash_test_HelloJni_nativeMsg(JNIEnv* env, jobject thiz)
         LOGE("error");
     }
 
+    testString(NULL);
     willCrash();
 
 //    testparam( 5);

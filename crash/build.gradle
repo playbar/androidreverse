@@ -13,7 +13,7 @@ android {
         versionName "1.0"
         externalNativeBuild {
             cmake {
-                abiFilters 'armeabi-v7a'
+                abiFilters 'armeabi-v7a', 'x86'
                 arguments '-DANDROID_TOOLCHAIN=clang'
             }
         }

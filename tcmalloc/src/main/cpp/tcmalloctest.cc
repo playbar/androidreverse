@@ -5,11 +5,53 @@
 #include <errno.h>
 #include "my_log.h"
 #include <unistd.h>
-#include <stdlib.h>
 #include <stdio.h>
 #include <sys/system_properties.h>
+#include <stdlib.h>                     // for free, malloc, realloc
+#include <algorithm>
 
 #include "tcmalloctest.h"
+
+using std::min;
+
+static void Fill(unsigned char* buffer, int n) {
+    for (int i = 0; i < n; i++) {
+        buffer[i] = (i & 0xff);
+    }
+}
+
+static bool Valid(unsigned char* buffer, int n) {
+    for (int i = 0; i < n; i++) {
+        if (buffer[i] != (i & 0xff)) {
+            return false;
+        }
+    }
+    return true;
+}
+
+
+void testTcMalloc()
+{
+    int src_size = 9;
+    int dst_size = 25;
+
+    unsigned char* src = (unsigned char*) malloc(src_size);
+    Fill(src, src_size);
+    unsigned char* dst = (unsigned char*) realloc(src, dst_size);
+    if(!Valid(dst, min(src_size, dst_size)))
+    {
+        abort();
+    }
+    Fill(dst, dst_size);
+
+//    new char(10) ; //char 申请一个char空间，被初始化为10
+//    new char[10] ; //char数组，申请10个char的空间
+    unsigned char *pdata = new unsigned char[src_size];
+    Fill(pdata, src_size );
+    delete []pdata;
+    return;
+
+}
 
 
 JNIEXPORT void JNICALL Java_com_tcmalloc_test_HelloJni_nativeMsg(JNIEnv* env, jobject thiz)
@@ -21,6 +63,7 @@ JNIEXPORT void JNICALL Java_com_tcmalloc_test_HelloJni_nativeMsg(JNIEnv* env, jo
     {
         LOGE("error");
     }
+    testTcMalloc();
 
     pid_t pid = getpid();
     uid_t uid = getuid();

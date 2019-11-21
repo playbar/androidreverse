@@ -93,7 +93,7 @@ void testProperties()
     return;
 }
 
-void testNoPara()
+static void testNoPara()
 {
     LOGE(" %s", __FUNCTION__ );
 }

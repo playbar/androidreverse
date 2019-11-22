@@ -1,6 +1,11 @@
 cmake_minimum_required(VERSION 3.6)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -Wno-narrowing -fexceptions")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fvisibility=hidden -std=c++14 -Wno-narrowing -fexceptions")
+set(CMAKE_C_FLAGS   "${CMAKE_C_FLAGS}   -fvisibility=hidden -Wno-narrowing -fexceptions")
+
+
+
+add_definitions(-DFBC_EXPORT)
 
 file(GLOB TCMALLOC_BASE_SRC
         tcmalloc/base/*.cc
@@ -8,6 +13,10 @@ file(GLOB TCMALLOC_BASE_SRC
 
 file(GLOB TCMALLOC_SRC
         tcmalloc/*.cc)
+
+set(CPU_PROFILE_SRCS
+        tcmalloc/profiler.cc
+        )
 
 set(TCMALLOC_SRCS
         tcmalloc/central_freelist.cc
@@ -28,7 +37,6 @@ set(TCMALLOC_SRCS
         tcmalloc/page_heap.cc
         tcmalloc/profile-handler.cc
         tcmalloc/profiledata.cc
-#        tcmalloc/profiler.cc
         tcmalloc/raw_printer.cc
         tcmalloc/sampler.cc
         tcmalloc/span.cc
@@ -52,6 +60,8 @@ target_include_directories(tcmalloc PRIVATE
 
 add_library(tcmalloctest SHARED
         tcmalloctest.cc
+        lib/library.cpp
+        lib/test_library.cpp
         ${TCMALLOC_BASE_SRC}
         ${TCMALLOC_SRCS}
             )
@@ -62,4 +72,5 @@ target_link_libraries(tcmalloctest
 
 target_include_directories(tcmalloctest PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/tcmalloc
+        ${CMAKE_CURRENT_SOURCE_DIR}/lib
         )

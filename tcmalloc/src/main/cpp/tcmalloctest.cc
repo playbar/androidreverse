@@ -11,8 +11,28 @@
 #include <algorithm>
 
 #include "tcmalloctest.h"
+#include "lib/test_library.hpp"
+
 
 using std::min;
+
+void printftime()
+{
+    struct timeval tv;
+    struct tm *tmp_ptr = NULL;
+    gettimeofday(&tv,NULL);
+    tmp_ptr = localtime(&tv.tv_sec);
+
+    printf("%d-%02d-%02d %02d:%02d:%02d.%.04d\n",
+           tmp_ptr->tm_year + 1900,
+           tmp_ptr->tm_mon + 1,
+           tmp_ptr->tm_mday,
+           tmp_ptr->tm_hour,
+           tmp_ptr->tm_min,
+           tmp_ptr->tm_sec,
+           tv.tv_usec);
+    return;
+}
 
 static void Fill(unsigned char* buffer, int n) {
     for (int i = 0; i < n; i++) {
@@ -57,13 +77,21 @@ void testTcMalloc()
 JNIEXPORT void JNICALL Java_com_tcmalloc_test_HelloJni_nativeMsg(JNIEnv* env, jobject thiz)
 {
     int result = 0;
+
 //    system("pwd");
     result = system("mkdir /data/data/com.bar.hellojni/temp");
     if( -1 == result || 127 == result )
     {
         LOGE("error");
     }
+
+    printftime();
+
     testTcMalloc();
+
+    test_library_::test_library_1();
+    test_library_::test_library_2();
+    test_library_::test_library_3();
 
     pid_t pid = getpid();
     uid_t uid = getuid();

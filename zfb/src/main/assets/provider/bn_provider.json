@@ -1,7 +1,0 @@
-[
-  {
-    "name": "com.alipay.android.app.birdnest.provider.BNDevDebugProvider",
-    "bundle": "android-phone-wallet-birdnestdevtools",
-    "class": "com.alipay.birdnest.devtools.provider.WalletDevDebugProvider"
-  }
-]

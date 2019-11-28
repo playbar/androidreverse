@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 19
+    compileSdkVersion 29
     buildToolsVersion '28.0.2'
     defaultConfig {
         applicationId 'com.asm.test'
-        minSdkVersion 19
-        targetSdkVersion 19
+        minSdkVersion 24
+        targetSdkVersion 26
 //        renderscriptTargetApi 19
 //        renderscriptSupportModeEnabled true
         versionCode 1

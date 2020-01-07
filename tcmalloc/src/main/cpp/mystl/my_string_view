@@ -165,23 +165,23 @@ namespace std {
 
 */
 
-#include <__config>
+#include "my__config"
 #include <__string>
 #include <algorithm>
 #include <iterator>
 #include <limits>
 #include <stdexcept>
-#include <__debug>
+#include "my__debug"
 
 #if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
 #pragma GCC system_header
 #endif
 
 _LIBCPP_PUSH_MACROS
-#include <__undef_macros>
+#include "my__undef_macros"
 
 
-_LIBCPP_BEGIN_NAMESPACE_STD
+_LIBCPP_BEGIN_NAMESPACE_BAR
 
 template<class _CharT, class _Traits = char_traits<_CharT> >
 class _LIBCPP_TEMPLATE_VIS basic_string_view {
@@ -785,7 +785,7 @@ inline namespace literals
   }
 }
 #endif
-_LIBCPP_END_NAMESPACE_STD
+_LIBCPP_END_NAMESPACE_BAR
 
 _LIBCPP_POP_MACROS
 

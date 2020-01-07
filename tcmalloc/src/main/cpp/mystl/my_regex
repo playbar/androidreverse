@@ -14,7 +14,7 @@
 /*
     regex synopsis
 
-#include <initializer_list>
+#include "my_initializer_list"
 
 namespace std
 {
@@ -754,10 +754,10 @@ typedef regex_token_iterator<wstring::const_iterator> wsregex_token_iterator;
 } // std
 */
 
-#include <__config>
+#include "my__config"
 #include <stdexcept>
 #include <__locale>
-#include <initializer_list>
+#include "my_initializer_list"
 #include <utility>
 #include <iterator>
 #include <string>
@@ -770,10 +770,10 @@ typedef regex_token_iterator<wstring::const_iterator> wsregex_token_iterator;
 #endif
 
 _LIBCPP_PUSH_MACROS
-#include <__undef_macros>
+#include "my__undef_macros"
 
 
-_LIBCPP_BEGIN_NAMESPACE_STD
+_LIBCPP_BEGIN_NAMESPACE_BAR
 
 namespace regex_constants
 {
@@ -6568,7 +6568,7 @@ regex_replace(const _CharT* __s,
     return __r;
 }
 
-_LIBCPP_END_NAMESPACE_STD
+_LIBCPP_END_NAMESPACE_BAR
 
 _LIBCPP_POP_MACROS
 

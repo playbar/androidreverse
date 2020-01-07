@@ -82,14 +82,14 @@ template <class T, class Container>
 
 */
 
-#include <__config>
+#include "my__config"
 #include <deque>
 
 #if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
 #pragma GCC system_header
 #endif
 
-_LIBCPP_BEGIN_NAMESPACE_STD
+_LIBCPP_BEGIN_NAMESPACE_BAR
 
 template <class _Tp, class _Container = deque<_Tp> > class _LIBCPP_TEMPLATE_VIS stack;
 
@@ -295,6 +295,6 @@ struct _LIBCPP_TEMPLATE_VIS uses_allocator<stack<_Tp, _Container>, _Alloc>
 {
 };
 
-_LIBCPP_END_NAMESPACE_STD
+_LIBCPP_END_NAMESPACE_BAR
 
 #endif  // _LIBCPP_STACK

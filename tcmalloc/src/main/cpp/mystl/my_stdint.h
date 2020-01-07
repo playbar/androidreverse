@@ -8,8 +8,8 @@
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef _LIBCPP_STDINT_H
-#define _LIBCPP_STDINT_H
+#ifndef _MY_BAR_STDINT_H
+#define _MY_BAR_STDINT_H
 
 /*
     stdint.h synopsis
@@ -99,7 +99,7 @@ Macros:
 
 */
 
-#include <__config>
+#include "my__config"
 
 #if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
 #pragma GCC system_header

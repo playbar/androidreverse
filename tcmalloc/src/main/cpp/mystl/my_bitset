@@ -113,9 +113,9 @@ template <size_t N> struct hash<std::bitset<N>>;
 
 */
 
-#include <__config>
+#include "my__config"
 #include <__bit_reference>
-#include <cstddef>
+#include "my_cstddef"
 #include <climits>
 #include <string>
 #include <stdexcept>
@@ -127,10 +127,10 @@ template <size_t N> struct hash<std::bitset<N>>;
 #endif
 
 _LIBCPP_PUSH_MACROS
-#include <__undef_macros>
+#include "my__undef_macros"
 
 
-_LIBCPP_BEGIN_NAMESPACE_STD
+_LIBCPP_BEGIN_NAMESPACE_BAR
 
 template <size_t _N_words, size_t _Size>
 class __bitset;
@@ -1090,7 +1090,7 @@ template <class _CharT, class _Traits, size_t _Size>
 basic_ostream<_CharT, _Traits>&
 operator<<(basic_ostream<_CharT, _Traits>& __os, const bitset<_Size>& __x);
 
-_LIBCPP_END_NAMESPACE_STD
+_LIBCPP_END_NAMESPACE_BAR
 
 _LIBCPP_POP_MACROS
 

@@ -8,8 +8,8 @@
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef _LIBCPP_INITIALIZER_LIST
-#define _LIBCPP_INITIALIZER_LIST
+#ifndef _MY_BAR_INITIALIZER_LIST
+#define _MY_BAR_INITIALIZER_LIST
 
 /*
     initializer_list synopsis
@@ -43,14 +43,14 @@ template<class E> const E* end(initializer_list<E> il) noexcept; // constexpr in
 
 */
 
-#include <__config>
-#include <cstddef>
+#include "my__config"
+#include "my_cstddef"
 
 #if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
 #pragma GCC system_header
 #endif
 
-namespace std  // purposefully not versioned
+namespace bar  // purposefully not versioned
 {
 
 #ifndef _LIBCPP_CXX03_LANG

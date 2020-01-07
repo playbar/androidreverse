@@ -187,7 +187,7 @@ template<class Callable, class ...Args>
 
 */
 
-#include <__config>
+#include "my__config"
 #include <__mutex_base>
 #include <functional>
 #include <memory>
@@ -201,10 +201,10 @@ template<class Callable, class ...Args>
 #endif
 
 _LIBCPP_PUSH_MACROS
-#include <__undef_macros>
+#include "my__undef_macros"
 
 
-_LIBCPP_BEGIN_NAMESPACE_STD
+_LIBCPP_BEGIN_NAMESPACE_BAR
 
 #ifndef _LIBCPP_HAS_NO_THREADS
 
@@ -695,7 +695,7 @@ call_once(once_flag& __flag, const _Callable& __func)
 
 #endif  // _LIBCPP_CXX03_LANG
 
-_LIBCPP_END_NAMESPACE_STD
+_LIBCPP_END_NAMESPACE_BAR
 
 _LIBCPP_POP_MACROS
 

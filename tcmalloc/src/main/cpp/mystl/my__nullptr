@@ -17,7 +17,7 @@
 #pragma GCC system_header
 #endif
 
-_LIBCPP_BEGIN_NAMESPACE_STD
+_LIBCPP_BEGIN_NAMESPACE_BAR
 
 struct _LIBCPP_TEMPLATE_VIS nullptr_t
 {
@@ -46,7 +46,7 @@ inline _LIBCPP_ALWAYS_INLINE _LIBCPP_CONSTEXPR nullptr_t __get_nullptr_t() {retu
 
 #define nullptr _VSTD::__get_nullptr_t()
 
-_LIBCPP_END_NAMESPACE_STD
+_LIBCPP_END_NAMESPACE_BAR
 
 
 #endif  // _LIBCPP_NULLPTR

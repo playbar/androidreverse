@@ -211,7 +211,7 @@ storage-class-specifier const error_category& iostream_category() noexcept;
 
 */
 
-#include <__config>
+#include "my__config"
 #include <iosfwd>
 #include <__locale>
 #include <system_error>
@@ -224,7 +224,7 @@ storage-class-specifier const error_category& iostream_category() noexcept;
 #pragma GCC system_header
 #endif
 
-_LIBCPP_BEGIN_NAMESPACE_STD
+_LIBCPP_BEGIN_NAMESPACE_BAR
 
 typedef ptrdiff_t streamsize;
 
@@ -1040,6 +1040,6 @@ public:
     }
 };
 
-_LIBCPP_END_NAMESPACE_STD
+_LIBCPP_END_NAMESPACE_BAR
 
 #endif  // _LIBCPP_IOS

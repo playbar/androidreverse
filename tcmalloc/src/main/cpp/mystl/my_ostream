@@ -134,7 +134,7 @@ template <class charT, class traits, class T>
 
 */
 
-#include <__config>
+#include "my__config"
 #include <ios>
 #include <streambuf>
 #include <locale>
@@ -145,7 +145,7 @@ template <class charT, class traits, class T>
 #pragma GCC system_header
 #endif
 
-_LIBCPP_BEGIN_NAMESPACE_STD
+_LIBCPP_BEGIN_NAMESPACE_BAR
 
 template <class _CharT, class _Traits>
 class _LIBCPP_TEMPLATE_VIS basic_ostream
@@ -1085,6 +1085,6 @@ _LIBCPP_EXTERN_TEMPLATE(class _LIBCPP_EXTERN_TEMPLATE_TYPE_VIS basic_ostream<cha
 _LIBCPP_EXTERN_TEMPLATE(class _LIBCPP_EXTERN_TEMPLATE_TYPE_VIS basic_ostream<wchar_t>)
 #endif
 
-_LIBCPP_END_NAMESPACE_STD
+_LIBCPP_END_NAMESPACE_BAR
 
 #endif  // _LIBCPP_OSTREAM

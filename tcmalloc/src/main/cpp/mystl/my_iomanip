@@ -43,7 +43,7 @@ template <class charT, class traits, class Allocator>
 
 */
 
-#include <__config>
+#include "my__config"
 #include <__string>
 #include <istream>
 
@@ -51,7 +51,7 @@ template <class charT, class traits, class Allocator>
 #pragma GCC system_header
 #endif
 
-_LIBCPP_BEGIN_NAMESPACE_STD
+_LIBCPP_BEGIN_NAMESPACE_BAR
 
 // resetiosflags
 
@@ -665,6 +665,6 @@ quoted (basic_string_view <_CharT, _Traits> __sv,
 }
 #endif
 
-_LIBCPP_END_NAMESPACE_STD
+_LIBCPP_END_NAMESPACE_BAR
 
 #endif  // _LIBCPP_IOMANIP

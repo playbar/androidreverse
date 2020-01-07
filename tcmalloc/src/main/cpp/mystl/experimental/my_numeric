@@ -34,7 +34,7 @@ inline namespace fundamentals_v2 {
 
 #include <experimental/__config>
 #include <numeric>
-#include <type_traits>              // is_integral
+#include "my_type_traits"              // is_integral
 #include <limits>                   // numeric_limits
 
 #if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
@@ -42,7 +42,7 @@ inline namespace fundamentals_v2 {
 #endif
 
 _LIBCPP_PUSH_MACROS
-#include <__undef_macros>
+#include "my__undef_macros"
 
 #if _LIBCPP_STD_VER > 11
 

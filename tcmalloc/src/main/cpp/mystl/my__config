@@ -436,9 +436,9 @@ typedef __char32_t char32_t;
 #endif
 
 // Inline namespaces are available in Clang regardless of C++ dialect.
-#define _LIBCPP_BEGIN_NAMESPACE_STD namespace bar {inline namespace _LIBCPP_NAMESPACE {
-#define _LIBCPP_END_NAMESPACE_STD  } }
-#define _VSTD std::_LIBCPP_NAMESPACE
+#define _LIBCPP_BEGIN_NAMESPACE_BAR namespace bar {inline namespace _LIBCPP_NAMESPACE {
+#define _LIBCPP_END_NAMESPACE_BAR  } }
+#define _VSTD bar::_LIBCPP_NAMESPACE
 
 namespace std {
   inline namespace _LIBCPP_NAMESPACE {
@@ -523,8 +523,8 @@ namespace std {
 
 #endif  // __GXX_EXPERIMENTAL_CXX0X__
 
-#define _LIBCPP_BEGIN_NAMESPACE_STD namespace std { inline namespace _LIBCPP_NAMESPACE {
-#define _LIBCPP_END_NAMESPACE_STD  } }
+#define _LIBCPP_BEGIN_NAMESPACE_BAR namespace bar { inline namespace _LIBCPP_NAMESPACE {
+#define _LIBCPP_END_NAMESPACE_BAR  } }
 #define _VSTD std::_LIBCPP_NAMESPACE
 
 namespace std {
@@ -559,8 +559,8 @@ namespace std {
 #define _ALIGNAS(x) __declspec(align(x))
 #define _LIBCPP_HAS_NO_VARIADICS
 
-#define _LIBCPP_BEGIN_NAMESPACE_STD namespace std {
-#define _LIBCPP_END_NAMESPACE_STD  }
+#define _LIBCPP_BEGIN_NAMESPACE_BAR namespace bar {
+#define _LIBCPP_END_NAMESPACE_BAR  }
 #define _VSTD std
 
 #  define _LIBCPP_WEAK
@@ -588,8 +588,8 @@ namespace std {
 #define __MULTILOCALE_API
 #endif
 
-#define _LIBCPP_BEGIN_NAMESPACE_STD namespace std {inline namespace _LIBCPP_NAMESPACE {
-#define _LIBCPP_END_NAMESPACE_STD  } }
+#define _LIBCPP_BEGIN_NAMESPACE_BAR namespace bar {inline namespace _LIBCPP_NAMESPACE {
+#define _LIBCPP_END_NAMESPACE_BAR  } }
 #define _VSTD std::_LIBCPP_NAMESPACE
 
 namespace std {

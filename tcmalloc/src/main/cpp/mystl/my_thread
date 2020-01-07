@@ -85,11 +85,11 @@ void sleep_for(const chrono::duration<Rep, Period>& rel_time);
 
 */
 
-#include <__config>
+#include "my__config"
 #include <iosfwd>
 #include <__functional_base>
-#include <type_traits>
-#include <cstddef>
+#include "my_type_traits"
+#include "my_cstddef"
 #include <functional>
 #include <memory>
 #include <system_error>
@@ -99,14 +99,14 @@ void sleep_for(const chrono::duration<Rep, Period>& rel_time);
 #include <tuple>
 #endif
 #include <__threading_support>
-#include <__debug>
+#include "my__debug"
 
 #if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
 #pragma GCC system_header
 #endif
 
 _LIBCPP_PUSH_MACROS
-#include <__undef_macros>
+#include "my__undef_macros"
 
 #define __STDCPP_THREADS__ __cplusplus
 
@@ -114,7 +114,7 @@ _LIBCPP_PUSH_MACROS
 #error <thread> is not supported on this single threaded system
 #else // !_LIBCPP_HAS_NO_THREADS
 
-_LIBCPP_BEGIN_NAMESPACE_STD
+_LIBCPP_BEGIN_NAMESPACE_BAR
 
 template <class _Tp> class __thread_specific_ptr;
 class _LIBCPP_TYPE_VIS __thread_struct;
@@ -475,7 +475,7 @@ void yield() _NOEXCEPT {__libcpp_thread_yield();}
 
 }  // this_thread
 
-_LIBCPP_END_NAMESPACE_STD
+_LIBCPP_END_NAMESPACE_BAR
 
 #endif // !_LIBCPP_HAS_NO_THREADS
 

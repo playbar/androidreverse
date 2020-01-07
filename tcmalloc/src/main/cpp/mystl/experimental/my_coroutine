@@ -48,12 +48,12 @@ template <class P> struct hash<coroutine_handle<P>>;
 
 #include <experimental/__config>
 #include <new>
-#include <type_traits>
+#include "my_type_traits"
 #include <functional>
 #include <memory> // for hash<T*>
-#include <cstddef>
+#include "my_cstddef"
 #include <cassert>
-#include <__debug>
+#include "my__debug"
 
 #if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
 #pragma GCC system_header
@@ -279,7 +279,7 @@ struct _LIBCPP_TYPE_VIS suspend_always {
 
 _LIBCPP_END_NAMESPACE_EXPERIMENTAL_COROUTINES
 
-_LIBCPP_BEGIN_NAMESPACE_STD
+_LIBCPP_BEGIN_NAMESPACE_BAR
 
 template <class _Tp>
 struct hash<_VSTD_CORO::coroutine_handle<_Tp> > {
@@ -289,7 +289,7 @@ struct hash<_VSTD_CORO::coroutine_handle<_Tp> > {
     {return hash<void*>()(__v.address());}
 };
 
-_LIBCPP_END_NAMESPACE_STD
+_LIBCPP_END_NAMESPACE_BAR
 
 #endif // !defined(_LIBCPP_HAS_NO_COROUTINES)
 

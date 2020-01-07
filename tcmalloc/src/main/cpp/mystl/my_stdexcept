@@ -8,8 +8,8 @@
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef _LIBCPP_STDEXCEPT
-#define _LIBCPP_STDEXCEPT
+#ifndef _MY_BAR_STDEXCEPT
+#define _MY_BAR_STDEXCEPT
 
 /*
     stdexcept synopsis
@@ -42,8 +42,8 @@ public:
 
 */
 
-#include <__config>
-#include <exception>
+#include "my__config"
+#include "my_exception"
 #include <iosfwd>  // for string forward decl
 #ifdef _LIBCPP_NO_EXCEPTIONS
 #include <cstdlib>
@@ -53,7 +53,7 @@ public:
 #pragma GCC system_header
 #endif
 
-_LIBCPP_BEGIN_NAMESPACE_STD
+_LIBCPP_BEGIN_NAMESPACE_BAR
 
 class _LIBCPP_HIDDEN __libcpp_refstring
 {
@@ -69,7 +69,7 @@ public:
     const char* c_str() const _NOEXCEPT {return __imp_;}
 };
 
-_LIBCPP_END_NAMESPACE_STD
+_LIBCPP_END_NAMESPACE_BAR
 
 namespace std  // purposefully not using versioning namespace
 {
@@ -180,7 +180,7 @@ public:
 
 }  // std
 
-_LIBCPP_BEGIN_NAMESPACE_STD
+_LIBCPP_BEGIN_NAMESPACE_BAR
 
 // in the dylib
 _LIBCPP_NORETURN _LIBCPP_FUNC_VIS void __throw_runtime_error(const char*);
@@ -273,6 +273,6 @@ void __throw_underflow_error(const char*__msg)
 #endif
 }
 
-_LIBCPP_END_NAMESPACE_STD
+_LIBCPP_END_NAMESPACE_BAR
 
 #endif  // _LIBCPP_STDEXCEPT

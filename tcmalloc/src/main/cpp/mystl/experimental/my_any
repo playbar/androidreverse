@@ -79,8 +79,8 @@ inline namespace fundamentals_v1 {
 #include <experimental/__config>
 #include <memory>
 #include <new>
-#include <typeinfo>
-#include <type_traits>
+#include "my_typeinfo"
+#include "my_type_traits"
 #include <cstdlib>
 
 #if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)

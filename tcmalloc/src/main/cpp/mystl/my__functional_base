@@ -11,10 +11,10 @@
 #ifndef _LIBCPP_FUNCTIONAL_BASE
 #define _LIBCPP_FUNCTIONAL_BASE
 
-#include <__config>
-#include <type_traits>
-#include <typeinfo>
-#include <exception>
+#include "my__config"
+#include "my_type_traits"
+#include "my_typeinfo"
+#include "my_exception"
 #include <new>
 #include <utility>
 
@@ -22,7 +22,7 @@
 #pragma GCC system_header
 #endif
 
-_LIBCPP_BEGIN_NAMESPACE_STD
+_LIBCPP_BEGIN_NAMESPACE_BAR
 
 template <class _Arg1, class _Arg2, class _Result>
 struct _LIBCPP_TEMPLATE_VIS binary_function
@@ -658,6 +658,6 @@ void __user_alloc_construct (_Tp *__storage, const _Allocator &__a, _Args &&... 
 }
 #endif  // _LIBCPP_CXX03_LANG
 
-_LIBCPP_END_NAMESPACE_STD
+_LIBCPP_END_NAMESPACE_BAR
 
 #endif  // _LIBCPP_FUNCTIONAL_BASE

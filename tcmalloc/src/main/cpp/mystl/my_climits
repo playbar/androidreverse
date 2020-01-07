@@ -38,7 +38,7 @@ Macros:
 
 */
 
-#include <__config>
+#include "my__config"
 #include <limits.h>
 
 #if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)

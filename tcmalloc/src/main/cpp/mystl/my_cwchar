@@ -103,7 +103,7 @@ size_t wcsrtombs(char* restrict dst, const wchar_t** restrict src, size_t len,
 
 */
 
-#include <__config>
+#include "my__config"
 #include <cwctype>
 #include <wchar.h>
 
@@ -111,7 +111,7 @@ size_t wcsrtombs(char* restrict dst, const wchar_t** restrict src, size_t len,
 #pragma GCC system_header
 #endif
 
-_LIBCPP_BEGIN_NAMESPACE_STD
+_LIBCPP_BEGIN_NAMESPACE_BAR
 
 using ::mbstate_t;
 using ::size_t;
@@ -188,6 +188,6 @@ using ::vwprintf;
 using ::wprintf;
 #endif
 
-_LIBCPP_END_NAMESPACE_STD
+_LIBCPP_END_NAMESPACE_BAR
 
 #endif  // _LIBCPP_CWCHAR

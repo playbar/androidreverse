@@ -34,7 +34,7 @@ extern wostream wclog;
 
 */
 
-#include <__config>
+#include "my__config"
 #include <ios>
 #include <streambuf>
 #include <istream>
@@ -44,7 +44,7 @@ extern wostream wclog;
 #pragma GCC system_header
 #endif
 
-_LIBCPP_BEGIN_NAMESPACE_STD
+_LIBCPP_BEGIN_NAMESPACE_BAR
 
 #ifndef _LIBCPP_HAS_NO_STDIN
 extern _LIBCPP_FUNC_VIS istream cin;
@@ -59,6 +59,6 @@ extern _LIBCPP_FUNC_VIS wostream wcerr;
 extern _LIBCPP_FUNC_VIS ostream clog;
 extern _LIBCPP_FUNC_VIS wostream wclog;
 
-_LIBCPP_END_NAMESPACE_STD
+_LIBCPP_END_NAMESPACE_BAR
 
 #endif  // _LIBCPP_IOSTREAM

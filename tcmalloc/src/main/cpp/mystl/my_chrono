@@ -299,9 +299,9 @@ constexpr chrono::duration<unspecified , nano>          operator "" ns(long doub
 }  // std
 */
 
-#include <__config>
+#include "my__config"
 #include <ctime>
-#include <type_traits>
+#include "my_type_traits"
 #include <ratio>
 #include <limits>
 
@@ -310,10 +310,10 @@ constexpr chrono::duration<unspecified , nano>          operator "" ns(long doub
 #endif
 
 _LIBCPP_PUSH_MACROS
-#include <__undef_macros>
+#include "my__undef_macros"
 
 
-_LIBCPP_BEGIN_NAMESPACE_STD
+_LIBCPP_BEGIN_NAMESPACE_BAR
 
 namespace chrono
 {
@@ -1160,7 +1160,7 @@ namespace chrono { // hoist the literals into namespace std::chrono
 
 #endif
 
-_LIBCPP_END_NAMESPACE_STD
+_LIBCPP_END_NAMESPACE_BAR
 
 _LIBCPP_POP_MACROS
 

@@ -96,14 +96,14 @@ void perror(const char* s);
 }  // std
 */
 
-#include <__config>
+#include "my__config"
 #include <stdio.h>
 
 #if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
 #pragma GCC system_header
 #endif
 
-_LIBCPP_BEGIN_NAMESPACE_STD
+_LIBCPP_BEGIN_NAMESPACE_BAR
 
 using ::FILE;
 using ::fpos_t;
@@ -167,6 +167,6 @@ using ::puts;
 using ::vprintf;
 #endif
 
-_LIBCPP_END_NAMESPACE_STD
+_LIBCPP_END_NAMESPACE_BAR
 
 #endif  // _LIBCPP_CSTDIO

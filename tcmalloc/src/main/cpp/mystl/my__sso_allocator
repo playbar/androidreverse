@@ -11,15 +11,15 @@
 #ifndef _LIBCPP___SSO_ALLOCATOR
 #define _LIBCPP___SSO_ALLOCATOR
 
-#include <__config>
-#include <type_traits>
+#include "my__config"
+#include "my_type_traits"
 #include <new>
 
 #if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
 #pragma GCC system_header
 #endif
 
-_LIBCPP_BEGIN_NAMESPACE_STD
+_LIBCPP_BEGIN_NAMESPACE_BAR
 
 template <class _Tp, size_t _Np> class _LIBCPP_HIDDEN __sso_allocator;
 
@@ -72,6 +72,6 @@ public:
     bool operator!=(__sso_allocator& __a) const {return &buf_ != &__a.buf_;}
 };
 
-_LIBCPP_END_NAMESPACE_STD
+_LIBCPP_END_NAMESPACE_BAR
 
 #endif  // _LIBCPP___SSO_ALLOCATOR

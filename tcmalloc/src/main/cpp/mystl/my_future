@@ -362,11 +362,11 @@ template <class R, class Alloc> struct uses_allocator<packaged_task<R>, Alloc>;
 
 */
 
-#include <__config>
+#include "my__config"
 #include <system_error>
 #include <memory>
 #include <chrono>
-#include <exception>
+#include "my_exception"
 #include <mutex>
 #include <thread>
 
@@ -378,7 +378,7 @@ template <class R, class Alloc> struct uses_allocator<packaged_task<R>, Alloc>;
 #error <future> is not supported on this single threaded system
 #else // !_LIBCPP_HAS_NO_THREADS
 
-_LIBCPP_BEGIN_NAMESPACE_STD
+_LIBCPP_BEGIN_NAMESPACE_BAR
 
 //enum class future_errc
 _LIBCPP_DECLARE_STRONG_ENUM(future_errc)
@@ -2610,7 +2610,7 @@ future<void>::share() _NOEXCEPT
 
 #endif  // _LIBCPP_HAS_NO_RVALUE_REFERENCES
 
-_LIBCPP_END_NAMESPACE_STD
+_LIBCPP_END_NAMESPACE_BAR
 
 #endif // !_LIBCPP_HAS_NO_THREADS
 

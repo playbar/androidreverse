@@ -301,14 +301,14 @@ long double    truncl(long double x);
 
 */
 
-#include <__config>
+#include "my__config"
 #include <math.h>
 
 #if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
 #pragma GCC system_header
 #endif
 
-_LIBCPP_BEGIN_NAMESPACE_STD
+_LIBCPP_BEGIN_NAMESPACE_BAR
 
 using ::signbit;
 using ::fpclassify;
@@ -606,6 +606,6 @@ __libcpp_isfinite_or_builtin(_A1 __lcpp_x) _NOEXCEPT
     return isfinite(__lcpp_x);
 }
 
-_LIBCPP_END_NAMESPACE_STD
+_LIBCPP_END_NAMESPACE_BAR
 
 #endif  // _LIBCPP_CMATH

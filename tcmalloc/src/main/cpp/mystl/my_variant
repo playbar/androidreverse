@@ -197,15 +197,15 @@ namespace std {
 
 */
 
-#include <__config>
+#include "my__config"
 #include <__tuple>
 #include <array>
-#include <exception>
+#include "my_exception"
 #include <functional>
-#include <initializer_list>
+#include "my_initializer_list"
 #include <new>
 #include <tuple>
-#include <type_traits>
+#include "my_type_traits"
 #include <utility>
 
 #if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
@@ -221,7 +221,7 @@ public:
 
 } // namespace std
 
-_LIBCPP_BEGIN_NAMESPACE_STD
+_LIBCPP_BEGIN_NAMESPACE_BAR
 
 #if _LIBCPP_STD_VER > 14
 
@@ -1559,6 +1559,6 @@ struct _LIBCPP_TEMPLATE_VIS hash<monostate> {
 
 #endif  // _LIBCPP_STD_VER > 14
 
-_LIBCPP_END_NAMESPACE_STD
+_LIBCPP_END_NAMESPACE_BAR
 
 #endif  // _LIBCPP_VARIANT

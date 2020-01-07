@@ -53,14 +53,14 @@ int feupdateenv(const fenv_t* envp);
 }  // std
 */
 
-#include <__config>
+#include "my__config"
 #include <fenv.h>
 
 #if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
 #pragma GCC system_header
 #endif
 
-_LIBCPP_BEGIN_NAMESPACE_STD
+_LIBCPP_BEGIN_NAMESPACE_BAR
 
 using ::fenv_t;
 using ::fexcept_t;
@@ -77,6 +77,6 @@ using ::feholdexcept;
 using ::fesetenv;
 using ::feupdateenv;
 
-_LIBCPP_END_NAMESPACE_STD
+_LIBCPP_END_NAMESPACE_BAR
 
 #endif  // _LIBCPP_CFENV

@@ -8,8 +8,8 @@
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef _LIBCPP_MEMORY
-#define _LIBCPP_MEMORY
+#ifndef _MY_BAR_MEMORY
+#define _MY_BAR_MEMORY
 
 /*
     memory synopsis
@@ -639,16 +639,16 @@ void* align(size_t alignment, size_t size, void*& ptr, size_t& space);
 
 */
 
-#include <__config>
-#include <type_traits>
-#include <typeinfo>
-#include <cstddef>
-#include <cstdint>
-#include <new>
+#include "my__config"
+#include "my_type_traits"
+#include "my_typeinfo"
+#include "my_cstddef"
+#include "my_cstdint"
+#include "my_new"
 #include <utility>
 #include <limits>
 #include <iterator>
-#include <__functional_base>
+#include "my__functional_base"
 #include <iosfwd>
 #include <tuple>
 #include <stdexcept>
@@ -663,10 +663,10 @@ void* align(size_t alignment, size_t size, void*& ptr, size_t& space);
 #endif
 
 _LIBCPP_PUSH_MACROS
-#include <__undef_macros>
+#include "my__undef_macros"
 
 
-_LIBCPP_BEGIN_NAMESPACE_STD
+_LIBCPP_BEGIN_NAMESPACE_BAR
 
 template <class _ValueType>
 inline _LIBCPP_ALWAYS_INLINE
@@ -5535,7 +5535,7 @@ struct __temp_value {
     };
 #endif
 
-_LIBCPP_END_NAMESPACE_STD
+_LIBCPP_END_NAMESPACE_BAR
 
 _LIBCPP_POP_MACROS
 

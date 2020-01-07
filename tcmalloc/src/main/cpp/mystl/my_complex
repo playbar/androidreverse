@@ -240,8 +240,8 @@ template<class T, class charT, class traits>
 
 */
 
-#include <__config>
-#include <type_traits>
+#include "my__config"
+#include "my_type_traits"
 #include <stdexcept>
 #include <cmath>
 #include <sstream>
@@ -250,7 +250,7 @@ template<class T, class charT, class traits>
 #pragma GCC system_header
 #endif
 
-_LIBCPP_BEGIN_NAMESPACE_STD
+_LIBCPP_BEGIN_NAMESPACE_BAR
 
 template<class _Tp> class _LIBCPP_TEMPLATE_VIS complex;
 
@@ -1479,6 +1479,6 @@ inline namespace literals
 }
 #endif
 
-_LIBCPP_END_NAMESPACE_STD
+_LIBCPP_END_NAMESPACE_BAR
 
 #endif  // _LIBCPP_COMPLEX

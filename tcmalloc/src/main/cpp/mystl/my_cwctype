@@ -50,7 +50,7 @@ wctrans_t wctrans(const char* property);
 
 */
 
-#include <__config>
+#include "my__config"
 #include <cctype>
 #include <wctype.h>
 
@@ -58,7 +58,7 @@ wctrans_t wctrans(const char* property);
 #pragma GCC system_header
 #endif
 
-_LIBCPP_BEGIN_NAMESPACE_STD
+_LIBCPP_BEGIN_NAMESPACE_BAR
 
 using ::wint_t;
 using ::wctrans_t;
@@ -82,6 +82,6 @@ using ::towupper;
 using ::towctrans;
 using ::wctrans;
 
-_LIBCPP_END_NAMESPACE_STD
+_LIBCPP_END_NAMESPACE_BAR
 
 #endif  // _LIBCPP_CWCTYPE

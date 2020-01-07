@@ -8,8 +8,8 @@
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef _LIBCPP_STRING_H
-#define _LIBCPP_STRING_H
+#ifndef _MY_BAR_STRING_H
+#define _MY_BAR_STRING_H
 
 /*
     string.h synopsis
@@ -52,13 +52,13 @@ size_t strlen(const char* s);
 
 */
 
-#include <__config>
+#include "my__config"
 
 #if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
 #pragma GCC system_header
 #endif
 
-#include_next <string.h>
+#include_next "my_string.h"
 
 // MSVCRT, GNU libc and its derivates may already have the correct prototype in
 // <string.h>. This macro can be defined by users if their C library provides

@@ -18,7 +18,7 @@
 #include <stdarg.h>
 #include <memory>
 
-_LIBCPP_BEGIN_NAMESPACE_STD
+_LIBCPP_BEGIN_NAMESPACE_BAR
 
 inline _LIBCPP_ALWAYS_INLINE
 decltype(MB_CUR_MAX) __libcpp_mb_cur_max_l(locale_t __l)
@@ -131,6 +131,6 @@ int __libcpp_sscanf_l(const char *__s, locale_t __l, const char *__format, ...) 
     return __res;
 }
 
-_LIBCPP_END_NAMESPACE_STD
+_LIBCPP_END_NAMESPACE_BAR
 
 #endif // _LIBCPP_BSD_LOCALE_FALLBACKS_DEFAULTS_H

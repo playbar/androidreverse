@@ -44,7 +44,7 @@ Types:
 #include_next <stddef.h>
 #include "my__nullptr"
 
-_LIBCPP_BEGIN_NAMESPACE_STD
+_LIBCPP_BEGIN_NAMESPACE_BAR
 
 using ::ptrdiff_t;
 using ::size_t;
@@ -57,7 +57,7 @@ using ::max_align_t;
 typedef long double max_align_t;
 #endif
 
-_LIBCPP_END_NAMESPACE_STD
+_LIBCPP_END_NAMESPACE_BAR
 
 #if _LIBCPP_STD_VER > 14
 namespace std  // purposefully not versioned
@@ -84,7 +84,7 @@ constexpr byte  operator~ (byte __b) noexcept
 
 }
 
-#include <type_traits>  // rest of byte
+#include "my_type_traits"  // rest of byte
 #endif
 
 #endif  // _LIBCPP_CSTDDEF

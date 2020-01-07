@@ -11,12 +11,12 @@
 #ifndef _LIBCPP___LOCALE
 #define _LIBCPP___LOCALE
 
-#include <__config>
+#include "my__config"
 #include <string>
 #include <memory>
 #include <utility>
 #include <mutex>
-#include <cstdint>
+#include "my_cstdint"
 #include <cctype>
 #include <locale.h>
 #if defined(_LIBCPP_MSVCRT_LIKE)
@@ -47,7 +47,7 @@
 #pragma GCC system_header
 #endif
 
-_LIBCPP_BEGIN_NAMESPACE_STD
+_LIBCPP_BEGIN_NAMESPACE_BAR
 
 #if !defined(_LIBCPP_LOCALE__L_EXTENSIONS) || defined(_LIBCPP_MSVCRT)
 struct __libcpp_locale_guard {
@@ -1496,6 +1496,6 @@ private:
     void __init(const char*);
 };
 
-_LIBCPP_END_NAMESPACE_STD
+_LIBCPP_END_NAMESPACE_BAR
 
 #endif  // _LIBCPP___LOCALE

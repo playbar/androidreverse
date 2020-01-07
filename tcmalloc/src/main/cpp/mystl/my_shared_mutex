@@ -123,10 +123,10 @@ template <class Mutex>
 
 */
 
-#include <__config>
+#include "my__config"
 
 _LIBCPP_PUSH_MACROS
-#include <__undef_macros>
+#include "my__undef_macros"
 
 
 #if _LIBCPP_STD_VER > 11 || defined(_LIBCPP_BUILDING_SHARED_MUTEX)
@@ -141,7 +141,7 @@ _LIBCPP_PUSH_MACROS
 #error <shared_mutex> is not supported on this single threaded system
 #else // !_LIBCPP_HAS_NO_THREADS
 
-_LIBCPP_BEGIN_NAMESPACE_STD
+_LIBCPP_BEGIN_NAMESPACE_BAR
 
 struct _LIBCPP_TYPE_VIS _LIBCPP_AVAILABILITY_SHARED_MUTEX __shared_mutex_base
 {
@@ -496,7 +496,7 @@ void
 swap(shared_lock<_Mutex>& __x, shared_lock<_Mutex>& __y) _NOEXCEPT
     {__x.swap(__y);}
 
-_LIBCPP_END_NAMESPACE_STD
+_LIBCPP_END_NAMESPACE_BAR
 
 #endif  // !_LIBCPP_HAS_NO_THREADS
 

@@ -45,15 +45,15 @@ struct hash<type_index>
 
 */
 
-#include <__config>
-#include <typeinfo>
+#include "my__config"
+#include "my_typeinfo"
 #include <__functional_base>
 
 #if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
 #pragma GCC system_header
 #endif
 
-_LIBCPP_BEGIN_NAMESPACE_STD
+_LIBCPP_BEGIN_NAMESPACE_BAR
 
 class _LIBCPP_TEMPLATE_VIS type_index
 {
@@ -98,6 +98,6 @@ struct _LIBCPP_TEMPLATE_VIS hash<type_index>
         {return __index.hash_code();}
 };
 
-_LIBCPP_END_NAMESPACE_STD
+_LIBCPP_END_NAMESPACE_BAR
 
 #endif  // _LIBCPP_TYPEINDEX

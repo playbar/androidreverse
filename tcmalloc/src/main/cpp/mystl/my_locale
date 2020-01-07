@@ -178,9 +178,9 @@ template <class charT> class messages_byname;
 
 */
 
-#include <__config>
+#include "my__config"
 #include <__locale>
-#include <__debug>
+#include "my__debug"
 #include <algorithm>
 #include <memory>
 #include <ios>
@@ -212,10 +212,10 @@ template <class charT> class messages_byname;
 #endif
 
 _LIBCPP_PUSH_MACROS
-#include <__undef_macros>
+#include "my__undef_macros"
 
 
-_LIBCPP_BEGIN_NAMESPACE_STD
+_LIBCPP_BEGIN_NAMESPACE_BAR
 
 #if defined(__APPLE__) || defined(__FreeBSD__)
 #  define _LIBCPP_GET_C_LOCALE 0
@@ -4328,7 +4328,7 @@ wbuffer_convert<_Codecvt, _Elem, _Tr>::__close()
     return __rt;
 }
 
-_LIBCPP_END_NAMESPACE_STD
+_LIBCPP_END_NAMESPACE_BAR
 
 _LIBCPP_POP_MACROS
 

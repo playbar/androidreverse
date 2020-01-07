@@ -8,10 +8,10 @@
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef _LIBCPP_DEBUG_H
-#define _LIBCPP_DEBUG_H
+#ifndef _MY_BAR_DEBUG_H
+#define _MY_BAR_DEBUG_H
 
-#include <__config>
+#include "my__config"
 
 #if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
 #pragma GCC system_header
@@ -54,7 +54,7 @@
 class _LIBCPP_EXCEPTION_ABI __libcpp_debug_exception;
 #endif
 
-_LIBCPP_BEGIN_NAMESPACE_STD
+_LIBCPP_BEGIN_NAMESPACE_BAR
 
 struct _LIBCPP_TEMPLATE_VIS __libcpp_debug_info {
   _LIBCPP_INLINE_VISIBILITY _LIBCPP_CONSTEXPR
@@ -296,7 +296,7 @@ _LIBCPP_FUNC_VIS const __libcpp_db* __get_const_db();
 
 #endif // _LIBCPP_DEBUG_LEVEL >= 2 || defined(_LIBCPP_BUILDING_LIBRARY)
 
-_LIBCPP_END_NAMESPACE_STD
+_LIBCPP_END_NAMESPACE_BAR
 
 #endif  // _LIBCPP_DEBUG_H
 

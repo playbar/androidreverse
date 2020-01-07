@@ -150,10 +150,10 @@ template <class T, class Allocator>
 
 */
 
-#include <__config>
+#include "my__config"
 #include <__split_buffer>
-#include <type_traits>
-#include <initializer_list>
+#include "my_type_traits"
+#include "my_initializer_list"
 #include <iterator>
 #include <algorithm>
 #include <stdexcept>
@@ -163,10 +163,10 @@ template <class T, class Allocator>
 #endif
 
 _LIBCPP_PUSH_MACROS
-#include <__undef_macros>
+#include "my__undef_macros"
 
 
-_LIBCPP_BEGIN_NAMESPACE_STD
+_LIBCPP_BEGIN_NAMESPACE_BAR
 
 template <class _Tp, class _Allocator> class __deque_base;
 template <class _Tp, class _Allocator = allocator<_Tp> > class _LIBCPP_TEMPLATE_VIS deque;
@@ -2900,7 +2900,7 @@ swap(deque<_Tp, _Allocator>& __x, deque<_Tp, _Allocator>& __y)
     __x.swap(__y);
 }
 
-_LIBCPP_END_NAMESPACE_STD
+_LIBCPP_END_NAMESPACE_BAR
 
 _LIBCPP_POP_MACROS
 

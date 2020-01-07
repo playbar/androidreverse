@@ -15,7 +15,7 @@
 
     unordered_set synopsis
 
-#include <initializer_list>
+#include "my_initializer_list"
 
 namespace std
 {
@@ -319,17 +319,17 @@ template <class Value, class Hash, class Pred, class Alloc>
 
 */
 
-#include <__config>
+#include "my__config"
 #include <__hash_table>
 #include <functional>
 
-#include <__debug>
+#include "my__debug"
 
 #if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
 #pragma GCC system_header
 #endif
 
-_LIBCPP_BEGIN_NAMESPACE_STD
+_LIBCPP_BEGIN_NAMESPACE_BAR
 
 template <class _Value, class _Hash = hash<_Value>, class _Pred = equal_to<_Value>,
           class _Alloc = allocator<_Value> >
@@ -1345,6 +1345,6 @@ operator!=(const unordered_multiset<_Value, _Hash, _Pred, _Alloc>& __x,
     return !(__x == __y);
 }
 
-_LIBCPP_END_NAMESPACE_STD
+_LIBCPP_END_NAMESPACE_BAR
 
 #endif  // _LIBCPP_UNORDERED_SET

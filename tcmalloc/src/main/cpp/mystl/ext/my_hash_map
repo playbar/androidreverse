@@ -199,11 +199,11 @@ template <class Key, class T, class Hash, class Pred, class Alloc>
 
 */
 
-#include <__config>
+#include "my__config"
 #include <__hash_table>
 #include <functional>
 #include <stdexcept>
-#include <type_traits>
+#include "my_type_traits"
 #include <ext/__hash>
 
 #if __DEPRECATED

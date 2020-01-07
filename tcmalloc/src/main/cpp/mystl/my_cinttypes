@@ -16,7 +16,7 @@
 
 This entire header is C99 / C++0X
 
-#include <cstdint>  // <cinttypes> includes <cstdint>
+#include "my_cstdint"  // <cinttypes> includes <cstdint>
 
 Macros:
 
@@ -235,15 +235,15 @@ uintmax_t wcstoumax(const wchar_t* restrict nptr, wchar_t** restrict endptr, int
 }  // std
 */
 
-#include <__config>
-#include <cstdint>
+#include "my__config"
+#include "my_cstdint"
 #include <inttypes.h>
 
 #if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
 #pragma GCC system_header
 #endif
 
-_LIBCPP_BEGIN_NAMESPACE_STD
+_LIBCPP_BEGIN_NAMESPACE_BAR
 
 using::imaxdiv_t;
 using::imaxabs;
@@ -253,6 +253,6 @@ using::strtoumax;
 using::wcstoimax;
 using::wcstoumax;
 
-_LIBCPP_END_NAMESPACE_STD
+_LIBCPP_END_NAMESPACE_BAR
 
 #endif  // _LIBCPP_CINTTYPES

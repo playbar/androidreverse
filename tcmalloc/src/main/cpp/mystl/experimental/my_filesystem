@@ -217,7 +217,7 @@
 */
 
 #include <experimental/__config>
-#include <cstddef>
+#include "my_cstddef"
 #include <chrono>
 #include <iterator>
 #include <iosfwd>
@@ -230,7 +230,7 @@
 #include <iomanip> // for quoted
 #include <string_view>
 
-#include <__debug>
+#include "my__debug"
 
 #if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
 #pragma GCC system_header

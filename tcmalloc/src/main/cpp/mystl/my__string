@@ -52,22 +52,22 @@ template <> struct char_traits<wchar_t>;
 
 */
 
-#include <__config>
+#include "my__config"
 #include <algorithm>  // for search and min
 #include <cstdio>     // For EOF.
 #include <memory>     // for __murmur2_or_cityhash
 
-#include <__debug>
+#include "my__debug"
 
 #if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
 #pragma GCC system_header
 #endif
 
 _LIBCPP_PUSH_MACROS
-#include <__undef_macros>
+#include "my__undef_macros"
 
 
-_LIBCPP_BEGIN_NAMESPACE_STD
+_LIBCPP_BEGIN_NAMESPACE_BAR
 
 // char_traits
 
@@ -870,7 +870,7 @@ struct __quoted_output_proxy
     //  This would be a nice place for a string_ref 
 };
 
-_LIBCPP_END_NAMESPACE_STD
+_LIBCPP_END_NAMESPACE_BAR
 
 _LIBCPP_POP_MACROS
 

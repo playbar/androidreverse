@@ -18,7 +18,7 @@
 #pragma GCC system_header
 #endif
 
-_LIBCPP_BEGIN_NAMESPACE_STD
+_LIBCPP_BEGIN_NAMESPACE_BAR
 
 template <class _T1, class _T2> struct _LIBCPP_TEMPLATE_VIS pair;
 template <class _Tp> class _LIBCPP_TEMPLATE_VIS reference_wrapper;
@@ -4362,7 +4362,7 @@ struct __can_extract_map_key<_ValTy, _Key, _Key, _RawValTy>
 
 #endif
 
-_LIBCPP_END_NAMESPACE_STD
+_LIBCPP_END_NAMESPACE_BAR
 
 #if _LIBCPP_STD_VER > 14
 // std::byte

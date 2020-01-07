@@ -20,7 +20,7 @@
 #endif
 
 
-_LIBCPP_BEGIN_NAMESPACE_STD
+_LIBCPP_BEGIN_NAMESPACE_BAR
 
 template <class _Tp> class _LIBCPP_TEMPLATE_VIS tuple_size;
 
@@ -551,6 +551,6 @@ struct __sfinae_assign_base<false, true> {
 };
 #endif // _LIBCPP_STD_VER > 14
 
-_LIBCPP_END_NAMESPACE_STD
+_LIBCPP_END_NAMESPACE_BAR
 
 #endif  // _LIBCPP___TUPLE

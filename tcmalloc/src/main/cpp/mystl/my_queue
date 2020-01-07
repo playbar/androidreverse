@@ -166,7 +166,7 @@ template <class T, class Container, class Compare>
 
 */
 
-#include <__config>
+#include "my__config"
 #include <deque>
 #include <vector>
 #include <functional>
@@ -176,7 +176,7 @@ template <class T, class Container, class Compare>
 #pragma GCC system_header
 #endif
 
-_LIBCPP_BEGIN_NAMESPACE_STD
+_LIBCPP_BEGIN_NAMESPACE_BAR
 
 template <class _Tp, class _Container = deque<_Tp> > class _LIBCPP_TEMPLATE_VIS queue;
 
@@ -733,6 +733,6 @@ struct _LIBCPP_TEMPLATE_VIS uses_allocator<priority_queue<_Tp, _Container, _Comp
 {
 };
 
-_LIBCPP_END_NAMESPACE_STD
+_LIBCPP_END_NAMESPACE_BAR
 
 #endif  // _LIBCPP_QUEUE

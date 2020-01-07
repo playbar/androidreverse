@@ -90,19 +90,19 @@ inline namespace fundamentals_v1 {
 #include <experimental/__config>
 #include <functional>
 #include <algorithm>
-#include <type_traits>
+#include "my_type_traits"
 #include <vector>
 #include <array>
 #include <unordered_map>
 
-#include <__debug>
+#include "my__debug"
 
 #if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
 #pragma GCC system_header
 #endif
 
 _LIBCPP_PUSH_MACROS
-#include <__undef_macros>
+#include "my__undef_macros"
 
 
 _LIBCPP_BEGIN_NAMESPACE_LFTS

@@ -82,7 +82,7 @@ void *aligned_alloc(size_t alignment, size_t size);                       // C11
 
 */
 
-#include <__config>
+#include "my__config"
 #include <stdlib.h>
 
 #if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
@@ -95,7 +95,7 @@ void *aligned_alloc(size_t alignment, size_t size);                       // C11
 #define _LIBCPP_UNREACHABLE() _VSTD::abort()
 #endif
 
-_LIBCPP_BEGIN_NAMESPACE_STD
+_LIBCPP_BEGIN_NAMESPACE_BAR
 
 using ::size_t;
 using ::div_t;
@@ -159,6 +159,6 @@ using ::quick_exit;
 using ::aligned_alloc;
 #endif
 
-_LIBCPP_END_NAMESPACE_STD
+_LIBCPP_END_NAMESPACE_BAR
 
 #endif  // _LIBCPP_CSTDLIB

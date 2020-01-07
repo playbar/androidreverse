@@ -8,8 +8,8 @@
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef _LIBCPP_UTILITY
-#define _LIBCPP_UTILITY
+#ifndef _MY_BAR_UTILITY
+#define _MY_BAR_UTILITY
 
 /*
     utility synopsis
@@ -194,20 +194,20 @@ template <size_t I>
 
 */
 
-#include <__config>
-#include <__tuple>
-#include <type_traits>
-#include <initializer_list>
-#include <cstddef>
-#include <cstring>
-#include <cstdint>
-#include <__debug>
+#include "my__config"
+#include "my__tuple"
+#include "my_type_traits"
+#include "my_initializer_list"
+#include "my_cstddef"
+#include "my_cstring"
+#include "my_cstdint"
+#include "my__debug"
 
 #if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
 #pragma GCC system_header
 #endif
 
-_LIBCPP_BEGIN_NAMESPACE_STD
+_LIBCPP_BEGIN_NAMESPACE_BAR
 
 namespace rel_ops
 {
@@ -951,7 +951,7 @@ _Size
 __loadword(const void* __p)
 {
     _Size __r;
-    std::memcpy(&__r, __p, sizeof(__r));
+    bar::memcpy(&__r, __p, sizeof(__r));
     return __r;
 }
 
@@ -1593,6 +1593,6 @@ using __enable_hash_helper = _Type;
 
 #endif // !_LIBCPP_CXX03_LANG
 
-_LIBCPP_END_NAMESPACE_STD
+_LIBCPP_END_NAMESPACE_BAR
 
 #endif  // _LIBCPP_UTILITY

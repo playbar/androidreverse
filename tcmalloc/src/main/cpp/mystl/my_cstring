@@ -8,8 +8,8 @@
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef _LIBCPP_CSTRING
-#define _LIBCPP_CSTRING
+#ifndef _MY_BAR_CSTRING
+#define _MY_BAR_CSTRING
 
 /*
     cstring synopsis
@@ -57,14 +57,14 @@ size_t strlen(const char* s);
 
 */
 
-#include <__config>
-#include <string.h>
+#include "my__config"
+#include "my_string.h"
 
 #if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
 #pragma GCC system_header
 #endif
 
-_LIBCPP_BEGIN_NAMESPACE_STD
+_LIBCPP_BEGIN_NAMESPACE_BAR
 
 using ::size_t;
 using ::memcpy;
@@ -92,6 +92,6 @@ using ::memset;
 using ::strerror;
 using ::strlen;
 
-_LIBCPP_END_NAMESPACE_STD
+_LIBCPP_END_NAMESPACE_BAR
 
 #endif  // _LIBCPP_CSTRING

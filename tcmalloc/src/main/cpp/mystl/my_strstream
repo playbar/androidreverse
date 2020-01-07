@@ -127,7 +127,7 @@ private:
 
 */
 
-#include <__config>
+#include "my__config"
 #include <ostream>
 #include <istream>
 
@@ -135,7 +135,7 @@ private:
 #pragma GCC system_header
 #endif
 
-_LIBCPP_BEGIN_NAMESPACE_STD
+_LIBCPP_BEGIN_NAMESPACE_BAR
 
 class _LIBCPP_TYPE_VIS strstreambuf
     : public streambuf
@@ -395,6 +395,6 @@ private:
     strstreambuf __sb_; // exposition only
 };
 
-_LIBCPP_END_NAMESPACE_STD
+_LIBCPP_END_NAMESPACE_BAR
 
 #endif  // _LIBCPP_STRSTREAM

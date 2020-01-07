@@ -15,7 +15,7 @@
     experimental/type_traits synopsis
 
 // C++1y
-#include <type_traits>
+#include "my_type_traits"
 
 namespace std {
 namespace experimental {
@@ -221,7 +221,7 @@ inline namespace fundamentals_v1 {
 
 #if _LIBCPP_STD_VER > 11
 
-#include <type_traits>
+#include "my_type_traits"
 
 #if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
 #pragma GCC system_header

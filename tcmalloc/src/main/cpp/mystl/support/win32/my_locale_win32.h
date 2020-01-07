@@ -11,7 +11,7 @@
 #ifndef _LIBCPP_SUPPORT_WIN32_LOCALE_WIN32_H
 #define _LIBCPP_SUPPORT_WIN32_LOCALE_WIN32_H
 
-#include <__config>
+#include "my__config"
 #include <stdio.h>
 #include <xlocinfo.h> // _locale_t
 

@@ -8,13 +8,13 @@
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef _LIBCPP_ALGORITHM
-#define _LIBCPP_ALGORITHM
+#ifndef _MY_BAR_ALGORITHM
+#define _MY_BAR_ALGORITHM
 
 /*
     algorithm synopsis
 
-#include <initializer_list>
+#include "my_initializer_list"
 
 namespace std
 {
@@ -635,14 +635,14 @@ template <class BidirectionalIterator, class Compare>
 
 */
 
-#include <__config>
-#include <initializer_list>
-#include <type_traits>
+#include "my__config"
+#include "my_initializer_list"
+#include "my_type_traits"
 #include <cstring>
 #include <utility> // needed to provide swap_ranges.
-#include <memory>
+#include "my_memory"
 #include <iterator>
-#include <cstddef>
+#include "my_cstddef"
 
 #if defined(__IBMCPP__)
 #include "support/ibm/support.h"
@@ -651,17 +651,17 @@ template <class BidirectionalIterator, class Compare>
 #include <intrin.h>
 #endif
 
-#include <__debug>
+#include "my__debug"
 
 #if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
 #pragma GCC system_header
 #endif
 
 _LIBCPP_PUSH_MACROS
-#include <__undef_macros>
+#include "my__undef_macros"
 
 
-_LIBCPP_BEGIN_NAMESPACE_STD
+_LIBCPP_BEGIN_NAMESPACE_BAR
 
 // I'd like to replace these with _VSTD::equal_to<void>, but can't because:
 //   * That only works with C++14 and later, and
@@ -5897,7 +5897,7 @@ prev_permutation(_BidirectionalIterator __first, _BidirectionalIterator __last)
                                   __less<typename iterator_traits<_BidirectionalIterator>::value_type>());
 }
 
-_LIBCPP_END_NAMESPACE_STD
+_LIBCPP_END_NAMESPACE_BAR
 
 _LIBCPP_POP_MACROS
 

@@ -14,7 +14,7 @@
 #include <experimental/__config>
 #include <experimental/utility> // for erased_type
 #include <__functional_base>
-#include <type_traits>
+#include "my_type_traits"
 
 _LIBCPP_BEGIN_NAMESPACE_LFTS
 

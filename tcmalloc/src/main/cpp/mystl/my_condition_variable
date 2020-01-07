@@ -107,7 +107,7 @@ public:
 
 */
 
-#include <__config>
+#include "my__config"
 #include <__mutex_base>
 #include <memory>
 
@@ -117,7 +117,7 @@ public:
 
 #ifndef _LIBCPP_HAS_NO_THREADS
 
-_LIBCPP_BEGIN_NAMESPACE_STD
+_LIBCPP_BEGIN_NAMESPACE_BAR
 
 class _LIBCPP_TYPE_VIS condition_variable_any
 {
@@ -262,7 +262,7 @@ condition_variable_any::wait_for(_Lock& __lock,
 _LIBCPP_FUNC_VIS
 void notify_all_at_thread_exit(condition_variable& cond, unique_lock<mutex> lk);
 
-_LIBCPP_END_NAMESPACE_STD
+_LIBCPP_END_NAMESPACE_BAR
 
 #endif // !_LIBCPP_HAS_NO_THREADS
 

@@ -385,7 +385,7 @@ swap(multiset<Key, Compare, Allocator>& x, multiset<Key, Compare, Allocator>& y)
 
 */
 
-#include <__config>
+#include "my__config"
 #include <__tree>
 #include <functional>
 
@@ -393,7 +393,7 @@ swap(multiset<Key, Compare, Allocator>& x, multiset<Key, Compare, Allocator>& y)
 #pragma GCC system_header
 #endif
 
-_LIBCPP_BEGIN_NAMESPACE_STD
+_LIBCPP_BEGIN_NAMESPACE_BAR
 
 template <class _Key, class _Compare = less<_Key>,
           class _Allocator = allocator<_Key> >
@@ -1213,6 +1213,6 @@ swap(multiset<_Key, _Compare, _Allocator>& __x,
     __x.swap(__y);
 }
 
-_LIBCPP_END_NAMESPACE_STD
+_LIBCPP_END_NAMESPACE_BAR
 
 #endif  // _LIBCPP_SET

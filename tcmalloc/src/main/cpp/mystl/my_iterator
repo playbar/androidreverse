@@ -8,8 +8,8 @@
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef _LIBCPP_ITERATOR
-#define _LIBCPP_ITERATOR
+#ifndef _MY_BAR_ITERATOR
+#define _MY_BAR_ITERATOR
 
 /*
     iterator synopsis
@@ -422,23 +422,23 @@ template <class E> constexpr const E* data(initializer_list<E> il) noexcept;    
 
 */
 
-#include <__config>
-#include <iosfwd> // for forward declarations of vector and string.
-#include <__functional_base>
-#include <type_traits>
-#include <cstddef>
-#include <initializer_list>
+#include "my__config"
+#include "my_iosfwd" // for forward declarations of vector and string.
+#include "my__functional_base"
+#include "my_type_traits"
+#include "my_cstddef"
+#include "my_initializer_list"
 #ifdef __APPLE__
 #include <Availability.h>
 #endif
 
-#include <__debug>
+#include "my__debug"
 
 #if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER)
 #pragma GCC system_header
 #endif
 
-_LIBCPP_BEGIN_NAMESPACE_STD
+_LIBCPP_BEGIN_NAMESPACE_BAR
 
 struct _LIBCPP_TEMPLATE_VIS input_iterator_tag {};
 struct _LIBCPP_TEMPLATE_VIS output_iterator_tag {};
@@ -1823,6 +1823,6 @@ constexpr const _Ep* data(initializer_list<_Ep> __il) noexcept { return __il.beg
 #endif
 
 
-_LIBCPP_END_NAMESPACE_STD
+_LIBCPP_END_NAMESPACE_BAR
 
 #endif  // _LIBCPP_ITERATOR

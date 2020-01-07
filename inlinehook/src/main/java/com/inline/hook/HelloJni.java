@@ -1,7 +1,8 @@
 
-package com.inlinehook;
+package com.inline.hook;
 
 import android.app.Activity;
+import android.opengl.GLException;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +15,7 @@ public class HelloJni extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        GLESHook.initHook();
         /* Retrieve our TextView and set its content.
          * the text is retrieved by calling a native
          * function.
@@ -72,7 +74,7 @@ public class HelloJni extends Activity {
     static
     {
         try {
-            System.loadLibrary("inlinehook");
+            System.loadLibrary("glhook");
         }catch (Exception e){
             Log.e("error", e.getMessage());
         }

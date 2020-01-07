@@ -20,11 +20,15 @@ enum ele7en_status {
 	ELE7EN_ERROR_FUNCTION_NOT_FOUND
 };
 
+enum ele7en_status
+registerInlineHook(uint32_t target_addr, uint32_t new_addr, uint32_t **proto_addr);
 
-enum ele7en_status registerInlineHook(uint32_t target_addr, uint32_t new_addr, uint32_t **proto_addr);
 enum ele7en_status inlineUnHook(uint32_t target_addr);
+
 void inlineUnHookAll();
+
 enum ele7en_status inlineHook(uint32_t target_addr);
+
 void inlineHookAll();
 
 #ifdef __cplusplus

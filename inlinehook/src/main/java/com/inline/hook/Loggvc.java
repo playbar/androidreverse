@@ -1,4 +1,4 @@
-package com.inlinehook;
+package com.inline.hook;
 
 
 import android.util.Log;

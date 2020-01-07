@@ -198,26 +198,26 @@ int new_puts(const char *string)
     old_puts("inlineHook success");
 }
 
-int hook()
-{
-    if (registerInlineHook((uint32_t) puts, (uint32_t) new_puts, (uint32_t **) &old_puts) != ELE7EN_OK) {
-        return -1;
-    }
-    if (inlineHook((uint32_t) puts) != ELE7EN_OK) {
-        return -1;
-    }
-
-    return 0;
-}
-
-int unHook()
-{
-    if (inlineUnHook((uint32_t) puts) != ELE7EN_OK) {
-        return -1;
-    }
-
-    return 0;
-}
+//int hook()
+//{
+//    if (registerInlineHook((uint32_t) puts, (uint32_t) new_puts, (uint32_t **) &old_puts) != ELE7EN_OK) {
+//        return -1;
+//    }
+//    if (inlineHook((uint32_t) puts) != ELE7EN_OK) {
+//        return -1;
+//    }
+//
+//    return 0;
+//}
+//
+//int unHook()
+//{
+//    if (inlineUnHook((uint32_t) puts) != ELE7EN_OK) {
+//        return -1;
+//    }
+//
+//    return 0;
+//}
 
 void testhook()
 {
@@ -229,7 +229,7 @@ void testhook()
 }
 
 JNIEXPORT void JNICALL
-Java_com_inlinehook_HelloJni_nativeMsg(JNIEnv* env, jobject thiz)
+Java_com_inline_hook_HelloJni_nativeMsg(JNIEnv* env, jobject thiz)
 {
 //    loadLib();
     testhook();
@@ -240,7 +240,7 @@ Java_com_inlinehook_HelloJni_nativeMsg(JNIEnv* env, jobject thiz)
 }
 
 JNIEXPORT jstring JNICALL
-Java_com_inlinehook_HelloJni_stringFromJNI( JNIEnv* env, jobject thiz )
+Java_com_inline_hook_HelloJni_stringFromJNI( JNIEnv* env, jobject thiz )
 {
 
     if( JNI_OK == (*env)->MonitorEnter(env, thiz)){
@@ -290,7 +290,7 @@ Java_com_inlinehook_HelloJni_stringFromJNI( JNIEnv* env, jobject thiz )
 }
 
 JNIEXPORT jstring JNICALL
-Java_com_inlinehook_HelloJni_stringFromJNI_11(JNIEnv* env, jobject thiz )
+Java_com_inline_hook_HelloJni_stringFromJNI_11(JNIEnv* env, jobject thiz )
 {
     int result = 0;
 //    system("pwd");
@@ -310,7 +310,7 @@ Java_com_inlinehook_HelloJni_stringFromJNI_11(JNIEnv* env, jobject thiz )
 }
 
 JNIEXPORT jobjectArray JNICALL
-Java_com_inlinehook_HelloJni_getStructArray(JNIEnv *env, jobject jobj)
+Java_com_inline_hook_HelloJni_getStructArray(JNIEnv *env, jobject jobj)
 {
     jobjectArray infos = NULL;	// jobjectArray 为指针类型
     jclass clsDiskInfo = NULL;		// jclass 为指针类型
@@ -321,7 +321,7 @@ Java_com_inlinehook_HelloJni_getStructArray(JNIEnv *env, jobject jobj)
     jsize len;
     int i;
 
-    clsDiskInfo = (*env)->FindClass(env, "com/inlinehook/DiskInfo");
+    clsDiskInfo = (*env)->FindClass(env, "com/inline/hook/DiskInfo");
     len = 50;
     infos = (*env)->NewObjectArray(env, len, clsDiskInfo, NULL);
     nameID = (*env)->GetFieldID(env, clsDiskInfo, "name", "Ljava/lang/String;");

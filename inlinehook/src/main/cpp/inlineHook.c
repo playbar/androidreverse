@@ -328,7 +328,7 @@ void inlineUnHookAll()
 	pid_t pid;
 	int i;
 
-	pid = freeze(NULL, ACTION_DISABLE);
+//	pid = freeze(NULL, ACTION_DISABLE);
 
 	for (i = 0; i < info.size; ++i) {
 		if (info.item[i].status == HOOKED) {
@@ -337,7 +337,7 @@ void inlineUnHookAll()
 		}
 	}
 
-	unFreeze(pid);
+//	unFreeze(pid);
 }
 
 static void doInlineHook(struct inlineHookItem *item)
@@ -392,11 +392,11 @@ enum ele7en_status inlineHook(uint32_t target_addr)
 	if (item->status == REGISTERED) {
 		pid_t pid;
 
-		pid = freeze(item, ACTION_ENABLE);
+//		pid = freeze(item, ACTION_ENABLE);
 
 		doInlineHook(item);
 
-		unFreeze(pid);
+//		unFreeze(pid);
 
 		return ELE7EN_OK;
 	}

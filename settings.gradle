@@ -14,7 +14,7 @@
 //include ':InjectHook'
 //include ':InjectHookApk'
 //include ':injector'
-//include ':inlinehook'
+include ':inlinehook'
 //include ':inputmethodholder'
 //include ':valgrind'
 include ':tcmalloc'

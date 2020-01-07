@@ -4,7 +4,7 @@ android {
     compileSdkVersion 19
 //    buildToolsVersion '26.0.2'
     defaultConfig {
-        applicationId 'com.inlinehook'
+        applicationId 'com.inline.hook'
         minSdkVersion 18
         targetSdkVersion 19
 //        renderscriptTargetApi 19

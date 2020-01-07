@@ -236,7 +236,7 @@ static int relocateInstructionInThumb16(uint32_t pc, uint16_t instruction, uint1
 		}
 		else if (type == ADR_THUMB16) {
 			r = (instruction & 0x700) >> 8;
-			value = ALIGN_PC(pc) + (instruction & 0xFF) << 2;
+			value = (ALIGN_PC(pc)) + (instruction & 0xFF) << 2;
 		}
 		else {
 			r = (instruction & 0x700) >> 8;

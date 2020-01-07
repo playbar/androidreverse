@@ -12,6 +12,7 @@
 
 #include "tcmalloctest.h"
 #include "lib/test_library.hpp"
+#include "mystl/my_array"
 
 
 using std::min;
@@ -77,6 +78,9 @@ void testTcMalloc()
 JNIEXPORT void JNICALL Java_com_tcmalloc_test_HelloJni_nativeMsg(JNIEnv* env, jobject thiz)
 {
     int result = 0;
+
+    typedef my::array<int, 4> Myarray;
+    Myarray c0 = { 0, 1, 2 };
 
 //    system("pwd");
     result = system("mkdir /data/data/com.bar.hellojni/temp");

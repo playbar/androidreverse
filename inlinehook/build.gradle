@@ -1,21 +1,19 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 19
+    compileSdkVersion 27
 //    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId 'com.inline.hook'
-        minSdkVersion 18
-        targetSdkVersion 19
-//        renderscriptTargetApi 19
-//        renderscriptSupportModeEnabled true
+        minSdkVersion 27
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         externalNativeBuild {
             cmake {
-                abiFilters 'armeabi-v7a'
-                arguments '-DANDROID_TOOLCHAIN=clang'
-
+                arguments '-DANDROID_TOOLCHAIN=clang',
+                          "-DANDROID_ARM_MODE=arm",
+                          "-DANDROID_STL=c++_shared"
             }
         }
     }
@@ -24,6 +22,12 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+
+        debug {
+            applicationIdSuffix ".debug"
+            debuggable true
+        }
+
     }
     externalNativeBuild {
         cmake {

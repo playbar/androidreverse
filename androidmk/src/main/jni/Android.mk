@@ -13,8 +13,11 @@
 # limitations under the License.
 #
 LOCAL_PATH := $(call my-dir)
-JNI_SRC_PATH := $(LOCAL_PATH)/../../../../native-plasma/app/src/main/cpp
 include $(CLEAR_VARS)
+
+APP_STL := c++_shared # Or system, or none.
+APP_CFLAGS := -fsanitize=address -fno-omit-frame-pointer
+APP_LDFLAGS := -fsanitize=address
 
 LOCAL_MODULE    := mktest
 LOCAL_SRC_FILES := assembly.s hellojni.c load.c

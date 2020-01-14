@@ -292,6 +292,8 @@ Java_com_mktest_HelloJni_stringFromJNI_11(JNIEnv* env, jobject thiz )
         LOGE("error");
     }
 
+//    char *pdata = (char*)malloc(30);
+
     pid_t pid = getpid();
     uid_t uid = getuid();
 

@@ -14,25 +14,29 @@ ADD_DEFINITIONS(-DGL_GLEXT_PROTOTYPES)
 
 add_library(glhook SHARED
         abort_message.cpp
-       inlineHook.c
-       hookutils.c
-       relocate.c
-       eglexthook.c
-       gl2exthook.c
-       eglhook.c
-       gleshook.c
+#       inlineHook.c
+#       hookutils.c
+#       relocate.c
+#       eglexthook.c
+#       gl2exthook.c
+#       eglhook.c
+#       gleshook.c
        hellojni.c
-       threadhook.c
-       callstack.c
-       elf_common.cpp
-       elf_hooker.cpp
-       elf_main.cpp
-       elf_module.cpp
+#       threadhook.c
+#       callstack.c
+#       elf_common.cpp
+#       elf_hooker.cpp
+#       elf_main.cpp
+#       elf_module.cpp
        #exporthook.c
        #exportutil.c
        #andhook.c
        #syscallstack.c
        )
+
+target_compile_options(glhook PUBLIC -fsanitize=address -fno-omit-frame-pointer)
+set_target_properties(glhook PROPERTIES LINK_FLAGS -fsanitize=address)
+
 
 target_include_directories(glhook PRIVATE
                           ${CMAKE_CURRENT_SOURCE_DIR}

@@ -15,7 +15,7 @@ public class HelloJni extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        GLESHook.initHook();
+//        GLESHook.initHook();
         /* Retrieve our TextView and set its content.
          * the text is retrieved by calling a native
          * function.

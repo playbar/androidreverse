@@ -5,7 +5,7 @@
 //include ':crash'
 //include ':elfhook'
 //include ':gothook'
-//include ':androidmk'
+include ':androidmk'
 //include ':hookzz'
 //include ':exporthook'
 //include ':swathook'

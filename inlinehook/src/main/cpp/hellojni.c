@@ -37,6 +37,33 @@ FP_GetTicks gpFunGetTicks;
 
 extern JavaVM *gs_jvm;
 
+
+void testOverFlow1()
+{
+    int a1 = 0xFF99FF;
+    int b1 = 0xEEffaa;
+
+    double c1 = a1 * b1;
+
+    double d1 = c1 / 25 * 3;
+
+    int d2 = (a1 * b1) / 25 * 3;
+
+    LOGE("c1 = %lf, d1 = %lf, d2 = %d \n", c1, d1, d2 );
+    return;
+}
+
+void testOverFlow2()
+{
+    int a1 = 0xFF99FF;
+    int b1 = 0xEEffaa;
+
+    int d2 = (a1 * b1) / 25 * 3;
+
+    LOGE("d2 = %d \n", d2 );
+    return;
+}
+
 void testcode6()
 {
     FILE *stream;
@@ -221,16 +248,18 @@ int new_puts(const char *string)
 
 void testhook()
 {
-    puts("test");
-    hook();
-    puts("test");
-    unHook();
+//    puts("test");
+//    hook();
+//    puts("test");
+//    unHook();
     puts("test");
 }
 
 JNIEXPORT void JNICALL
 Java_com_inline_hook_HelloJni_nativeMsg(JNIEnv* env, jobject thiz)
 {
+    testOverFlow1();
+    testOverFlow2();
 //    loadLib();
     testhook();
     int i = 1, j = 2;

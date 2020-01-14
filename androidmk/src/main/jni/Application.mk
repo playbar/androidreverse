@@ -1,4 +1,5 @@
 APP_ABI := all
-APP_PLATFORM := android-24
 
+LOCAL_ARM_MODE := arm
+APP_PLATFORM := android-27
 NDK_TOOLCHAIN_VERSION := clang

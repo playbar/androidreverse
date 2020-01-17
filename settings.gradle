@@ -16,6 +16,6 @@
 //include ':injector'
 //include ':inlinehook'
 //include ':inputmethodholder'
-//include ':valgrind'
-include ':tcmalloc'
+include ':valgrind'
+//include ':tcmalloc'
 //include ':nativeutils'

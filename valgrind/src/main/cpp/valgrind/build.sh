@@ -47,5 +47,5 @@ fi
 
 make clean
 make -j4
-#make -j4 install DESTDIR=`pwd`/install_valgrind_arm$1
+make -j4 install DESTDIR=`pwd`/install_valgrind_arm$1
 

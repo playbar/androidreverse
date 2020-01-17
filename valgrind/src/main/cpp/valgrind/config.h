@@ -216,7 +216,7 @@
 /* #undef HAVE_PTHREAD_YIELD */
 
 /* Define to 1 if you have the `PTRACE_GETREGS' ptrace request. */
-#define HAVE_PTRACE_GETREGS 1
+/* #undef HAVE_PTRACE_GETREGS */
 
 /* Define to 1 if you have the `readlinkat' function. */
 #define HAVE_READLINKAT 1
@@ -309,7 +309,7 @@
 #define HAVE_SYS_TYPES_H 1
 
 /* Define to 1 if <sys/user.h> defines struct user_regs_struct */
-/* #undef HAVE_SYS_USER_REGS */
+#define HAVE_SYS_USER_REGS 1
 
 /* can use __thread to define thread-local variables */
 #define HAVE_TLS 1

@@ -73,4 +73,5 @@ target_link_libraries(tcmalloctest
 target_include_directories(tcmalloctest PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/tcmalloc
         ${CMAKE_CURRENT_SOURCE_DIR}/lib
+        ${CMAKE_CURRENT_SOURCE_DIR}
         )

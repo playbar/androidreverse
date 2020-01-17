@@ -1,33 +1,44 @@
 #!/bin/sh
-export HWKIND=generic
-# 需要先执行Android NDK提供的make_standalone_toolchain.py 生成工具链
-export AR=/program/ndk/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64/bin/arm-linux-androideabi-ar
-export LD=/program/ndk/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64/bin/arm-linux-androideabi-ld
-export CC=/program/ndk/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64/bin/arm-linux-androideabi-gcc
-export CXX=/program/ndk/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64/bin/arm-linux-androideabi-g++
-export NM=/program/ndk/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64/bin/arm-linux-androideabi-nm
-export STRIP=/program/ndk/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64/bin/arm-linux-androideabi-strip
-export RANLIB=/program/ndk/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64/bin/arm-linux-androideabi-ranlib
- make clean
- 
-CPPFLAGS="--sysroot=/program/ndk/sysroot/sysroot -DANDROID_HARDWARE_$HWKIND -D__ANDROID_API__=21" \
-CFLAGS="--sysroot=/program/ndk/sysroot/sysroot -D__ANDROID_API__=21" \
-LIBS="-L/program/ndk/sysroot/sysroot/usr/lib" \
-./configure --prefix=/data/local/tmp/local/Inst \
-   --host=armv7-unknown-linux \
-   --target=arm-linux-androideabi --with-tmpdir=/sdcard
 
-make -j4 TARGET=ARMV7
-if [ $? -ne 0 ];
+set -e
+echo $@
+echo $*
+
+if [[ $1 != 64 ]]
 then
-    exit 1
+	export NDKROOT=/program/ndk/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64/bin
+	export SYSROOT=/program/ndk/sysroot
+	export HWKIND=generic
+	export AR=$NDKROOT/arm-linux-androideabi-ar
+	export LD=$NDKROOT/arm-linux-androideabi-ld
+	export CC=$NDKROOT/arm-linux-androideabi-gcc
+	#export RANLIB=$NDKROOT/arm-linux-androideabi-ranlib
+else 
+	export NDKROOT=/program/ndk/toolchains/aarch64-linux-android-4.9/prebuilt/darwin-x86_64/bin
+	export SYSROOT=/program/ndk//sysroot
+	export HWKIND=generic
+	export AR=$NDKROOT/aarch64-linux-android-ar
+	export LD=$NDKROOT/aarch64-linux-android-ld
+	export CC=$NDKROOT/aarch64-linux-android-gcc
+fi
+ls -l $AR $LD $CC $RANLIB
+
+./autogen.sh
+
+if [[ $1 != 64 ]]; then
+CPPFLAGS="--sysroot=$SYSROOT" \
+CFLAGS="--sysroot=$SYSROOT" \
+./configure --prefix=/vendor/valgrind \
+--host=armv7-unknown-linux --target=armv7-unknown-linux \
+--with-tmpdir=/sdcard
 else
-    echo "build success!"
+CPPFLAGS="--sysroot=$SYSROOT" \
+CFLAGS="--sysroot=$SYSROOT" \
+./configure --prefix=/vendor/valgrind \
+--host=aarch64-unknown-linux --target=aarch64-unknown-linux \
+--with-tmpdir=/sdcard
 fi
 
-make -j4 install DESTDIR=`pwd`/Inst
-
-
-#adb push Inst/data/local /data/local/tmp/
-#export VALGRIND_LIB=/data/local/tmp/local/Inst/lib/valgrind
-#/data/local/tmp/local/Inst/bin/valgrind --log-file=/sdcard/leak.log --leak-check=full --undef-value-errors=no /data/local/tmp/kcg
+make clean
+make -j4
+make -j4 install DESTDIR=`pwd`/install_valgrind_arm$1

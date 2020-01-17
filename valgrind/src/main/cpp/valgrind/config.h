@@ -2,7 +2,7 @@
 /* config.h.in.  Generated from configure.ac by autoheader.  */
 
 /* Define to 1 if you're using Bionic */
-#define BIONIC_LIBC 1
+/* #undef BIONIC_LIBC */
 
 /* DARWIN_VERS value for Mac OS X 10.10 */
 /* #undef DARWIN_10_10 */
@@ -47,20 +47,20 @@
 /* #undef ENABLE_LTO */
 
 /* path to GDB */
-#define GDB_PATH "/Users/xiaoqiang/workspace/android-ndk-arm-14/bin//gdb"
+#define GDB_PATH "/usr/bin/gdb"
 
 /* Define to 1 if index() and strlen() have been optimized heavily (x86 glibc
    >= 2.12) */
-/* #undef GLIBC_MANDATORY_INDEX_AND_STRLEN_REDIRECT */
+#define GLIBC_MANDATORY_INDEX_AND_STRLEN_REDIRECT 1
 
 /* Define to 1 if strlen() has been optimized heavily (amd64 glibc >= 2.10) */
-/* #undef GLIBC_MANDATORY_STRLEN_REDIRECT */
+#define GLIBC_MANDATORY_STRLEN_REDIRECT 1
 
 /* Define to 1 if you have the <asm/unistd.h> header file. */
 #define HAVE_ASM_UNISTD_H 1
 
 /* Define to 1 if as supports fxsave64/fxrstor64. */
-/* #undef HAVE_AS_AMD64_FXSAVE64 */
+#define HAVE_AS_AMD64_FXSAVE64 1
 
 /* Define to 1 if as supports floating point phased out category. */
 /* #undef HAVE_AS_PPC_FPPO */
@@ -92,13 +92,13 @@
 #define HAVE_CLOCK_MONOTONIC 1
 
 /* Define to 1 if you have a dlinfo that can do RTLD_DI_TLS_MODID. */
-/* #undef HAVE_DLINFO_RTLD_DI_TLS_MODID */
+#define HAVE_DLINFO_RTLD_DI_TLS_MODID 1
 
 /* Define to 1 if the system has the type `Elf32_Chdr'. */
-/* #undef HAVE_ELF32_CHDR */
+#define HAVE_ELF32_CHDR 1
 
 /* Define to 1 if the system has the type `Elf64_Chdr'. */
-/* #undef HAVE_ELF64_CHDR */
+#define HAVE_ELF64_CHDR 1
 
 /* Define to 1 if you have the <endian.h> header file. */
 #define HAVE_ENDIAN_H 1
@@ -107,7 +107,7 @@
 #define HAVE_EPOLL_CREATE 1
 
 /* Define to 1 if you have the `epoll_pwait' function. */
-/* #undef HAVE_EPOLL_PWAIT */
+#define HAVE_EPOLL_PWAIT 1
 
 /* Define to 1 if you have the `eventfd' function. */
 #define HAVE_EVENTFD 1
@@ -116,7 +116,7 @@
 #define HAVE_EVENTFD_READ 1
 
 /* Define to 1 if you have the `getpagesize' function. */
-/* #undef HAVE_GETPAGESIZE */
+#define HAVE_GETPAGESIZE 1
 
 /* Define to 1 if you have the <inttypes.h> header file. */
 #define HAVE_INTTYPES_H 1
@@ -125,10 +125,10 @@
 #define HAVE_KLOGCTL 1
 
 /* Define to 1 if you have the `pthread' library (-lpthread). */
-/* #undef HAVE_LIBPTHREAD */
+#define HAVE_LIBPTHREAD 1
 
 /* Define to 1 if you have the `rt' library (-lrt). */
-/* #undef HAVE_LIBRT */
+#define HAVE_LIBRT 1
 
 /* Define to 1 if you have the `scf' library (-lscf). */
 /* #undef HAVE_LIBSCF */
@@ -149,34 +149,34 @@
 #define HAVE_MKDIR 1
 
 /* Define to 1 if you have a working `mmap' system call. */
-/* #undef HAVE_MMAP */
+#define HAVE_MMAP 1
 
 /* Define to 1 if you have the <mqueue.h> header file. */
-/* #undef HAVE_MQUEUE_H */
+#define HAVE_MQUEUE_H 1
 
 /* Define to 1 if you have the `mremap' function. */
 #define HAVE_MREMAP 1
 
 /* Define to 1 if you have the `ppoll' function. */
-/* #undef HAVE_PPOLL */
+#define HAVE_PPOLL 1
 
 /* Define to 1 if you have the `process_vm_readv' function. */
-/* #undef HAVE_PROCESS_VM_READV */
+#define HAVE_PROCESS_VM_READV 1
 
 /* Define to 1 if you have the `process_vm_writev' function. */
-/* #undef HAVE_PROCESS_VM_WRITEV */
+#define HAVE_PROCESS_VM_WRITEV 1
 
 /* Define to 1 if you have the `pthread_barrier_init' function. */
-/* #undef HAVE_PTHREAD_BARRIER_INIT */
+#define HAVE_PTHREAD_BARRIER_INIT 1
 
 /* Define to 1 if you have the `pthread_condattr_setclock' function. */
-/* #undef HAVE_PTHREAD_CONDATTR_SETCLOCK */
+#define HAVE_PTHREAD_CONDATTR_SETCLOCK 1
 
 /* Define to 1 if you have the `pthread_create@glibc2.0' function. */
 /* #undef HAVE_PTHREAD_CREATE_GLIBC_2_0 */
 
 /* Define to 1 if you have the `PTHREAD_MUTEX_ADAPTIVE_NP' constant. */
-/* #undef HAVE_PTHREAD_MUTEX_ADAPTIVE_NP */
+#define HAVE_PTHREAD_MUTEX_ADAPTIVE_NP 1
 
 /* Define to 1 if you have the `PTHREAD_MUTEX_ERRORCHECK_NP' constant. */
 #define HAVE_PTHREAD_MUTEX_ERRORCHECK_NP 1
@@ -185,10 +185,10 @@
 #define HAVE_PTHREAD_MUTEX_RECURSIVE_NP 1
 
 /* Define to 1 if you have the `pthread_mutex_timedlock' function. */
-/* #undef HAVE_PTHREAD_MUTEX_TIMEDLOCK */
+#define HAVE_PTHREAD_MUTEX_TIMEDLOCK 1
 
 /* Define to 1 if pthread_mutex_t has a member __data.__kind. */
-/* #undef HAVE_PTHREAD_MUTEX_T__DATA__KIND */
+#define HAVE_PTHREAD_MUTEX_T__DATA__KIND 1
 
 /* Define to 1 if pthread_mutex_t has a member called __m_kind. */
 /* #undef HAVE_PTHREAD_MUTEX_T__M_KIND */
@@ -210,28 +210,28 @@
 #define HAVE_PTHREAD_SETNAME_NP 1
 
 /* Define to 1 if you have the `pthread_spin_lock' function. */
-/* #undef HAVE_PTHREAD_SPIN_LOCK */
+#define HAVE_PTHREAD_SPIN_LOCK 1
 
 /* Define to 1 if you have the `pthread_yield' function. */
-/* #undef HAVE_PTHREAD_YIELD */
+#define HAVE_PTHREAD_YIELD 1
 
 /* Define to 1 if you have the `PTRACE_GETREGS' ptrace request. */
 #define HAVE_PTRACE_GETREGS 1
 
 /* Define to 1 if you have the `readlinkat' function. */
-/* #undef HAVE_READLINKAT */
+#define HAVE_READLINKAT 1
 
 /* Define to 1 if you have the `semtimedop' function. */
-/* #undef HAVE_SEMTIMEDOP */
+#define HAVE_SEMTIMEDOP 1
 
 /* Define to 1 if libstd++ supports annotating shared pointers */
-/* #undef HAVE_SHARED_POINTER_ANNOTATION */
+#define HAVE_SHARED_POINTER_ANNOTATION 1
 
 /* Define to 1 if you have the `signalfd' function. */
-/* #undef HAVE_SIGNALFD */
+#define HAVE_SIGNALFD 1
 
 /* Define to 1 if you have the `sigwaitinfo' function. */
-/* #undef HAVE_SIGWAITINFO */
+#define HAVE_SIGWAITINFO 1
 
 /* Define to 1 if you have the <stdint.h> header file. */
 #define HAVE_STDINT_H 1
@@ -264,7 +264,7 @@
 #define HAVE_SYSCALL 1
 
 /* Define to 1 if you have the <sys/endian.h> header file. */
-#define HAVE_SYS_ENDIAN_H 1
+/* #undef HAVE_SYS_ENDIAN_H */
 
 /* Define to 1 if you have the <sys/epoll.h> header file. */
 #define HAVE_SYS_EPOLL_H 1
@@ -309,7 +309,7 @@
 #define HAVE_SYS_TYPES_H 1
 
 /* Define to 1 if <sys/user.h> defines struct user_regs_struct */
-/* #undef HAVE_SYS_USER_REGS */
+#define HAVE_SYS_USER_REGS 1
 
 /* can use __thread to define thread-local variables */
 #define HAVE_TLS 1
@@ -462,7 +462,7 @@
 #define VERSION "3.15.0"
 
 /* Temporary files directory */
-#define VG_TMPDIR "/sdcard"
+#define VG_TMPDIR "/tmp"
 
 /* Define to `int' if <sys/types.h> doesn't define. */
 /* #undef gid_t */

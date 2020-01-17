@@ -2,7 +2,7 @@
 /* config.h.in.  Generated from configure.ac by autoheader.  */
 
 /* Define to 1 if you're using Bionic */
-/* #undef BIONIC_LIBC */
+#define BIONIC_LIBC 1
 
 /* DARWIN_VERS value for Mac OS X 10.10 */
 /* #undef DARWIN_10_10 */
@@ -47,20 +47,20 @@
 /* #undef ENABLE_LTO */
 
 /* path to GDB */
-#define GDB_PATH "/usr/bin/gdb"
+#define GDB_PATH "/no/gdb/was/found/at/configure/time"
 
 /* Define to 1 if index() and strlen() have been optimized heavily (x86 glibc
    >= 2.12) */
-#define GLIBC_MANDATORY_INDEX_AND_STRLEN_REDIRECT 1
+/* #undef GLIBC_MANDATORY_INDEX_AND_STRLEN_REDIRECT */
 
 /* Define to 1 if strlen() has been optimized heavily (amd64 glibc >= 2.10) */
-#define GLIBC_MANDATORY_STRLEN_REDIRECT 1
+/* #undef GLIBC_MANDATORY_STRLEN_REDIRECT */
 
 /* Define to 1 if you have the <asm/unistd.h> header file. */
 #define HAVE_ASM_UNISTD_H 1
 
 /* Define to 1 if as supports fxsave64/fxrstor64. */
-#define HAVE_AS_AMD64_FXSAVE64 1
+/* #undef HAVE_AS_AMD64_FXSAVE64 */
 
 /* Define to 1 if as supports floating point phased out category. */
 /* #undef HAVE_AS_PPC_FPPO */
@@ -92,13 +92,13 @@
 #define HAVE_CLOCK_MONOTONIC 1
 
 /* Define to 1 if you have a dlinfo that can do RTLD_DI_TLS_MODID. */
-#define HAVE_DLINFO_RTLD_DI_TLS_MODID 1
+/* #undef HAVE_DLINFO_RTLD_DI_TLS_MODID */
 
 /* Define to 1 if the system has the type `Elf32_Chdr'. */
-#define HAVE_ELF32_CHDR 1
+/* #undef HAVE_ELF32_CHDR */
 
 /* Define to 1 if the system has the type `Elf64_Chdr'. */
-#define HAVE_ELF64_CHDR 1
+/* #undef HAVE_ELF64_CHDR */
 
 /* Define to 1 if you have the <endian.h> header file. */
 #define HAVE_ENDIAN_H 1
@@ -125,10 +125,10 @@
 #define HAVE_KLOGCTL 1
 
 /* Define to 1 if you have the `pthread' library (-lpthread). */
-#define HAVE_LIBPTHREAD 1
+/* #undef HAVE_LIBPTHREAD */
 
 /* Define to 1 if you have the `rt' library (-lrt). */
-#define HAVE_LIBRT 1
+/* #undef HAVE_LIBRT */
 
 /* Define to 1 if you have the `scf' library (-lscf). */
 /* #undef HAVE_LIBSCF */
@@ -149,10 +149,10 @@
 #define HAVE_MKDIR 1
 
 /* Define to 1 if you have a working `mmap' system call. */
-#define HAVE_MMAP 1
+/* #undef HAVE_MMAP */
 
 /* Define to 1 if you have the <mqueue.h> header file. */
-#define HAVE_MQUEUE_H 1
+/* #undef HAVE_MQUEUE_H */
 
 /* Define to 1 if you have the `mremap' function. */
 #define HAVE_MREMAP 1
@@ -161,13 +161,13 @@
 #define HAVE_PPOLL 1
 
 /* Define to 1 if you have the `process_vm_readv' function. */
-#define HAVE_PROCESS_VM_READV 1
+/* #undef HAVE_PROCESS_VM_READV */
 
 /* Define to 1 if you have the `process_vm_writev' function. */
-#define HAVE_PROCESS_VM_WRITEV 1
+/* #undef HAVE_PROCESS_VM_WRITEV */
 
 /* Define to 1 if you have the `pthread_barrier_init' function. */
-#define HAVE_PTHREAD_BARRIER_INIT 1
+/* #undef HAVE_PTHREAD_BARRIER_INIT */
 
 /* Define to 1 if you have the `pthread_condattr_setclock' function. */
 #define HAVE_PTHREAD_CONDATTR_SETCLOCK 1
@@ -176,7 +176,7 @@
 /* #undef HAVE_PTHREAD_CREATE_GLIBC_2_0 */
 
 /* Define to 1 if you have the `PTHREAD_MUTEX_ADAPTIVE_NP' constant. */
-#define HAVE_PTHREAD_MUTEX_ADAPTIVE_NP 1
+/* #undef HAVE_PTHREAD_MUTEX_ADAPTIVE_NP */
 
 /* Define to 1 if you have the `PTHREAD_MUTEX_ERRORCHECK_NP' constant. */
 #define HAVE_PTHREAD_MUTEX_ERRORCHECK_NP 1
@@ -188,7 +188,7 @@
 #define HAVE_PTHREAD_MUTEX_TIMEDLOCK 1
 
 /* Define to 1 if pthread_mutex_t has a member __data.__kind. */
-#define HAVE_PTHREAD_MUTEX_T__DATA__KIND 1
+/* #undef HAVE_PTHREAD_MUTEX_T__DATA__KIND */
 
 /* Define to 1 if pthread_mutex_t has a member called __m_kind. */
 /* #undef HAVE_PTHREAD_MUTEX_T__M_KIND */
@@ -210,10 +210,10 @@
 #define HAVE_PTHREAD_SETNAME_NP 1
 
 /* Define to 1 if you have the `pthread_spin_lock' function. */
-#define HAVE_PTHREAD_SPIN_LOCK 1
+/* #undef HAVE_PTHREAD_SPIN_LOCK */
 
 /* Define to 1 if you have the `pthread_yield' function. */
-#define HAVE_PTHREAD_YIELD 1
+/* #undef HAVE_PTHREAD_YIELD */
 
 /* Define to 1 if you have the `PTRACE_GETREGS' ptrace request. */
 #define HAVE_PTRACE_GETREGS 1
@@ -222,16 +222,16 @@
 #define HAVE_READLINKAT 1
 
 /* Define to 1 if you have the `semtimedop' function. */
-#define HAVE_SEMTIMEDOP 1
+/* #undef HAVE_SEMTIMEDOP */
 
 /* Define to 1 if libstd++ supports annotating shared pointers */
-#define HAVE_SHARED_POINTER_ANNOTATION 1
+/* #undef HAVE_SHARED_POINTER_ANNOTATION */
 
 /* Define to 1 if you have the `signalfd' function. */
 #define HAVE_SIGNALFD 1
 
 /* Define to 1 if you have the `sigwaitinfo' function. */
-#define HAVE_SIGWAITINFO 1
+/* #undef HAVE_SIGWAITINFO */
 
 /* Define to 1 if you have the <stdint.h> header file. */
 #define HAVE_STDINT_H 1
@@ -264,7 +264,7 @@
 #define HAVE_SYSCALL 1
 
 /* Define to 1 if you have the <sys/endian.h> header file. */
-/* #undef HAVE_SYS_ENDIAN_H */
+#define HAVE_SYS_ENDIAN_H 1
 
 /* Define to 1 if you have the <sys/epoll.h> header file. */
 #define HAVE_SYS_EPOLL_H 1
@@ -309,7 +309,7 @@
 #define HAVE_SYS_TYPES_H 1
 
 /* Define to 1 if <sys/user.h> defines struct user_regs_struct */
-#define HAVE_SYS_USER_REGS 1
+/* #undef HAVE_SYS_USER_REGS */
 
 /* can use __thread to define thread-local variables */
 #define HAVE_TLS 1
@@ -462,7 +462,7 @@
 #define VERSION "3.15.0"
 
 /* Temporary files directory */
-#define VG_TMPDIR "/tmp"
+#define VG_TMPDIR "/sdcard"
 
 /* Define to `int' if <sys/types.h> doesn't define. */
 /* #undef gid_t */
